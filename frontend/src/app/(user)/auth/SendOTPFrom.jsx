@@ -6,7 +6,7 @@ function SendOTPFrom({ phoneNumber, onChange, onSubmit, isLoading }) {
     <div>
       <form className="space-y-10" onSubmit={onSubmit}>
         <TextField
-          label="شماره موبایل"
+          label="mobile"
           name="phoneNumber"
           value={phoneNumber}
           onChange={onChange}
@@ -15,8 +15,8 @@ function SendOTPFrom({ phoneNumber, onChange, onSubmit, isLoading }) {
           {isLoading ? (
             <Loading />
           ) : (
-            <button type="submit" className="btn btn--primary w-full">
-              ارسال کد تایید
+            <button type="submit" className="btn btn--primary w-full mt-10">
+               send code 
             </button>
           )}
         </div>

@@ -16,7 +16,7 @@ function Header() {
     >
       <nav>
         <ul className="flex items-center  justify-between py-2 container xl:max-w-screen-xl">
-          <li className="bg-red-500">
+          <li>
             <Link className="block py-2" href="/">
               Home
             </Link>
