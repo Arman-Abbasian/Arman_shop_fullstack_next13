@@ -43,6 +43,7 @@ class userAuthController extends Controller {
     // send OTP
     this.sendOTP(phoneNumber, res);
   }
+  
   async checkOtp(req, res) {
     await checkOtpSchema.validateAsync(req.body);
     const { otp: code, phoneNumber } = req.body;
@@ -225,6 +226,7 @@ class userAuthController extends Controller {
   }
   async getUserProfile(req, res) {
     const { _id: userId } = req.user;
+    console.log(req.headers.cookie.accessToken)
     const user = await UserModel.findById(userId, { otp: 0 });
     const cart = (await getUserCartDetail(userId))?.[0];
     const payments = await PaymentModel.find({ user: userId });

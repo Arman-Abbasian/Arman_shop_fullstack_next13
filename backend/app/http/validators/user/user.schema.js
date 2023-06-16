@@ -20,11 +20,11 @@ const checkOtpSchema = Joi.object({
 });
 
 const completeProfileSchema = Joi.object({
-  name: Joi.string()
+  name: Joi.string().not().empty("نام را وارد نمایید")
     .min(5)
     .max(100)
     .error(createHttpError.BadRequest("نام کاربری وارد شده صحیح نمی باشد")),
-  email: Joi.string()
+  email: Joi.string().not().empty("ایمیل را وارد نمایید")
     .email()
     .error(createHttpError.BadRequest("ایمیل وارد شده صحیح نمی باشد")),
 });
