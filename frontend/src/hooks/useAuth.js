@@ -4,9 +4,9 @@ import { useQuery } from "@tanstack/react-query";
 export const useGetUser = () =>
   useQuery({
     queryKey: ["get-user"],
-    queryFn: getUserProfile,
-    retry: false,
-    refetchOnWindowFocus: true,
+    queryFn: getUserProfile,// in queryFn we write a axios request
+    retry: false,//just try the request one time
+    refetchOnWindowFocus: true,//every time that you back on this page try new request
   });
 
 export const useGetUsers = () =>

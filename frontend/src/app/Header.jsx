@@ -5,6 +5,7 @@ import Link from "next/link";
 
 function Header() {
   const { data, error, isLoading } = useGetUser();
+  console.log(data,error,isLoading)
   const { user, cart } = data || {};
 
   return (
@@ -15,29 +16,29 @@ function Header() {
     >
       <nav>
         <ul className="flex items-center  justify-between py-2 container xl:max-w-screen-xl">
-          <li>
+          <li className="bg-red-500">
             <Link className="block py-2" href="/">
-              خانه
+              Home
             </Link>
           </li>
           <li>
             <Link className="block py-2" href="/products">
-              محصولات
+              products
             </Link>
           </li>
           <li>
             <Link className="block py-2" href="/profile">
-              پنل کاربر
+              user panel 
             </Link>
           </li>
           <li>
             <Link className="block py-2" href="/admin">
-              پنل ادمین
+              admin panel 
             </Link>
           </li>
           <li>
             <Link className="block py-2" href="/cart">
-              سبد خرید ({cart ? cart.payDetail.productIds.length : 0})
+              basket  ({cart ? cart.payDetail.productIds.length : 0})
             </Link>
           </li>
           {user ? (
@@ -45,7 +46,7 @@ function Header() {
           ) : (
             <li>
               <Link className="block py-2" href="/auth">
-                ورود
+                enter
               </Link>
             </li>
           )}
