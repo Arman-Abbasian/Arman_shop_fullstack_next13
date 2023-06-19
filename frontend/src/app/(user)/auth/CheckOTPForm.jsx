@@ -1,5 +1,5 @@
 import OTPInput from "react-otp-input";
-import { HiArrowNarrowRight } from "react-icons/hi";
+import { HiArrowNarrowLeft } from "react-icons/hi";
 import { CiEdit } from "react-icons/ci";
 import Loading from "@/common/Loading";
 function CheckOTPForm({
@@ -15,26 +15,27 @@ function CheckOTPForm({
   return (
     <div>
       <button onClick={onBack} className="mb-4">
-        <HiArrowNarrowRight className="w-6 h-6 text-secondary-500" />
+        <HiArrowNarrowLeft className="w-6 h-6 text-secondary-500" />
       </button>
       {otpResponse && (
-        <p>
-          {otpResponse?.message}
-          <button onClick={onBack}>
-            <CiEdit className="w-6 h-6 text-primary-900" />
-          </button>
-        </p>
+       <div>
+         <p className="text-success">{otpResponse?.message}</p>
+        <div className="flex items-center gap-4">
+          <p>edit phone number</p>
+          <CiEdit onClick={onBack} className="w-6 h-6 text-primary-900 cursor-pointer" />
+        </div>
+        </div>
       )}
       <div className="mb-4 text-secondary-500">
         {time > 0 ? (
-          <p>{time} ثانیه تا ارسال مجدد کد</p>
+          <p>{time} second to send new code</p>
         ) : (
-          <button onClick={onResendOtp}>ارسال مجدد کد؟</button>
+          <button onClick={onResendOtp}>resend conde ?</button>
         )}
       </div>
 
       <form className="space-y-10" onSubmit={onSubmit}>
-        <p className="font-bold">کد تایید را وارد کنید</p>
+        <p className="font-bold">Enter the code</p>
         <OTPInput
           value={otp}
           onChange={setOtp}
@@ -46,7 +47,7 @@ function CheckOTPForm({
             border: "1px solid rgb(var(--color-primary-300))",
             borderRadius: "0.5rem",
           }}
-          containerStyle="flex flex-row-reverse gap-x-2 justify-center"
+          containerStyle="flex gap-x-2 justify-center"
           renderInput={(props) => <input type="number" {...props} />}
         />
         <div>
@@ -54,7 +55,7 @@ function CheckOTPForm({
             <Loading />
           ) : (
             <button type="submit" className="btn btn--primary w-full">
-              تایید
+              submit
             </button>
           )}
         </div>

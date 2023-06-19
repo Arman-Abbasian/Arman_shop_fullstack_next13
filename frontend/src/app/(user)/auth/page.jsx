@@ -6,6 +6,8 @@ import { useMutation } from "@tanstack/react-query";
 import { checkOtp, getOtp } from "@/services/authServices";
 import CheckOTPForm from "./CheckOTPForm";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import http from "@/services/httpService";
 const RESEND_TIME = 90;
 
 function AuthPage() {
@@ -15,9 +17,9 @@ function AuthPage() {
   const [time, setTime] = useState(RESEND_TIME);
   const router = useRouter();
   const {
-    data: otpResponse,
-    error,
-    isLoading,
+    data: dataGetOtp,
+    error:errorGetOtp,
+    isLoading:laodingGetOtp,
     mutateAsync: mutateGetOtp,
   } = useMutation({
     mutationFn: getOtp,
@@ -27,15 +29,13 @@ function AuthPage() {
       mutationFn: checkOtp,
     }
   );
-
   const phoneNumberHandler = (e) => {
     setPhoneNumber(e.target.value);
   };
-
   const sendOtpHandler = async (e) => {
     e.preventDefault();
     try {
-      const data = await mutateGetOtp({ phoneNumber });
+      const data = await mutateGetOtp({phoneNumber});
       toast.success(data.message);
       setStep(2);
       setTime(RESEND_TIME);
@@ -77,7 +77,7 @@ function AuthPage() {
             phoneNumber={phoneNumber}
             onChange={phoneNumberHandler}
             onSubmit={sendOtpHandler}
-            isLoading={isLoading}
+            isLoading={laodingGetOtp}
           />
         );
       case 2:
@@ -89,7 +89,7 @@ function AuthPage() {
             onSubmit={checkOtpHandler}
             time={time}
             onResendOtp={sendOtpHandler}
-            otpResponse={otpResponse}
+            otpResponse={dataGetOtp}
             isCechkingOtp={isCechkingOtp}
           />
         );

@@ -7,6 +7,6 @@ export default function Providers({ children }) {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider contextSharing={true} client={queryClient}>{children}</QueryClientProvider>
   );
 }

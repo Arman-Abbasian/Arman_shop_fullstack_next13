@@ -28,22 +28,33 @@ class userAuthController extends Controller {
     this.phoneNumber = null;
   }
   async getOtp(req, res) {
+    //get mobile number
     let { phoneNumber } = req.body;
-
+    //if the user did not sent a mobile number
     if (!phoneNumber)
-      throw createError.BadRequest("شماره موبایل معتبر را وارد کنید");
+      throw createError.BadRequest("mobile number is not valid");
 
     phoneNumber = phoneNumber.trim();
+    //put the phoneNumber an code in constructor section to enabled to use by other methods here 
     this.phoneNumber = phoneNumber;
     this.code = generateRandomNumber(6);
-
+    //saveUser method check if the user registerd before just update otp field and if user is new make a 
+    //new user
     const result = await this.saveUser(phoneNumber);
-    if (!result) throw createError.Unauthorized("ورود شما انجام نشد.");
-
+    if (!result) throw createError.Unauthorized("some problem occured");
     // send OTP
-    this.sendOTP(phoneNumber, res);
+    //the under code is for when that you want to use kavehnegar
+    //this.sendOTP(phoneNumber, res);
+    //the under codes is when you want to use fake OTP codes
+    return res.status(HttpStatus.OK).json({
+      statusCode: HttpStatus.OK,
+      data: {
+        message: `submit code is sent to ${this.phoneNumber} mobile number`,
+        expiresIn: CODE_EXPIRES,
+        phoneNumber,
+      },
+    });
   }
-  
   async checkOtp(req, res) {
     await checkOtpSchema.validateAsync(req.body);
     const { otp: code, phoneNumber } = req.body;
@@ -104,10 +115,12 @@ class userAuthController extends Controller {
       code: this.code,
       expiresIn: Date.now() + CODE_EXPIRES,
     };
-
+    //check if the user with this phoneNumber registered before or not
     const user = await this.checkUserExist(phoneNumber);
+    //if user registered before update the user otp field in collection
     if (user) return await this.updateUser(phoneNumber, { otp });
-
+    console.log("not repatative")
+    // if the user not exist make a new user in user  collection
     return await UserModel.create({
       phoneNumber,
       otp,
@@ -118,6 +131,7 @@ class userAuthController extends Controller {
     const user = await UserModel.findOne({ phoneNumber });
     return user;
   }
+  //update the the fields (objectData) with the new values
   async updateUser(phoneNumber, objectData = {}) {
     Object.keys(objectData).forEach((key) => {
       if (["", " ", 0, null, undefined, "0", NaN].includes(objectData[key]))
@@ -129,7 +143,9 @@ class userAuthController extends Controller {
     );
     return !!updatedResult.modifiedCount;
   }
+  //caveh nager config to send otp code
   sendOTP(phoneNumber, res) {
+    //if you have kavehnegar API key, this the config of coveh negar
     const kaveNegarApi = Kavenegar.KavenegarApi({
       apikey: `${process.env.KAVENEGAR_API_KEY}`,
     });
@@ -152,10 +168,10 @@ class userAuthController extends Controller {
               phoneNumber,
             },
           });
-
-        return res.status(status).send({
+          // if not response is an Error
+        return res.status(status).json({
           statusCode: status,
-          message: "کد اعتبارسنجی ارسال نشد",
+          message: "OTP has not sent",
         });
       }
     );
