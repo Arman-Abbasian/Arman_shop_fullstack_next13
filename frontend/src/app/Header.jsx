@@ -1,5 +1,5 @@
 "use client";
-
+import { HiOutlineHome,HiOutlineShoppingCart,HiOutlineUser } from "react-icons/hi";
 import { useGetUser } from "@/hooks/useAuth";
 import Link from "next/link";
 
@@ -17,7 +17,7 @@ function Header() {
         <ul className="flex items-center  justify-between py-2 container xl:max-w-screen-xl">
           <li>
             <Link className="block py-2" href="/">
-              Home
+            <HiOutlineHome />
             </Link>
           </li>
           <li>
@@ -26,26 +26,31 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Link className="block py-2" href="/profile">
-              user panel 
-            </Link>
-          </li>
-          <li>
             <Link className="block py-2" href="/admin">
               admin panel 
             </Link>
           </li>
           <li>
-            <Link className="block py-2" href="/cart">
-              basket  ({cart ? cart.payDetail.productIds.length : 0})
+            <Link className="flex py-2 -space-x-0" href="/cart">
+              <HiOutlineShoppingCart />
+              <span className="w-4 h-4 bg-red-500 rounded-full flex justify-center items-center text-xs">{cart ? cart.payDetail.productIds.length : 0}</span>
             </Link>
           </li>
+          
           {user ? (
+            <li>
+              <Link className="flex items-center gap-1  py-2" href="/profile">
+            <HiOutlineUser />
             <span>{user.name}</span>
+            </Link>
+            </li>
           ) : (
             <li>
-              <Link className="block py-2" href="/auth">
-                enter
+              <Link className="flex py-2" href="/auth">
+              <div className="flex items-center gap-1">
+            <HiOutlineUser />
+            <span>enter</span>
+            </div> 
               </Link>
             </li>
           )}
