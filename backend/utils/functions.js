@@ -82,7 +82,7 @@ function generateToken(user, expiresIn, secret) {
 function verifyRefreshToken(req) {
   const refreshToken = req.signedCookies["refreshToken"];
   if (!refreshToken) {
-    throw createError.Unauthorized("لطفا وارد حساب کاربری خود شوید.");
+    throw createError.Unauthorized("please enter in your account");
   }
   const token = cookieParser.signedCookie(
     refreshToken,
@@ -95,17 +95,17 @@ function verifyRefreshToken(req) {
       async (err, payload) => {
         try {
           if (err)
-            reject(createError.Unauthorized("لطفا حساب کاربری خود شوید"));
+            reject(createError.Unauthorized("please enter in your account"));
           const { _id } = payload;
           const user = await UserModel.findById(_id, {
             password: 0,
             otp: 0,
             resetLink: 0,
           });
-          if (!user) reject(createError.Unauthorized("حساب کاربری یافت نشد"));
+          if (!user) reject(createError.Unauthorized("please enter in your account"));
           return resolve(_id);
         } catch (error) {
-          reject(createError.Unauthorized("حساب کاربری یافت نشد"));
+          reject(createError.Unauthorized("please enter in your account"));
         }
       }
     );

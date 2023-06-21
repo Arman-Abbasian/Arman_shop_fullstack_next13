@@ -232,6 +232,7 @@ class userAuthController extends Controller {
     });
   }
   async refreshToken(req, res) {
+    //retrun the "verifyRefreshToken" method is one id
     const userId = await verifyRefreshToken(req);
     const user = await UserModel.findById(userId);
     await setAccessToken(res, user);

@@ -6,6 +6,7 @@ import Link from "next/link";
 function Header() {
   const { data, error, isLoading } = useGetUser();
   const { user, cart } = data || {};
+  console.log(error)
 
   return (
     <header
