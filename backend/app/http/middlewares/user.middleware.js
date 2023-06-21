@@ -8,7 +8,7 @@ async function verifyAccessToken(req, res, next) {
   try {
     const accessToken = req.signedCookies["accessToken"];
     if (!accessToken) {
-      throw createHttpError.Unauthorized("لطفا وارد حساب کاربری خود شوید.");
+      throw createHttpError.Unauthorized("plase enter the user account");
     }
     const token = cookieParser.signedCookie(
       accessToken,
@@ -19,13 +19,13 @@ async function verifyAccessToken(req, res, next) {
       process.env.ACCESS_TOKEN_SECRET_KEY,
       async (err, payload) => {
         try {
-          if (err) throw createHttpError.Unauthorized("توکن نامعتبر است");
+          if (err) throw createHttpError.Unauthorized("token is not valid");
           const { _id } = payload;
           const user = await UserModel.findById(_id, {
             password: 0,
             otp: 0,
           });
-          if (!user) throw createHttpError.Unauthorized("حساب کاربری یافت نشد");
+          if (!user) throw createHttpError.Unauthorized("user account was not found");
           req.user = user;
           return next();
         } catch (error) {

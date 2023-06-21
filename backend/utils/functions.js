@@ -73,7 +73,7 @@ function generateToken(user, expiresIn, secret) {
       secret || process.env.TOKEN_SECRET_KEY,
       options,
       (err, token) => {
-        if (err) reject(createError.InternalServerError("خطای سروری"));
+        if (err) reject(createError.InternalServerError("server error"));
         resolve(token);
       }
     );

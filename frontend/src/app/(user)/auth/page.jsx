@@ -8,6 +8,7 @@ import CheckOTPForm from "./CheckOTPForm";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import http from "@/services/httpService";
+import { RiPhoneCameraFill } from "react-icons/ri";
 const RESEND_TIME = 90;
 
 function AuthPage() {
@@ -24,7 +25,7 @@ function AuthPage() {
   } = useMutation({
     mutationFn: getOtp,
   });
-  const { mutateAsync: mutateCheckOtp, isLoading: isCechkingOtp } = useMutation(
+  const { mutateAsync: mutateCheckOtp, isLoading: laodingCheckOtp } = useMutation(
     {
       mutationFn: checkOtp,
     }
@@ -38,7 +39,7 @@ function AuthPage() {
       const data = await mutateGetOtp({phoneNumber});
       toast.success(data.message);
       setStep(2);
-      setTime(RESEND_TIME);
+      setTime(Math.floor((dataGetOtp.expiresIn-Date.now())/1000));
       setOtp("");
     } catch (error) {
       toast.error(error?.response?.data?.message);
@@ -48,7 +49,6 @@ function AuthPage() {
     e.preventDefault();
     try {
       const { message, user } = await mutateCheckOtp({ phoneNumber, otp });
-
       toast.success(message);
       if (user.isActive) {
         router.push("/");
@@ -90,7 +90,7 @@ function AuthPage() {
             time={time}
             onResendOtp={sendOtpHandler}
             otpResponse={dataGetOtp}
-            isCechkingOtp={isCechkingOtp}
+            laodingCheckOtp={laodingCheckOtp}
           />
         );
       default:

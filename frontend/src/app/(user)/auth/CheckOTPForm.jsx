@@ -10,8 +10,9 @@ function CheckOTPForm({
   onBack,
   time,
   onResendOtp,
-  isCechkingOtp,
+  laodingCheckOtp,
 }) {
+  console.log(time)
   return (
     <div>
       <button onClick={onBack} className="mb-4">
@@ -40,18 +41,18 @@ function CheckOTPForm({
           value={otp}
           onChange={setOtp}
           numInputs={6}
-          renderSeparator={<span>-</span>}
+          renderSeparator={<span></span>}
           inputStyle={{
             width: "2.5rem",
             padding: "0.5rem 0.2rem",
-            border: "1px solid rgb(var(--color-primary-300))",
+            border: "2px solid rgb(var(--color-primary-500))",
             borderRadius: "0.5rem",
           }}
           containerStyle="flex gap-x-2 justify-center"
           renderInput={(props) => <input type="number" {...props} />}
         />
         <div>
-          {isCechkingOtp ? (
+          {laodingCheckOtp ? (
             <Loading />
           ) : (
             <button type="submit" className="btn btn--primary w-full">

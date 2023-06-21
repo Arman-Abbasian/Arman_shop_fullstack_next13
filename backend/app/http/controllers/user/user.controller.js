@@ -10,7 +10,7 @@ const {
 const createError = require("http-errors");
 const { UserModel } = require("../../../models/user");
 const Kavenegar = require("kavenegar");
-const CODE_EXPIRES = 90 * 1000; //90 seconds in miliseconds
+const CODE_EXPIRES = 30 * 1000; //90 seconds in miliseconds
 const { StatusCodes: HttpStatus } = require("http-status-codes");
 const path = require("path");
 const { ROLES } = require("../../../../utils/constants");
@@ -26,6 +26,7 @@ class userAuthController extends Controller {
     super();
     this.code = 0;
     this.phoneNumber = null;
+    this.expiresIn=0
   }
   async getOtp(req, res) {
     //get mobile number
@@ -50,7 +51,7 @@ class userAuthController extends Controller {
       statusCode: HttpStatus.OK,
       data: {
         message: `submit code is sent to ${this.phoneNumber} mobile number`,
-        expiresIn: CODE_EXPIRES,
+        expiresIn: this.expiresIn,
         phoneNumber,
       },
     });
@@ -87,10 +88,10 @@ class userAuthController extends Controller {
     if (!user) throw createError.NotFound("کاربری با این مشخصات یافت نشد");
 
     if (user.otp.code != code)
-      throw createError.BadRequest("کد ارسال شده صحیح نمیباشد");
+      throw createError.BadRequest("code is not true");
 
     if (new Date(`${user.otp.expiresIn}`).getTime() < Date.now())
-      throw createError.BadRequest("کد اعتبار سنجی منقضی شده است");
+      throw createError.BadRequest("code is expired");
 
     user.isVerifiedPhoneNumber = true;
     await user.save();
@@ -98,9 +99,9 @@ class userAuthController extends Controller {
     // await setAuthCookie(res, user); // set httpOnly cookie
     await setAccessToken(res, user);
     await setRefreshToken(res, user);
-    let WELLCOME_MESSAGE = `کد تایید شد، به فرانت هوکس خوش آمدید`;
+    let WELLCOME_MESSAGE = `wellcome to Arman-shop`;
     if (!user.isActive)
-      WELLCOME_MESSAGE = `کد تایید شد، لطفا اطلاعات خود را تکمیل کنید`;
+      WELLCOME_MESSAGE =`wellcome to Arman-shop please complete your data`;
 
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
@@ -115,6 +116,7 @@ class userAuthController extends Controller {
       code: this.code,
       expiresIn: Date.now() + CODE_EXPIRES,
     };
+    this.expiresIn=otp.expiresIn;
     //check if the user with this phoneNumber registered before or not
     const user = await this.checkUserExist(phoneNumber);
     //if user registered before update the user otp field in collection
@@ -178,17 +180,18 @@ class userAuthController extends Controller {
   }
   async completeProfile(req, res) {
     await completeProfileSchema.validateAsync(req.body);
+    //get the req.user from "verifyAccessToken" middleware
     const { user } = req;
     const { name, email } = req.body;
 
     if (!user.isVerifiedPhoneNumber)
-      throw createError.Forbidden("شماره موبایل خود را تایید کنید.");
+      throw createError.Forbidden("please verify your mobile number");
 
     const duplicateUser = await UserModel.findOne({ email });
 
     if (duplicateUser)
       throw createError.BadRequest(
-        "کاربری با این ایمیل قبلا ثبت نام کرده است."
+        "this email is already registered"
       );
 
     const updatedUser = await UserModel.findOneAndUpdate(
@@ -203,7 +206,7 @@ class userAuthController extends Controller {
     return res.status(HttpStatus.OK).send({
       statusCode: HttpStatus.OK,
       data: {
-        message: "اطلاعات شما با موفقیت تکمیل شد",
+        message:  "information completed successfully",
         user: updatedUser,
       },
     });

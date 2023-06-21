@@ -20,13 +20,13 @@ const checkOtpSchema = Joi.object({
 });
 
 const completeProfileSchema = Joi.object({
-  name: Joi.string().not().empty("نام را وارد نمایید")
+  name: Joi.string().not().empty("please enter the Full name")
     .min(5)
     .max(100)
-    .error(createHttpError.BadRequest("نام کاربری وارد شده صحیح نمی باشد")),
-  email: Joi.string().not().empty("ایمیل را وارد نمایید")
+    .error(createHttpError.BadRequest("Full name format is not true")),
+  email: Joi.string().not().empty("please enter the email")
     .email()
-    .error(createHttpError.BadRequest("ایمیل وارد شده صحیح نمی باشد")),
+    .error(createHttpError.BadRequest("email format is not true")),
 });
 
 const updateProfileSchema = Joi.object({
@@ -34,19 +34,19 @@ const updateProfileSchema = Joi.object({
     .min(5)
     .max(50)
     .required()
-    .error(createHttpError.BadRequest("نام کاربری وارد شده صحیح نمی باشد")),
+    .error(createHttpError.BadRequest("full name format is not true")),
   email: Joi.string()
     .required()
     .email()
-    .error(createHttpError.BadRequest("ایمیل وارد شده صحیح نمی باشد")),
+    .error(createHttpError.BadRequest("email is not true")),
   phoneNumber: Joi.string()
     .length(11)
     .pattern(/^09[0-9]{9}$/)
-    .error(createHttpError.BadRequest("شماره موبایل وارد شده صحیح نمیباشد")),
+    .error(createHttpError.BadRequest("mobile number is not true")),
   biography: Joi.string()
     .max(30)
     .allow("")
-    .error(createHttpError.BadRequest("حوزه تخصصی صحیح نمی باشد.")),
+    .error(createHttpError.BadRequest("biography is not true")),
 });
 
 module.exports = {
