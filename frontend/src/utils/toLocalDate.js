@@ -6,9 +6,9 @@ export function toLocalDateString(date) {
     day: "numeric",
   };
 
-  return new Date(date).toLocaleDateString("fa-IR", options);
+  return new Date(date).toLocaleDateString("en-US", options);
 }
 
 export function toLocalDateStringShort(date) {
-  return new Date(date).toLocaleDateString("fa-IR");
+  return new Date(date).toLocaleDateString("en-US");
 }

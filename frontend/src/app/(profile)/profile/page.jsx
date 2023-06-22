@@ -13,10 +13,10 @@ function Profile() {
   return (
     <div className="py-4">
       <h1 className="mb-4 text-xl">
-        سلام ! <span className="font-bold">{user.name}</span> خوش آمدی!
+      welcome <span className="font-bold">{user.name}</span> 
       </h1>
       <p>
-        <span>تاریخ پیوستن:</span>
+        <span>join date:</span>
         <span> {toLocalDateString(user.createdAt)} </span>
       </p>
       <div className="border rounded-xl  mt-8">

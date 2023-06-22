@@ -51,7 +51,7 @@ function AuthPage() {
       const { message, user } = await mutateCheckOtp({ phoneNumber, otp });
       toast.success(message);
       if (user.isActive) {
-        router.push("/");
+        document.location.href="/";
       } else {
         router.push("/complete-profile");
       }

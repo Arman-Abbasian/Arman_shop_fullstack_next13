@@ -2,6 +2,7 @@
 
 import { logout } from "@/services/authServices";
 import Link from "next/link";
+import { HiOutlineHome, } from "react-icons/hi";
 
 function SideBar() {
   const logoutHandler = async () => {
@@ -16,19 +17,19 @@ function SideBar() {
     <div>
       <ul className="flex flex-col space-y-8">
         <li>
-          <Link href="/">صفحه اصلی</Link>
+          <Link href="/"><HiOutlineHome /></Link>
         </li>
         <li>
-          <Link href="/profile">داشبورد</Link>
+          <Link href="/profile">dashboard</Link>
         </li>
         <li>
-          <Link href="/profile/me">اطلاعات کاربری</Link>
+          <Link href="/profile/me">user information</Link>
         </li>
         <li>
-          <Link href="/profile/payments">سفارشات </Link>
+          <Link href="/profile/payments">orders</Link>
         </li>
         <li>
-          <button onClick={logoutHandler}>خروج از حساب کاربری</button>
+          <button onClick={logoutHandler}>log out</button>
         </li>
       </ul>
     </div>

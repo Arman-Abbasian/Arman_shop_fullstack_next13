@@ -38,7 +38,7 @@ function MePage() {
 
   return (
     <div className="max-w-sm">
-      <h1 className="text-xl font-bold mb-4">اطلاعات کاربری</h1>
+      <h1 className="text-xl font-bold mb-4">user information</h1>
       <form onSubmit={sumbitHandler} className="space-y-5">
         {Object.keys(includeObj(user, includeskey)).map((key) => {
           return (
