@@ -10,14 +10,14 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 function MePage() {
-  const { data, isLoading } = useGetUser();
-  const queryClient = useQueryClient();
-  const { isLoading: isUpdating, mutateAsync } = useMutation({
+  const { data:userData, isLoading:userDataLoading } = useGetUser();
+  const { isLoading: isUpdating, mutateAsync:updateUserInformationQuery } = useMutation({
     mutationFn: updateProfile,
   });
+  const queryClient = useQueryClient();
+  
   const [formData, setFormData] = useState({});
-  const { user } = data || {};
-
+  const { user } = userData || {};
   const includeskey = ["name", "email", "phoneNumber", "biography"];
   useEffect(() => {
     if (user) setFormData(includeObj(user, includeskey));
@@ -26,18 +26,16 @@ function MePage() {
   const sumbitHandler = async (e) => {
     e.preventDefault();
     try {
-      const { message } = await mutateAsync(formData);
+      const { message } = await updateUserInformationQuery(formData);
       queryClient.invalidateQueries({ queryKey: ["get-user"] });
       toast.success(message);
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
   };
-  
-  if (isLoading) return <Loading />;
-
+  if (userDataLoading) return <Loading />;
   return (
-    <div className="max-w-sm">
+    <div className="container mx-auto max-w-sm">
       <h1 className="text-xl font-bold mb-4">user information</h1>
       <form onSubmit={sumbitHandler} className="space-y-5">
         {Object.keys(includeObj(user, includeskey)).map((key) => {
@@ -58,7 +56,7 @@ function MePage() {
             <Loading />
           ) : (
             <button type="submit" className="btn btn--primary w-full">
-              تایید
+              update
             </button>
           )}
         </div>

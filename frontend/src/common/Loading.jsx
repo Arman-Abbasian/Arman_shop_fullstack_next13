@@ -11,6 +11,8 @@ function Loading({ width = "75", heigh = "40" }) {
       wrapperStyle={{
         display: "flex",
         justifyContent: "center",
+        alignItems:"center",
+        height:"100%"
       }}
       visible={true}
     />
