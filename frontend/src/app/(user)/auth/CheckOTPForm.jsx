@@ -1,5 +1,5 @@
 import OTPInput from "react-otp-input";
-import { HiArrowNarrowLeft } from "react-icons/hi";
+import { HiArrowNarrowLeft,HiOutlineRefresh,HiOutlineDeviceMobile } from "react-icons/hi";
 import { CiEdit } from "react-icons/ci";
 import Loading from "@/common/Loading";
 function CheckOTPForm({
@@ -14,29 +14,29 @@ function CheckOTPForm({
 }) {
   console.log(time)
   return (
-    <div>
+    <div className="w-full">
       <button onClick={onBack} className="mb-4">
-        <HiArrowNarrowLeft className="w-6 h-6 text-secondary-500" />
+        <HiArrowNarrowLeft className="clickable--icon" />
       </button>
       {otpResponse && (
        <div>
-         <p className="text-success">{otpResponse?.message}</p>
-        <div className="flex items-center gap-4">
-          <p>edit phone number</p>
-          <CiEdit onClick={onBack} className="w-6 h-6 text-primary-900 cursor-pointer" />
+         <p className="mb-4">{otpResponse?.message}</p>
+        <div className="flex items-center gap-2 mb-4">
+          <HiOutlineDeviceMobile className="icon" />
+          <CiEdit onClick={onBack} className="clickable--icon" />
         </div>
         </div>
       )}
-      <div className="mb-4 text-secondary-500">
+      <div className="text-secondary-500 mb-4">
         {time > 0 ? (
           <p>{time} second to send new code</p>
         ) : (
-          <button onClick={onResendOtp}>resend conde ?</button>
+          <button onClick={onResendOtp}><HiOutlineRefresh className="clickable--icon" /></button>
         )}
       </div>
 
-      <form className="space-y-10" onSubmit={onSubmit}>
-        <p className="font-bold">Enter the code</p>
+      <form onSubmit={onSubmit}>
+        <p className="font-bold mb-2">Enter the code</p>
         <OTPInput
           value={otp}
           onChange={setOtp}
@@ -47,6 +47,7 @@ function CheckOTPForm({
             padding: "0.5rem 0.2rem",
             border: "2px solid rgb(var(--color-primary-500))",
             borderRadius: "0.5rem",
+            marginBottom:"60px",
           }}
           containerStyle="flex gap-x-2 justify-center"
           renderInput={(props) => <input type="number" {...props} />}

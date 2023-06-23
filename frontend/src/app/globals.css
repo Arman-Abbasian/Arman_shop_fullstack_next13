@@ -64,6 +64,12 @@
   .badge--error {
     @apply bg-rose-600 text-white;
   }
+  .clickable--icon {
+    @apply w-6 h-6 text-secondary-500 cursor-pointer;
+  }
+  .icon {
+    @apply w-6 h-6;
+  }
 }
 
 html,

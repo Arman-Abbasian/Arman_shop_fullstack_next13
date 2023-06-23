@@ -39,7 +39,7 @@ function AuthPage() {
       const data = await mutateGetOtp({phoneNumber});
       toast.success(data.message);
       setStep(2);
-      setTime(Math.floor((dataGetOtp.expiresIn-Date.now())/1000));
+      setTime(Math.floor((data.expiresIn-Date.now())/1000));
       setOtp("");
     } catch (error) {
       toast.error(error?.response?.data?.message);
