@@ -3,8 +3,8 @@ import TextField from "@/common/TextField";
 
 function SendOTPFrom({ phoneNumber, onChange, onSubmit, isLoading }) {
   return (
-    <div>
-      <form className="space-y-10" onSubmit={onSubmit}>
+    <div className="flex justify-center items-center w-full">
+      <form className="space-y-10 w-full" onSubmit={onSubmit}>
         <TextField
           label="mobile"
           name="phoneNumber"
@@ -15,7 +15,7 @@ function SendOTPFrom({ phoneNumber, onChange, onSubmit, isLoading }) {
           {isLoading ? (
             <Loading />
           ) : (
-            <button type="submit" className="btn btn--primary w-full mt-10">
+            <button type="submit" className="btn btn--primary w-full mt-8">
                send code 
             </button>
           )}
