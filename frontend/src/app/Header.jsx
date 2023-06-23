@@ -22,22 +22,22 @@ function Header() {
         </div>
         <ul className={`${showMenu?'flex':'hidden'} lg:flex flex-col lg:flex-row lg:items-center  lg:justify-between container lg:p-2 max-w-screen-xl`}>
           <li className="hover:bg-primary-200 w-44 p-2 rounded-md lg:w-full" onClick={()=>setShawMenu(false)}>
-            <Link className="block" href="/">
+            <Link className="flex lg:justify-center lg:items-center" href="/">
             <HiOutlineHome className="w-6 h-6" />
             </Link>
           </li>
           <li className="hover:bg-primary-200 w-44 p-2 rounded-md lg:w-full" onClick={()=>setShawMenu(false)}>
-            <Link className="block" href="/products">
+            <Link className="flex lg:justify-center lg:items-center" href="/products">
               products
             </Link>
           </li>
           <li className="hover:bg-primary-200 w-44 p-2 rounded-md lg:w-full" onClick={()=>setShawMenu(false)}>
-            <Link className="block" href="/admin">
+            <Link className="flex lg:justify-center lg:items-center" href="/admin">
               admin panel 
             </Link>
           </li>
           <li className="hover:bg-primary-200 p-2 w-44 rounded-md lg:w-full" onClick={()=>setShawMenu(false)}>
-            <Link className="flex  -space-x-0" href="/cart">
+            <Link className="flex lg:justify-center lg:items-center" href="/cart">
               <HiOutlineShoppingCart className="w-6 h-6" />
               <span className="w-4 h-4 bg-red-500 rounded-full flex justify-center items-center text-xs">{cart ? cart.payDetail.productIds.length : 0}</span>
             </Link>
@@ -45,15 +45,15 @@ function Header() {
           
           {user ? (
             <li className="hover:bg-primary-200 w-44 p-2 rounded-md lg:w-full" onClick={()=>setShawMenu(false)}>
-              <Link className="flex items-center gap-1  py-2" href="/profile">
+              <Link className="flex lg:justify-center lg:items-center" href="/profile">
             <HiOutlineUser />
             <span>{user.name}</span>
             </Link>
             </li>
           ) : (
             <li className="hover:bg-primary-200 w-44 p-2 rounded-md lg:w-full" onClick={()=>setShawMenu(false)}>
-              <Link className="flex" href="/auth">
-              <div className="flex items-center gap-1">
+              <Link className="flex lg:justify-center lg:items-center" href="/auth">
+              <div className="flex items-center">
             <HiOutlineUser className="icon" />
             <HiOutlineLogin classsName="icon" />
             </div> 
