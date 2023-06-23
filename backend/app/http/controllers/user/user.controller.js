@@ -272,6 +272,7 @@ class userAuthController extends Controller {
       domain:
         process.env.NODE_ENV === "development" ? "localhost" : ".fronthooks.ir",
     };
+    //set two cookie in response with null value(accessToken, refreshToken)
     res.cookie("accessToken", null, cookieOptions);
     res.cookie("refreshToken", null, cookieOptions);
 
