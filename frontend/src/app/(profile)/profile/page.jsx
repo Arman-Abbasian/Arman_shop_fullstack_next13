@@ -21,9 +21,9 @@ function Profile() {
       </p>
       <div className="border rounded-xl  mt-8">
         <div className="p-4 flex items-center justify-between">
-          <h2 className="font-bold text-xl">آخرین سفارشات کاربر</h2>
+          <h2 className="font-bold text-xl">latest orders</h2>
           <Link className="text-primary-900 font-bold" href="/profile/payments">
-            مشاهده همه سفارشات
+           All orders
           </Link>
         </div>
         <PaymentTable

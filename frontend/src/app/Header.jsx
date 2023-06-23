@@ -1,5 +1,5 @@
 "use client";
-import { HiOutlineHome,HiOutlineShoppingCart,HiOutlineUser,HiMenu } from "react-icons/hi";
+import { HiOutlineHome,HiOutlineShoppingCart,HiOutlineUser,HiMenu,HiOutlineLogin } from "react-icons/hi";
 import { useGetUser } from "@/hooks/useAuth";
 import Link from "next/link";
 import { useState } from "react";
@@ -54,8 +54,8 @@ function Header() {
             <li className="hover:bg-primary-200 w-44 p-2 rounded-md lg:w-full" onClick={()=>setShawMenu(false)}>
               <Link className="flex" href="/auth">
               <div className="flex items-center gap-1">
-            <HiOutlineUser />
-            <span>enter</span>
+            <HiOutlineUser className="icon" />
+            <HiOutlineLogin classsName="icon" />
             </div> 
               </Link>
             </li>

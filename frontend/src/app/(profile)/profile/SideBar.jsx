@@ -2,7 +2,7 @@
 
 import { logout } from "@/services/authServices";
 import Link from "next/link";
-import { HiOutlineHome, } from "react-icons/hi";
+import { HiOutlineHome,HiOutlineLogout } from "react-icons/hi";
 
 function SideBar() {
   const logoutHandler = async () => {
@@ -14,22 +14,22 @@ function SideBar() {
   };
 
   return (
-    <div>
-      <ul className="flex flex-col space-y-8">
-        <li>
-          <Link href="/"><HiOutlineHome /></Link>
+    <div className="w-full">
+      <ul className="flex flex-col space-y-2">
+        <li className="hover:bg-primary-400 w-52 p-2 rounded-md lg:w-full">
+          <Link href="/"><HiOutlineHome className="icon" /></Link>
         </li>
-        <li>
-          <Link href="/profile">dashboard</Link>
+        <li className="hover:bg-primary-400 w-52 p-2 rounded-md lg:w-full">
+          <Link href="/profile" className="block">dashboard</Link>
         </li>
-        <li>
-          <Link href="/profile/me">user information</Link>
+        <li className="hover:bg-primary-400 w-52 p-2 rounded-md lg:w-full">
+          <Link href="/profile/me" className="block">user information</Link>
         </li>
-        <li>
-          <Link href="/profile/payments">orders</Link>
+        <li className="hover:bg-primary-400 w-52 p-2 rounded-md lg:w-full">
+          <Link href="/profile/payments" className="block">orders</Link>
         </li>
-        <li>
-          <button onClick={logoutHandler}>log out</button>
+        <li className="hover:bg-primary-400 w-52  p-2 rounded-md lg:w-full">
+          <button onClick={logoutHandler} className="block w-full"><HiOutlineLogout className="icon" /></button>
         </li>
       </ul>
     </div>

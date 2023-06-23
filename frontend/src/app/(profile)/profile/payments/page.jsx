@@ -14,7 +14,7 @@ function Payments() {
   if (isLoading) return <Loading />;
   return (
     <div>
-      <h1>سفارشات کاربر</h1>
+      <h1>user orders</h1>
       <PaymentTable payments={payments} />
     </div>
   );

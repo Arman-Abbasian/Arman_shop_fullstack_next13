@@ -50,9 +50,9 @@ function PaymentTable({ payments }) {
                 </td>
                 <td className="table__td">
                   {payment.status === "COMPLETED" ? (
-                    <span className="badge badge--success">موفق</span>
+                    <span className="badge badge--success">success</span>
                   ) : (
-                    <span className="badge badge--error">ناموفق</span>
+                    <span className="badge badge--error">unsuccess</span>
                   )}
                 </td>
               </tr>

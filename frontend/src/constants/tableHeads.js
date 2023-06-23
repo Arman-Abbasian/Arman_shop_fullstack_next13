@@ -5,27 +5,27 @@ export const userPaymentTHeads = [
   },
   {
     id: 2,
-    label: "شماره فاکتور",
+    label: "reciep number",
   },
   {
     id: 3,
-    label: "توضیحات",
+    label: "details",
   },
   {
     id: 4,
-    label: "محصولات",
+    label: "products",
   },
   {
     id: 5,
-    label: "مبلغ",
+    label: "cost",
   },
   {
     id: 6,
-    label: "تاریخ",
+    label: "date",
   },
   {
     id: 7,
-    label: "وضعیت",
+    label: "conditon",
   },
 ];
 
