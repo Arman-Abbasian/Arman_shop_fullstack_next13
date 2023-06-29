@@ -45,7 +45,7 @@ function Header() {
           
           {user ? (
             <li className="hover:bg-primary-200 w-44 p-2 rounded-md lg:w-full" onClick={()=>setShawMenu(false)}>
-              <Link className="flex lg:justify-center lg:items-center" href="/profile">
+              <Link className="flex lg:justify-center items-center" href="/profile">
             <HiOutlineUser />
             <span>{user.name}</span>
             </Link>

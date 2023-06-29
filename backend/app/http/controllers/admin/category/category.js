@@ -22,45 +22,45 @@ class CategoryController extends Controller {
     });
   }
   async addNewCategory(req, res) {
-    const { title, englishTitle, description, type, parent } =
+    const { title, description, type, parent } =
       await addCategorySchema.validateAsync(req.body);
-    await this.findCategoryWithTitle(englishTitle);
+    await this.findCategoryWithTitle(title);
     const category = await CategoryModel.create({
       title,
-      englishTitle,
       description,
       type,
       parent,
     });
 
-    if (!category) throw createHttpError.InternalServerError("خطای داخلی");
+    if (!category) throw createHttpError.InternalServerError("server error");
+    
     return res.status(HttpStatus.CREATED).json({
       statusCode: HttpStatus.CREATED,
       data: {
-        message: "دسته بندی با موفقیت افزوده شد",
+        message: "ctegory added successfully",
       },
     });
   }
-  async findCategoryWithTitle(englishTitle) {
-    const category = await CategoryModel.findOne({ englishTitle });
+  async findCategoryWithTitle(title) {
+    const category = await CategoryModel.findOne({ title });
     if (category)
-      throw createHttpError.BadRequest("دسته بندی با این عنوان وجود دارد.");
+      throw createHttpError.BadRequest("this category already existed");
   }
   async checkExistCategory(id) {
     const category = await CategoryModel.findById(id);
     if (!category)
-      throw createHttpError.BadRequest("دسته بندی با این عنوان وجود ندارد.");
+      throw createHttpError.BadRequest("this title is not existed");
     return category;
   }
   async updateCategory(req, res) {
     const { id } = req.params;
-    const { title, englishTitle, type, description } = req.body;
+    const { title, type, description } = req.body;
     await this.checkExistCategory(id);
     await updateCategorySchema.validateAsync(req.body);
     const updateResult = await CategoryModel.updateOne(
       { _id: id },
       {
-        $set: { title, englishTitle, type, description },
+        $set: { title, type, description },
       }
     );
     if (updateResult.modifiedCount == 0)
@@ -79,7 +79,7 @@ class CategoryController extends Controller {
       $or: [{ _id: category._id }, { parentId: category._id }],
     });
     if (deleteResult.deletedCount == 0)
-      throw createError.InternalServerError("حدف دسته بندی انجام نشد");
+      throw createError.InternalServerError("server error");
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       data: {

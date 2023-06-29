@@ -7,53 +7,40 @@ const addCategorySchema = Joi.object({
     .required()
     .min(3)
     .max(100)
-    .error(createHttpError.BadRequest("عنوان فارسی دسته بندی صحیح نمیباشد")),
-  englishTitle: Joi.string()
-    .required()
-    .min(3)
-    .max(100)
-    .error(
-      createHttpError.BadRequest("عنوان انگلیسی دسته بندی صیحیح نمی باشد")
-    ),
+    .error(createHttpError.BadRequest("title is not true")),
   description: Joi.string()
     .required()
     .min(3)
     .max(200)
-    .error(createHttpError.BadRequest("توضیحات دسته بندی صحیح نمی باشد")),
+    .error(createHttpError.BadRequest("description is not true")),
   type: Joi.string()
     .required()
     .min(3)
     .max(100)
     .valid("product", "post", "comment", "ticket")
-    .error(createHttpError.BadRequest("نوع دسته بندی صحیح نمی باشد")),
+    .error(createHttpError.BadRequest("description kind is not true")),
   parent: Joi.string()
     .allow("")
     .pattern(MongoIDPattern)
-    .error(createHttpError.BadRequest("شناسه ارسال شده صحیح نمیباشد")),
+    .error(createHttpError.BadRequest("identification is not true")),
 });
 
 const updateCategorySchema = Joi.object({
   title: Joi.string()
     .min(3)
     .max(100)
-    .error(createHttpError.BadRequest("عنوان فارسی دسته بندی صحیح نمیباشد")),
-  englishTitle: Joi.string()
-    .min(3)
-    .max(100)
-    .error(
-      createHttpError.BadRequest("عنوان انگلیسی دسته بندی صیحیح نمی باشد")
-    ),
+    .error(createHttpError.BadRequest("title is not true")),
   description: Joi.string()
     .required()
     .min(3)
     .max(200)
-    .error(createHttpError.BadRequest("توضیحات دسته بندی صحیح نمی باشد")),
+    .error(createHttpError.BadRequest("description is not true")),
   type: Joi.string()
     .required()
     .min(3)
     .max(100)
     .valid("product", "post", "comment", "ticket")
-    .error(createHttpError.BadRequest("نوع دسته بندی صحیح نمی باشد")),
+    .error(createHttpError.BadRequest("category kind is not true")),
 });
 
 module.exports = {

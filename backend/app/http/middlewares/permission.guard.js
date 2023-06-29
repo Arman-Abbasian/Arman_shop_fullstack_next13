@@ -8,7 +8,7 @@ function authorize(...allowedRoles) {
       const user = await UserModel.findById(userId);
       if (allowedRoles.length === 0 || allowedRoles.includes(user.role))
         return next();
-      throw createError.Forbidden("شما به این قسمت دسترسی ندارید");
+      throw createError.Forbidden("not access");
     } catch (error) {
       next(error);
     }
