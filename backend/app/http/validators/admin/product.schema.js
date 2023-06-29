@@ -7,49 +7,49 @@ const addProductSchema = Joi.object({
     .required()
     .min(3)
     .max(30)
-    .error(createError.BadRequest("عنوان محصول صحیح نمیباشد")),
+    .error(createError.BadRequest("title is not true")),
   description: Joi.string()
     .required()
-    .error(createError.BadRequest("توضیحات ارسال شده صحیح نمیباشد")),
+    .error(createError.BadRequest("description is not true")),
   slug: Joi.string()
     .required()
-    .error(createError.BadRequest("اسلاگ ارسال شده صحیح نمیباشد")),
+    .error(createError.BadRequest("slug is not true")),
   brand: Joi.string()
     .required()
-    .error(createError.BadRequest("برند محصول صحیح نمی باشد.")),
+    .error(createError.BadRequest("brand is not true")),
   countInStock: Joi.number()
     .required()
-    .error(createError.BadRequest("موجودی محصول صحیح نمی باشد.")),
+    .error(createError.BadRequest("count in stock is not true")),
   imageLink: Joi.string()
     .required()
-    .error(createError.BadRequest("لینک عکس دوره صحیح نمیباشد")),
+    .error(createError.BadRequest("image link is not true")),
   tags: Joi.array()
     .min(0)
     .max(20)
-    .error(createError.BadRequest("برچسب ها نمیتواند بیشتر از 20 ایتم باشد")),
+    .error(createError.BadRequest("tags could not be more than 20 Items")),
   category: Joi.string()
     .required()
     .regex(MongoIDPattern)
-    .error(createError.BadRequest("دسته بندی مورد نظر  صحیح نمی باشد")),
+    .error(createError.BadRequest("category is not true")),
   offPrice: Joi.number().error(
-    createError.BadRequest("قیمت وارد شده صحیح نمیباشد")
+    createError.BadRequest("off price is not true")
   ),
   price: Joi.number()
     .required()
-    .error(createError.BadRequest("قیمت وارد شده صحیح نمیباشد")),
+    .error(createError.BadRequest("price is not true")),
   discount: Joi.number()
     .allow(0)
-    .error(createError.BadRequest("تخفیف وارد شده صحیح نمیباشد")),
+    .error(createError.BadRequest("discount is not true")),
 });
 
 const changeCourseDiscountSchema = Joi.object({
   offPrice: Joi.number()
     .required()
-    .error(createError.BadRequest("قیمت وارد شده صحیح نمیباشد")),
+    .error(createError.BadRequest("off price is not true")),
   discount: Joi.number()
     .required()
     .allow(0)
-    .error(createError.BadRequest("تخفیف وارد شده صحیح نمیباشد")),
+    .error(createError.BadRequest("price is not true")),
 });
 
 module.exports = {

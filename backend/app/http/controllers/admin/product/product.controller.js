@@ -48,11 +48,11 @@ class ProductController extends Controller {
       countInStock,
     });
     if (!product?._id)
-      throw createHttpError.InternalServerError("محصول ثبت نشد");
+      throw createHttpError.InternalServerError("product not added");
     return res.status(HttpStatus.CREATED).json({
       statusCode: HttpStatus.CREATED,
       data: {
-        message: "محصول با موفقیت ایجاد شد",
+        message: "product created successfully",
         product,
       },
     });
@@ -60,14 +60,16 @@ class ProductController extends Controller {
   async getListOfProducts(req, res) {
     let dbQuery = {};
     const user = req.user;
+    //these are the keys of query strings
     const { search, category, sort, type } = req.query;
     // console.log({ category, sort, type });
-    if (search) dbQuery["$text"] = { $search: search };
+    if (search) dbQuery['$text'] = { $search: search };
     if (category) {
       const categories = category.split(",");
+      //category id is constst of _id field of categories in queryString
       const categoryIds = [];
       for (const item of categories) {
-        const { _id } = await CategoryModel.findOne({ englishTitle: item });
+        const { _id } = await CategoryModel.findOne({ title: item });
         categoryIds.push(_id);
       }
       dbQuery["category"] = {
@@ -78,15 +80,15 @@ class ProductController extends Controller {
     const sortQuery = {};
     if (!sort) sortQuery["createdAt"] = 1;
     if (sort) {
-      if (sort === "latest") sortQuery["createdAt"] = -1;
+      if (sort === "latest") sortQuery["createdAt"] = -1 ;
       if (sort === "earliest") sortQuery["createdAt"] = 1;
       if (sort === "popular") sortQuery["likes"] = -1;
     }
-
+    console.log(dbQuery)
     const products = await ProductModel.find(dbQuery, {
       reviews: 0,
     })
-      .populate([{ path: "category", select: { title: 1, englishTitle: 1 } }])
+      .populate([{ path: "category", select: { title: 1 } }])
       .sort(sortQuery);
 
     const transformedProducts = copyObject(products);
