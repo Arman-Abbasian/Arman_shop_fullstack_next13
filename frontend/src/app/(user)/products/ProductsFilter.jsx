@@ -11,7 +11,6 @@ function ProductsFilter({ categories }) {
     searchParams.get("category")?.split(",") || []
   );
   // console.log(searchParams.getAll("category")[0].split(","));
-
   const createQueryString = useCallback(
     (name, value) => {
       const params = new URLSearchParams(searchParams);
@@ -38,18 +37,18 @@ function ProductsFilter({ categories }) {
   };
   return (
     <div className="mb-8">
-      <p className="font-bold mb-4">دسته بندی ها</p>
+      <p className="font-bold mb-4">country</p>
       <ul className=" space-y-4">
         {categories.map((category) => {
           return (
             <CheckBox
               key={category._id}
               id={category._id}
-              value={category.englishTitle}
-              name="product-type"
+              value={category.title}
+              name="country"
               label={category.title}
               onChange={categoryHandler}
-              checked={selectedCategories.includes(category.englishTitle)}
+              checked={selectedCategories.includes(category.title)}
             />
           );
         })}

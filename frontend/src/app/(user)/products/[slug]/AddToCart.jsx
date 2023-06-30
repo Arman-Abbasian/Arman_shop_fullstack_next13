@@ -17,7 +17,7 @@ function AddToCart({ product }) {
 
   const addToCartHandler = async () => {
     if (!user) {
-      toast.error("لطفا ابتدا لاگین کنید.");
+      toast.error("please login");
       router.push("/auth");
       return;
     }
@@ -42,13 +42,13 @@ function AddToCart({ product }) {
     <div>
       {isInCart(user, product) ? (
         <Link href="/cart" className="text-primary-900 font-bold">
-          ادامه سفارش
+          countiue the order
         </Link>
       ) : isLoading ? (
         <Loading />
       ) : (
         <button onClick={addToCartHandler} className="btn btn--primary py-2">
-          اضافه کردن به سبد خرید
+          Add
         </button>
       )}
     </div>

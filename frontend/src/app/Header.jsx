@@ -8,7 +8,6 @@ function Header() {
   const [showMenu,setShawMenu]=useState(false);
   const { data, error, isLoading } = useGetUser();
   const { user, cart } = data || {};
-  console.log(error)
 
   return (
     <header

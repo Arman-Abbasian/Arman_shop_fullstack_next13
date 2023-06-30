@@ -28,20 +28,19 @@ async function Products({ searchParams }) {
   ]);
   return (
     <div>
-      <h1 className="text-xl font-bold mb-6">صفحه محصولات</h1>
-      <div className="grid grid-cols-4">
+      <div className="flex items-center gap-4">
         <CategorySidebar categories={categories} />
-        <div className="col-span-3">
-          <div className="grid grid-cols-3 gap-4">
+        <div className="bg-red-300 flex-1">
+          <div className="flex flex-wrap  gap-4">
             {products.map((product) => {
               return (
                 <div
-                  className="col-span-1 border rounded-xl shadow-md p-4"
+                  className="border w-64 rounded-xl shadow-md p-4"
                   key={product._id}
                 >
                   <h2 className="font-bold text-xl mb-4">{product.title}</h2>
-                  <div className="mb-4">
-                    <span>تاریخ ساختن: </span>
+                  <div className="mb-4 flex gap-2 items-center">
+                    <span>Date: </span>
                     <span className="font-bold">
                       {toLocalDateStringShort(product.createdAt)}
                     </span>
@@ -50,7 +49,7 @@ async function Products({ searchParams }) {
                     className="text-primary-900 font-bold mb-4 block"
                     href={`/products/${product.slug}`}
                   >
-                    مشاهده محصول
+                 product details
                   </Link>
                   <LikeProduct product={product} />
                   <AddToCart product={product} />
