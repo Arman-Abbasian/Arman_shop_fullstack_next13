@@ -28,16 +28,19 @@ async function Products({ searchParams }) {
   ]);
   return (
     <div>
-      <div className="flex items-center gap-4">
+      <div className="flex gap-4">
         <CategorySidebar categories={categories} />
-        <div className="bg-red-300 flex-1">
-          <div className="flex flex-wrap  gap-4">
+        <div className="flex-1">
+          <div className="flex justify-center lg:justify-start items-center flex-wrap  gap-4">
             {products.map((product) => {
               return (
                 <div
-                  className="border w-64 rounded-xl shadow-md p-4"
+                  className="w-72 rounded-xl shadow-lg p-4 shadow-primary-600"
                   key={product._id}
                 >
+                  <div class="aspect-w-16 aspect-h-9">
+                    <img src="images/santoor.png" alt="santoor" class="w-full h-full object-center object-contain" />
+                  </div>
                   <h2 className="font-bold text-xl mb-4">{product.title}</h2>
                   <div className="mb-4 flex gap-2 items-center">
                     <span>Date: </span>

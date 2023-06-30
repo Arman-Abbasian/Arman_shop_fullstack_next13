@@ -41,13 +41,13 @@ function AddToCart({ product }) {
   return (
     <div>
       {isInCart(user, product) ? (
-        <Link href="/cart" className="text-primary-900 font-bold">
+        <Link href="/cart" className="text-primary-900 font-bold w-full">
           countiue the order
         </Link>
       ) : isLoading ? (
         <Loading />
       ) : (
-        <button onClick={addToCartHandler} className="btn btn--primary py-2">
+        <button onClick={addToCartHandler} className="btn btn--primary py-2 w-full">
           Add
         </button>
       )}
