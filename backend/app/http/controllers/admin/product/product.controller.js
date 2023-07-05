@@ -62,11 +62,12 @@ class ProductController extends Controller {
     const user = req.user;
     //these are the keys of query strings
     const { search, category, sort, type } = req.query;
-    // console.log({ category, sort, type });
+    // if search key was in query string's key;
     if (search) dbQuery['$text'] = { $search: search };
+    // if category key was in query string's key;
     if (category) {
       const categories = category.split(",");
-      //category id is constst of _id field of categories in queryString
+      //categoryId is consist of _id field of categories in queryString
       const categoryIds = [];
       for (const item of categories) {
         const { _id } = await CategoryModel.findOne({ title: item });
@@ -84,7 +85,6 @@ class ProductController extends Controller {
       if (sort === "earliest") sortQuery["createdAt"] = 1;
       if (sort === "popular") sortQuery["likes"] = -1;
     }
-    console.log(dbQuery)
     const products = await ProductModel.find(dbQuery, {
       reviews: 0,
     })
@@ -92,7 +92,6 @@ class ProductController extends Controller {
       .sort(sortQuery);
 
     const transformedProducts = copyObject(products);
-
     const newProducts = transformedProducts.map((product) => {
       product.likesCount = product.likes.length;
       product.isLiked = false;
@@ -242,12 +241,12 @@ class ProductController extends Controller {
     );
 
     if (productUpdate.modifiedCount === 0 || userUpdate.modifiedCount === 0)
-      throw createHttpError.BadRequest("عملیات ناموفق بود.");
+      throw createHttpError.BadRequest("server error");
 
     let message;
     if (!likedProduct) {
-      message = "مرسی بابت لایک تون";
-    } else message = "لایک شما برداشته شد";
+      message = "thanks for like";
+    } else message = "remove like";
 
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,

@@ -20,7 +20,7 @@ async function Products({ searchParams }) {
     queryString.stringify(searchParams),
     strCookies
   );
-
+console.log(searchParams)
   const categoryPromise = getCategories();
   const [{ products }, { categories }] = await Promise.all([
     productsPromise,
