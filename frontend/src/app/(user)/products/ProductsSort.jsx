@@ -26,6 +26,7 @@ function ProductsSort() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  //best work is to get the initial state of as querystring state form the query string
   const [sort, setSort] = useState(searchParams.get("sort")||"latest");
 
   const createQueryString = useCallback(
@@ -44,10 +45,11 @@ function ProductsSort() {
   };
 
   useEffect(() => {
-    console.log(sort)
+    console.log(searchParams.get("sort"))
     setSort(searchParams.get("sort") || "latest");
   }, [searchParams]);
-
+  
+console.log(sort)
   return (
     <div>
       <p className="font-bold mb-4">sort</p>

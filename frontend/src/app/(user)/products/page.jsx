@@ -8,24 +8,27 @@ import AddToCart from "./[slug]/AddToCart";
 import LikeProduct from "./LikeProduct";
 import { cookies } from "next/headers";
 import { toStringCookies } from "@/utils/toStringCookies";
-
+//under line said that this page is a SSR page
 export const dynamic = "force-dynamic"; // eq to {cache :"no-store"} or SSR in pages Dir. :)
 
 async function Products({ searchParams }) {
   // const { products } = await getProducts(queryString.stringify(searchParams));
   // const { categories } = await getCategories();
+  //get cookies in SSR components
   const cookieStore = cookies();
+  //change cookies to string for use in http methods
   const strCookies = toStringCookies(cookieStore);
+  //parallel data fetching method
   const productsPromise = getProducts(
     queryString.stringify(searchParams),
     strCookies
   );
-console.log(searchParams)
   const categoryPromise = getCategories();
   const [{ products }, { categories }] = await Promise.all([
     productsPromise,
     categoryPromise,
   ]);
+  
   return (
     <div>
       <div className="flex gap-4">

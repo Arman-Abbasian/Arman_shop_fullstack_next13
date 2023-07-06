@@ -3,7 +3,6 @@ const createHttpError = require("http-errors");
 const JWT = require("jsonwebtoken");
 const { UserModel } = require("../../models/user");
 
-
 async function verifyAccessToken(req, res, next) {
   try {
     const accessToken = req.signedCookies["accessToken"];
@@ -25,7 +24,8 @@ async function verifyAccessToken(req, res, next) {
             password: 0,
             otp: 0,
           });
-          if (!user) throw createHttpError.Unauthorized("user account was not found");
+          if (!user)
+            throw createHttpError.Unauthorized("user account was not found");
           req.user = user;
           return next();
         } catch (error) {
@@ -37,7 +37,6 @@ async function verifyAccessToken(req, res, next) {
     next(error);
   }
 }
-
 
 function decideAuthMiddleware(req, res, next) {
   const accessToken = req.signedCookies["accessToken"];

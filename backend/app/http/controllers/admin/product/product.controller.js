@@ -90,7 +90,8 @@ class ProductController extends Controller {
     })
       .populate([{ path: "category", select: { title: 1 } }])
       .sort(sortQuery);
-
+// now we have a filtered and sorted product
+//make a copy of product and do the continue of codes on the copy products
     const transformedProducts = copyObject(products);
     const newProducts = transformedProducts.map((product) => {
       product.likesCount = product.likes.length;
@@ -217,16 +218,21 @@ class ProductController extends Controller {
   }
   async likeProduct(req, res) {
     const { id: productId } = req.params;
+    //get req.user from verifyAccessToken middleware
     const user = req.user;
+    //find product from product collection
     const product = await this.findProductById(productId);
+    if(!product) throw createHttpError.BadRequest("product not found");
+    //likedProduct is ture if id of user be in likes array of product doecument and visaverse
     const likedProduct = await ProductModel.findOne({
       _id: productId,
       likes: user._id,
     });
+    // if id of user was or was not exist in like field of product document
     const updateProductQuery = likedProduct
       ? { $pull: { likes: user._id } }
       : { $push: { likes: user._id } };
-
+// if id of product was or was not exist in likedProducts field of user document
     const updateUserQuery = likedProduct
       ? { $pull: { likedProducts: product._id } }
       : { $push: { likedProducts: product._id } };
@@ -257,9 +263,9 @@ class ProductController extends Controller {
   }
   async findProductById(id) {
     if (!mongoose.isValidObjectId(id))
-      throw createHttpError.BadRequest("شناسه محصول ارسال شده صحیح نمیباشد");
+      throw createHttpError.BadRequest("product identification is not true");
     const product = await ProductModel.findById(id);
-    if (!product) throw createHttpError.NotFound("محصولی یافت نشد.");
+    if (!product) throw createHttpError.NotFound("product not found");
     return product;
   }
 }
