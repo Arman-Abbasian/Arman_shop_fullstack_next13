@@ -1,6 +1,7 @@
 "use client";
 import { useAddToCart, useDecrementFromCart } from "@/hooks/useCart";
 import {
+  toNumbersWithComma,
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/toPersianNumbers";
@@ -43,20 +44,20 @@ function CartItem({ cartItem }) {
       <div className="flex items-center justify-between  gap-x-8 flex-1">
         <div>
           <div>
-            قیمت :{" "}
+            cost :{" "}
             <span
               className={`${
                 cartItem.discount ? "line-through text-gray-500" : "font-bold"
               }`}
             >
-              {toPersianNumbersWithComma(cartItem.price)}
+              {toNumbersWithComma(cartItem.price)}
             </span>
           </div>
           {!!cartItem.discount && (
             <div className="flex items-center gap-x-2 mt-2">
               <p className="font-bold">
                 {" "}
-                {toPersianNumbersWithComma(cartItem.offPrice)}
+                {toNumbersWithComma(cartItem.offPrice)}
               </p>
               <div className="bg-rose-500 px-2 py-0.5 rounded-xl text-white text-sm">
                 {toPersianNumbers(cartItem.discount)} %
@@ -66,7 +67,7 @@ function CartItem({ cartItem }) {
         </div>
 
         <span className="border-r-2 pr-2">
-          تعداد : {toPersianNumbers(cartItem.quantity)}
+          number : {cartItem.quantity}
         </span>
         <div className="flex gap-x-3">
           <button

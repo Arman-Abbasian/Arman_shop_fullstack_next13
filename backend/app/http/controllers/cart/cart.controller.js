@@ -14,8 +14,9 @@ class CartController extends Controller {
     const userId = req.user;
     const { productId } = req.body;
     const addedProduct = await this.checkExistProduct(productId);
+    //find if the product was before in cart items of user
     const product = await this.findProductInCart(userId, productId);
-
+    //if the product was before in cart items of user add 1 to the product quantity
     if (product) {
       const addToCartResult = await UserModel.updateOne(
         {
@@ -28,10 +29,11 @@ class CartController extends Controller {
           },
         }
       );
-      if (addToCartResult.modifiedCount == 0)
-        throw createHttpError.InternalServerError(
-          "محصول به سبد خرید اضافه نشد"
+      if (addToCartResult.modifiedCount == 0) 
+      throw createHttpError.InternalServerError(
+          "server error"
         );
+    //if the product was not before in cart items of user add object to ehe cart.products array=> {productId:---,quantity:1}   
     } else {
       const addToCartResult = await UserModel.updateOne(
         {
@@ -48,14 +50,14 @@ class CartController extends Controller {
       );
       if (addToCartResult.modifiedCount == 0)
         throw createHttpError.InternalServerError(
-          "محصول به سبد خرید اضافه نشد"
+          "server error"
         );
     }
 
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       data: {
-        message: `${addedProduct.title} به سبد خرید اضافه شد`,
+        message: `${addedProduct.title} added to basket successfully`,
       },
     });
   }

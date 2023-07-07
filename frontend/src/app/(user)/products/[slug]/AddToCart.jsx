@@ -35,6 +35,7 @@ function AddToCart({ product }) {
 
   const isInCart = (user, product) => {
     if (!user) return false;
+    //check if the product existed in user cart section or not
     return user.cart?.products.some((p) => p.productId === product._id);
   };
 
