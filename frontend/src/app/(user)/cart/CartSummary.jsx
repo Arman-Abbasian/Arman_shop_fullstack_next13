@@ -30,7 +30,7 @@ function CartSummary({ payDetail }) {
       </div>
       <div className="mb-4 flex items-center justify-between">
         <span>discount</span>
-        <span>{toNumbersWithComma(totalOffAmount)} - </span>
+        <span>-{toNumbersWithComma(totalOffAmount)}</span>
       </div>
       <div className="mb-6 flex items-center justify-between font-bold">
         <span>payable cost</span>
@@ -44,7 +44,7 @@ function CartSummary({ payDetail }) {
             className="btn btn--primary w-full"
             onClick={createPaymentHandler}
           >
-           do it
+           pay
           </button>
         )}
       </div>

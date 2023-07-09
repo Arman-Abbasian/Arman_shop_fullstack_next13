@@ -39,11 +39,12 @@ function CartItem({ cartItem }) {
   };
 
   return (
-    <div className="border rounded-xl p-4 flex justify-between">
-      <span className="flex-1 font-bold">{cartItem.title}</span>
-      <div className="flex items-center justify-between  gap-x-8 flex-1">
-        <div>
-          <div>
+    <div className="border rounded-xl p-4 flex justify-between flex-nowrap overflow-x-scroll gap-4 w-[600]">
+      <div className="font-bold flex flex-nowrap justify-center items-center">
+      <p>{cartItem.title}</p>
+      </div>
+        <div className="justify-center items-center">
+          <div className="flex flex-nowrap">
             cost :{" "}
             <span
               className={`${
@@ -54,22 +55,23 @@ function CartItem({ cartItem }) {
             </span>
           </div>
           {!!cartItem.discount && (
-            <div className="flex items-center gap-x-2 mt-2">
+            <div className="flex items-center gap-x-2 mt-2 flex-nowrap">
               <p className="font-bold">
                 {" "}
                 {toNumbersWithComma(cartItem.offPrice)}
               </p>
               <div className="bg-rose-500 px-2 py-0.5 rounded-xl text-white text-sm">
-                {toPersianNumbers(cartItem.discount)} %
+                {toPersianNumbers(cartItem.discount)}%
               </div>
             </div>
           )}
         </div>
 
-        <span className="border-r-2 pr-2">
-          number : {cartItem.quantity}
-        </span>
-        <div className="flex gap-x-3">
+        <div className="border-r-2 pr-2 flex justify-center items-center flex-nowrap gap-1">
+          <span>number:</span>
+          <span>{cartItem.quantity}</span>
+        </div>
+        <div className="flex flex-nowrap gap-x-3 ">
           <button
             onClick={addToCartHandler}
             className="bg-primary-900 text-white rounded p-1"
@@ -85,7 +87,6 @@ function CartItem({ cartItem }) {
           </button>
         </div>
       </div>
-    </div>
   );
 }
 export default CartItem;
