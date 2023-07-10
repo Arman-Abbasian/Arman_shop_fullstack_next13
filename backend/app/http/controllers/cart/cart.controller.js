@@ -68,7 +68,7 @@ class CartController extends Controller {
     const product = await this.findProductInCart(userId, productId);
     if (!product)
       throw createHttpError.BadRequest(
-        `${removedProduct.title} در سبد خرید شما وجود ندارد`
+        `${removedProduct.title} is not exist in your cart`
       );
     let message;
     if (product.quantity > 1) {
@@ -84,9 +84,9 @@ class CartController extends Controller {
         }
       );
       if (decreaseCart.modifiedCount == 0)
-        throw createHttpError.InternalServerError("محصول از سبد خرید کم نشد");
+        throw createHttpError.InternalServerError("server error");
 
-      message = "یک عدد از محصول داخل سبد خرید کم شد";
+      message = "reduce one item";
     } else {
       const newCart = await UserModel.findOneAndUpdate(
         {
@@ -102,10 +102,10 @@ class CartController extends Controller {
       );
       if (newCart.modifiedCount == 0)
         throw createHttpError.InternalServerError(
-          "محصول به سبد خرید اضافه نشد"
+          "server error"
         );
 
-      message = "محصول از سبد خرید حذف شد";
+      message = "remove product from basket";
 
       if (newCart.cart.products.length === 0)
         await UserModel.updateOne(

@@ -71,14 +71,14 @@ function CartItem({ cartItem }) {
           <span>number:</span>
           <span>{cartItem.quantity}</span>
         </div>
-        <div className="flex flex-nowrap gap-x-3 ">
+        <div className="flex flex-nowrap justify-center items-center gap-x-3 ">
           <button
             onClick={addToCartHandler}
-            className="bg-primary-900 text-white rounded p-1"
+            className="bg-primary-900 text-white rounded p-1 w-8 h-8 flex justify-center items-center"
           >
             <HiPlus className="w-4 h-4" />
           </button>
-          <button onClick={decrementHandler} className="border rounded p-1">
+          <button onClick={decrementHandler} className="border rounded p-1 w-8 h-8 flex justify-center items-center">
             {cartItem.quantity > 1 ? (
               <HiMinus className="w-4 h-4" />
             ) : (
