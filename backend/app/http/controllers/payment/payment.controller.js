@@ -16,10 +16,10 @@ class PaymentController extends Controller {
   async createPayment(req, res) {
     const user = req.user;
     if (!user.cart?.products || user.cart?.products.length === 0)
-      throw createHttpError.BadRequest("سبد خرید شما خالی میباشد");
+      throw createHttpError.BadRequest("basket is empty");
     const cart = (await getUserCartDetail(user._id))?.[0];
     if (!cart?.payDetail)
-      throw createHttpError.BadRequest("مشخصات پرداخت یافت نشد");
+      throw createHttpError.BadRequest("pay detail not found");
 
     const amount = parseInt(cart?.payDetail?.totalPrice);
     const description = cart?.payDetail?.description;
@@ -42,6 +42,7 @@ class PaymentController extends Controller {
       {
         $set: {
           Products: [...(cart?.payDetail?.productIds || []), ...user.Products],
+          //empty the products in cart
           cart: {
             products: [],
           },
@@ -68,7 +69,7 @@ class PaymentController extends Controller {
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       data: {
-        message: "سفارش شما با موفقیت ثبت شد",
+        message: "done successfully",
       },
     });
   }

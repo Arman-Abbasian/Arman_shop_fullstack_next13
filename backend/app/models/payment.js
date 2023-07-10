@@ -6,7 +6,7 @@ const PaymentSchema = new mongoose.Schema(
     invoiceNumber: { type: String },
     paymentMethod: { type: String, required: true, default: "ZARINPAL" },
     amount: { type: Number },
-    description: { type: String, default: "بابت خرید محصول" },
+    description: { type: String, default: "purchase product" },
     refId: { type: String, default: undefined },
     cardHash: { type: String, default: undefined },
     status: {
