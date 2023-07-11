@@ -20,12 +20,13 @@ function Profile() {
         <span> {toLocalDateString(user.createdAt)} </span>
       </p>
       <div className="border rounded-xl  mt-8">
+      <h2 className="font-bold text-xl">latest orders</h2>
         <div className="p-4 flex items-center justify-between">
-          <h2 className="font-bold text-xl">latest orders</h2>
           <Link className="text-primary-900 font-bold" href="/profile/payments">
            All orders
           </Link>
         </div>
+        {/* show the 3 last orders of user */}
         <PaymentTable
           payments={payments
             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
