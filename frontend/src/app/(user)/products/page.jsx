@@ -18,12 +18,13 @@ async function Products({ searchParams }) {
   const cookieStore = cookies();
   //change cookies to string for use in http methods
   const strCookies = toStringCookies(cookieStore);
-  //parallel data fetching method
+  // get all products request with two factor : 1-query strings, 2-cookies
   const productsPromise = getProducts(
     queryString.stringify(searchParams),
     strCookies
   );
   const categoryPromise = getCategories();
+  //parallel data fetching method
   const [{ products }, { categories }] = await Promise.all([
     productsPromise,
     categoryPromise,
