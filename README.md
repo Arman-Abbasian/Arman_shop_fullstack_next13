@@ -1,8 +1,9 @@
 # used Packages and Technologies
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="36"  alt="HTML5" style="padding-right:10px;" align="left"  />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="36"  alt="CSS3" style="padding-right:10px;" align="left" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="36"  alt="react" style="padding-right:10px;" align="left"/>
-<img src="https://res.cloudinary.com/practicaldev/image/fetch/s---xCsVK0j--/c_imagga_scale,f_auto,fl_progressive,h_1080,q_auto,w_1080/https://reacttraining.com/images/blog/reach-react-router-future.png"  alt="react-router-dom" width="36" alt="Terminal"  style="padding-right:10px;" align="left" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2048px-Tailwind_CSS_Logo.svg.png" width="36" alt="tailwind" style="padding-right:10px;" align="left" />
+ <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="36"  alt="react" style="padding-right:10px;" align="left"/>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReGL5y1FOv0EvcYDsUjObElS-G15wowqoM39yRcjZof7O3J-Ko_zmk6-RPjbY7aDRIZbw&usqp=CAU" width="60" alt="nextjs" style="padding-right:10px;" align="left" />
+
 <img src="https://avatars.githubusercontent.com/u/53986236?v=4&s=400" width="36" alt="react-hook-form" style="padding-right:10px;" align="left" />
 <img src="https://seeklogo.com/images/A/axios-logo-CD0C90458F-seeklogo.com.png" width="70" height="30" alt="axios" style="padding-right:10px;" align="left" />
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="36" alt="nodejs" style="padding-right:10px;" align="left" />
@@ -14,8 +15,8 @@
 <br />
 <br />
 
-<p width="960" style="padding-right: 10px;" align="left" >passport</p>
-<p width="960" style="padding-right:40px;" align="left" >passport-google-oauth20</p>
+<p width="960" style="padding-right: 10px;" align="left" >joi</p>
+<p width="960" style="padding-right:40px;" align="left" >kavenegar</p>
 <p width="960" style="padding-right:40px;" align="left" >cors</p>
 <p width="960" style="padding-right:40px;" align="left" >bcrypt</p>
 <p width="960" style="padding-right:40px;" align="left" >cookie-session</p>
