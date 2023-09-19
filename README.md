@@ -9,7 +9,6 @@
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="36" alt="nodejs" style="padding-right:10px;" align="left" />
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="36" alt="mongodb" style="padding-right:10px;" align="left" />
 <img src="https://w7.pngwing.com/pngs/545/451/png-transparent-node-js-express-js-javascript-solution-stack-web-application-others-angle-text-rectangle-thumbnail.png" width="60" alt="express" style="padding-right:10px;" align="left" />
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Socket-io.svg/600px-Socket-io.svg.png" width="36" alt="socket.io" style="padding-right:10px;" align="left" />
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAmIXNHmj9NRUqg_frbn1AiL8p6eY6895JzQ&usqp=CAU" width="80" alt="mongoose" style="padding-right:10px;" align="left" />
 
 <br />
@@ -17,10 +16,10 @@
 
 <p width="960" style="padding-right: 10px;" align="left" >joi</p>
 <p width="960" style="padding-right:40px;" align="left" >kavenegar</p>
-<p width="960" style="padding-right:40px;" align="left" >cors</p>
-<p width="960" style="padding-right:40px;" align="left" >bcrypt</p>
-<p width="960" style="padding-right:40px;" align="left" >cookie-session</p>
-<p width="960" style="padding-right:40px;" align="left" >react-toastify</p>
+<p width="960" style="padding-right:40px;" align="left" >react-select</p>
+<p width="960" style="padding-right:40px;" align="left" >react-multi-date-picker</p>
+<p width="960" style="padding-right:40px;" align="left" >react-icons</p>
+<p width="960" style="padding-right:40px;" align="left" >react-hot-toast</p>
 
 # summary of project
 This project is a fullstack project (MERN stack), that use from mongodb, expressjs, react and nodejs to handle a chat and login/signup pages. 
