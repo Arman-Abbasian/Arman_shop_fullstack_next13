@@ -21,14 +21,9 @@
 <p width="960" style="padding-right:40px;" align="left" >react-hot-toast</p>
 
 # summary of project
-This project is a fullstack project (MERN stack), that use from mongodb, expressjs, react and nodejs to handle a chat and login/signup pages. 
+This project is a fullstack project (MERN stack), that use from mongodb, expressjs, nextjs 13 and nodejs to handle a complete ecommerce web appkication. 
 validation in front-end has done with react-hook-form on form elements.
-user can signup or login even with google account.chat page that used from socket.io to handle the chat process and the chats store in mongo cloud as database
+user authentication handeld by JWT.
 
-# overview of project
-
-<a href="https://www.youtube.com/watch?v=x9xTauR17ms
-" target="_blank"><img src="https://static.vecteezy.com/system/resources/previews/003/399/771/original/youtube-icon-editorial-free-vector.jpg" 
-alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 
