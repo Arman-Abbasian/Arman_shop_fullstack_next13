@@ -10,13 +10,13 @@ const getOtpSchema = Joi.object({
 
 const checkOtpSchema = Joi.object({
   otp: Joi.string()
-    .min(5)
+    .min(6)
     .max(6)
-    .error(createHttpError.BadRequest("کد ارسال شده صحیح نمیباشد")),
+    .error(createHttpError.BadRequest("code is not true")),
   phoneNumber: Joi.string()
     .length(11)
     .pattern(/^09[0-9]{9}$/)
-    .error(createHttpError.BadRequest("شماره موبایل وارد شده صحیح نمیباشد")),
+    .error(createHttpError.BadRequest("mobile number is not true")),
 });
 
 const completeProfileSchema = Joi.object({

@@ -10,7 +10,7 @@ const {
 const createError = require("http-errors");
 const { UserModel } = require("../../../models/user");
 const Kavenegar = require("kavenegar");
-const CODE_EXPIRES = 30 * 1000; //90 seconds in miliseconds
+const CODE_EXPIRES = 90 * 1000; //90 seconds in miliseconds
 const { StatusCodes: HttpStatus } = require("http-status-codes");
 const path = require("path");
 const { ROLES } = require("../../../../utils/constants");
@@ -40,8 +40,8 @@ class userAuthController extends Controller {
     //put the phoneNumber an code in constructor section to enabled to use by other methods here 
     this.phoneNumber = phoneNumber;
     this.code = generateRandomNumber(6);
-    //saveUser method check if the user registerd before just update otp field and if user is new make a 
-    //new user
+    //!--saveUser method check if the user registered before just update otp field and if user is new make a 
+    //!--new user
     const result = await this.saveUser(phoneNumber);
     if (!result) throw createError.Unauthorized("some problem occured");
     // send OTP
@@ -85,12 +85,13 @@ class userAuthController extends Controller {
     //     ],
     //   },
     // ]);
-
+//if you can not find user based on the mobile number
     if (!user) throw createError.NotFound("user not found");
-
+//if you can find the user but otp code in DB is not compatible with the sent otp code by user
     if (user.otp.code != code)
       throw createError.BadRequest("code is not true");
-
+//if you can find the user and otp code in DB is  compatible with the sent otp code by user
+//but the code is expired
     if (new Date(`${user.otp.expiresIn}`).getTime() < Date.now())
       throw createError.BadRequest("code is expired");
 
@@ -98,6 +99,7 @@ class userAuthController extends Controller {
     await user.save();
 
     // await setAuthCookie(res, user); // set httpOnly cookie
+    //! with two under code we make the tokens and attach them to the cookie
     await setAccessToken(res, user);
     await setRefreshToken(res, user);
     let WELLCOME_MESSAGE = `wellcome to Arman-shop`;

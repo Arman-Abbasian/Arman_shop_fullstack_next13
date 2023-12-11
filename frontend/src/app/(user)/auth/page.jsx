@@ -36,6 +36,10 @@ function AuthPage() {
   const sendOtpHandler = async (e) => {
     e.preventDefault();
     try {
+      if(!phoneNumber.match(/^09[0-9]{9}$/)) {
+        toast.error("phone number is not valid")
+        return false
+      }
       const data = await mutateGetOtp({phoneNumber});
       console.log(data)
       toast.success(data.message);
@@ -49,11 +53,21 @@ function AuthPage() {
   const checkOtpHandler = async (e) => {
     e.preventDefault();
     try {
+      if(!phoneNumber.match(/^09[0-9]{9}/)){
+        toast.error("phone number is not valid")
+        return false
+      }
+      if(!otp.match(/[0-9]{6}/)){
+        toast.error("OTP is not valid")
+        return false
+      }
       const { message, user } = await mutateCheckOtp({ phoneNumber, otp });
       toast.success(message);
+      //if the user is Active (have email and username)
       if (user.isActive) {
         document.location.href="/";
       } else {
+        //if the user is not Active (do not have email and username)
         router.push("/complete-profile");
       }
       // push -> /complete-profile
@@ -63,8 +77,11 @@ function AuthPage() {
     }
   };
 
+  //!this useEffect is for managing the OTP timer
   useEffect(() => {
+    //make a timer
     const timer = time > 0 && setInterval(() => setTime((t) => t - 1), 1000);
+    //this section is clear interval
     return () => {
       if (timer) clearInterval(timer);
     };
