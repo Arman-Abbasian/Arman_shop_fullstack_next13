@@ -5,7 +5,7 @@ const getOtpSchema = Joi.object({
   phoneNumber: Joi.string()
     .length(11)
     .pattern(/^09[0-9]{9}$/)
-    .error(createHttpError.BadRequest("شماره موبایل وارد شده صحیح نمیباشد")),
+    .error(createHttpError.BadRequest("mobile number is not true")),
 });
 
 const checkOtpSchema = Joi.object({

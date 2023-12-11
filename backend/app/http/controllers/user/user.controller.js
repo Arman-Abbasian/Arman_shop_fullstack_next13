@@ -18,6 +18,7 @@ const {
   checkOtpSchema,
   completeProfileSchema,
   updateProfileSchema,
+  getOtpSchema,
 } = require("../../validators/user/user.schema");
 const { PaymentModel } = require("../../../models/payment");
 
@@ -30,12 +31,12 @@ class userAuthController extends Controller {
   }
   async getOtp(req, res) {
     //get mobile number
-    let { phoneNumber } = req.body;
-    //if the user did not sent a mobile number
-    if (!phoneNumber)
-      throw createError.BadRequest("mobile number is not valid");
-
+    let {phoneNumber}=req.body;
+    if(!phoneNumber) throw createError.BadRequest("mobile number is not sent");
+    //validate the phoneNumber
+    await getOtpSchema.validateAsync(req.body)
     phoneNumber = phoneNumber.trim();
+    //if the user did not sent a mobile number
     //put the phoneNumber an code in constructor section to enabled to use by other methods here 
     this.phoneNumber = phoneNumber;
     this.code = generateRandomNumber(6);
@@ -85,7 +86,7 @@ class userAuthController extends Controller {
     //   },
     // ]);
 
-    if (!user) throw createError.NotFound("کاربری با این مشخصات یافت نشد");
+    if (!user) throw createError.NotFound("user not found");
 
     if (user.otp.code != code)
       throw createError.BadRequest("code is not true");
@@ -120,20 +121,28 @@ class userAuthController extends Controller {
     //check if the user with this phoneNumber registered before or not
     const user = await this.checkUserExist(phoneNumber);
     //if user registered before update the user otp field in collection
-    if (user) return await this.updateUser(phoneNumber, { otp });
-    console.log("not repatative")
-    // if the user not exist make a new user in user  collection
+    if (user){
+      //two under line get the user otp in DB to milliseconds
+      const d = new Date(user.otp.expiresIn)
+      let previousOTP = d.getTime();
+      //the under condition prevent from request for excessive request for OTP to server
+      if (previousOTP>Date.now()) throw createError.BadRequest("previous OTP is still valid")
+      return await this.updateUser(phoneNumber, { otp });
+    }else{
+       // if the user not exist make a new user in user collection
     return await UserModel.create({
       phoneNumber,
       otp,
       role: ROLES.USER,
     });
+    } 
   }
   async checkUserExist(phoneNumber) {
     const user = await UserModel.findOne({ phoneNumber });
     return user;
   }
   //update the the fields (objectData) with the new values
+  //return of this function is true or false
   async updateUser(phoneNumber, objectData = {}) {
     Object.keys(objectData).forEach((key) => {
       if (["", " ", 0, null, undefined, "0", NaN].includes(objectData[key]))

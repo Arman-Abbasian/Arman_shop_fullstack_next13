@@ -1,3 +1,4 @@
+const { getOtpSchema } =require ("../validators/user/user.schema");
 const cookieParser = require("cookie-parser");
 const createHttpError = require("http-errors");
 const JWT = require("jsonwebtoken");

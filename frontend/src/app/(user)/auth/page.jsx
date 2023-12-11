@@ -25,7 +25,7 @@ function AuthPage() {
   } = useMutation({
     mutationFn: getOtp,
   });
-  const { mutateAsync: mutateCheckOtp, isLoading: laodingCheckOtp } = useMutation(
+  const { mutateAsync: mutateCheckOtp, isLoading: laodingCheckOtp,error } = useMutation(
     {
       mutationFn: checkOtp,
     }
@@ -37,6 +37,7 @@ function AuthPage() {
     e.preventDefault();
     try {
       const data = await mutateGetOtp({phoneNumber});
+      console.log(data)
       toast.success(data.message);
       setStep(2);
       setTime(Math.floor((data.expiresIn-Date.now())/1000));

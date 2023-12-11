@@ -5,6 +5,7 @@ const { verifyAccessToken } = require("../http/middlewares/user.middleware");
 const {
   UserAuthController,
 } = require("../http/controllers/user/user.controller");
+const { getOtpSchema } = require("../http/validators/user/user.schema");
 
 router.post("/get-otp", expressAsyncHandler(UserAuthController.getOtp));
 router.post("/check-otp", expressAsyncHandler(UserAuthController.checkOtp));

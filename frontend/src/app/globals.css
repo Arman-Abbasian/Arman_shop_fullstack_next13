@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/*!-- in this layer we add the root variables (like primary and secondary colors of project) */
 @layer base {
   :root {
     --background-app-rgb: 244, 245, 247;
@@ -33,6 +34,7 @@
   }
 }
 
+/*!-- this layer help to make some tailwind Group style */
 @layer components {
   .textField__input {
     @apply w-full py-3 px-4 rounded-xl text-secondary-900 border border-primary-300 shadow-input outline-none duration-200 transition-all ease-in-out hover:border-primary-500 focus:outline-none focus:border-primary-300 focus:shadow-input-focus focus:bg-white;
