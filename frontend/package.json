@@ -26,7 +26,9 @@
     "react-multi-date-picker": "^4.0.0",
     "react-otp-input": "^3.0.2",
     "react-select": "^5.7.3",
+    "react-slick": "^0.29.0",
     "react-tag-input-component": "^2.0.2",
+    "slick-carousel": "^1.8.1",
     "tailwindcss": "3.3.2"
   },
   "devDependencies": {
