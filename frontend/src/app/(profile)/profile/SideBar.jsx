@@ -7,9 +7,11 @@ import { HiOutlineHome,HiOutlineLogout } from "react-icons/hi";
 function SideBar({setShowMenu}) {
   const logoutHandler = async () => {
     await logout();
+    //! in real apps you should delete all the localStorages also
     // localStorage.removeItem("userInfo");
     // localStorage.removeItem("cartItems");
     // localStorage.removeItem("token");
+    //! back to the home page with a full refresh
     document.location.href = "/";
   };
 

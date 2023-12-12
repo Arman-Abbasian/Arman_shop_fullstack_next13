@@ -197,7 +197,7 @@ class userAuthController extends Controller {
 
     if (!user.isVerifiedPhoneNumber)
       throw createError.Forbidden("please verify your mobile number");
-
+    //!check if the email is not repatitive
     const duplicateUser = await UserModel.findOne({ email });
 
     if (duplicateUser)
@@ -210,11 +210,12 @@ class userAuthController extends Controller {
       { $set: { name, email, isActive: true } },
       { new: true }
     );
+    if(!updatedUser) throw createError.InternalServerError("server error")
     // await setAuthCookie(res, updatedUser);
     await setAccessToken(res, updatedUser);
     await setRefreshToken(res, updatedUser);
 
-    return res.status(HttpStatus.OK).send({
+    return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       data: {
         message:  "information completed successfully",
@@ -289,8 +290,9 @@ class userAuthController extends Controller {
 
     return res.status(HttpStatus.OK).json({
       StatusCode: HttpStatus.OK,
+      data:{
       roles: null,
-      auth: false,
+      auth: false,}
     });
   }
 }

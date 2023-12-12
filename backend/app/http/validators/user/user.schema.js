@@ -21,7 +21,7 @@ const checkOtpSchema = Joi.object({
 
 const completeProfileSchema = Joi.object({
   name: Joi.string().not().empty("please enter the Full name")
-    .min(5)
+    .min(2)
     .max(100)
     .error(createHttpError.BadRequest("Full name format is not true")),
   email: Joi.string().not().empty("please enter the email")

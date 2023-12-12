@@ -16,7 +16,25 @@ function CompleteProfile() {
   const router = useRouter();
   const submitHandler = async (e) => {
     e.preventDefault();
+    //!validation the data form
     try {
+      if(name.length===0){
+        toast.error("please enter your name")
+        return false
+      }else if(name.length<2){
+        toast.error ("name is too short")
+        return false
+      }else if(name.length>50){
+        toast.error ("name is too long")
+        return false
+      }
+      if(!email.match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )){
+        toast.error("email address is not true")
+        return false;
+      }
+      
       const { message } = await mutateCompleteProfile({ name, email });
       toast.success(message);
       router.push("/");
