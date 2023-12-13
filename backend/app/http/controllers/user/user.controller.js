@@ -244,17 +244,18 @@ class userAuthController extends Controller {
     });
   }
   async refreshToken(req, res) {
-    //retrun the "verifyRefreshToken" method is one id
-    const userId = await verifyRefreshToken(req);
-    const user = await UserModel.findById(userId);
-    await setAccessToken(res, user);
-    await setRefreshToken(res, user);
-    return res.status(HttpStatus.OK).json({
-      StatusCode: HttpStatus.OK,
-      data: {
-        user,
-      },
-    });
+     //retrun the "verifyRefreshToken" method is one id
+     const userId = verifyRefreshToken(req);
+     const user = await UserModel.findById(userId);
+     //! set new accessToken and refreshToken
+     await setAccessToken(res, user);
+     await setRefreshToken(res, user);
+     return res.status(HttpStatus.OK).json({
+       StatusCode: HttpStatus.OK,
+       data: {
+         user,
+       },
+     });
   }
   async getUserProfile(req, res) {
     const { _id: userId } = req.user;

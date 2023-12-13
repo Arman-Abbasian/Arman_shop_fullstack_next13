@@ -34,7 +34,7 @@ async function setAccessToken(res, user) {
     domain:
       process.env.NODE_ENV === "development" ? "localhost" : ".fronthooks.ir",
   };
-  //attach the access token to the cookie
+  //!attach the access token to the cookie
   res.cookie(
     "accessToken",
     await generateToken(user, "1d", process.env.ACCESS_TOKEN_SECRET_KEY),

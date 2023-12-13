@@ -16,7 +16,6 @@ export async function middleware(req) {
     const user = await middlewareAuth(req);
     if (!user) return NextResponse.redirect(new URL("/auth", url));
   }
-
   if (pathname.startsWith("/admin")) {
     // "middlewareAuth" method return the user information
     const user = await middlewareAuth(req);
