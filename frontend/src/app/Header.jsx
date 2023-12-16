@@ -6,6 +6,7 @@ import { useState } from "react";
 
 function Header() {
   const [showMenu,setShawMenu]=useState(false);
+  //! this Query get the user data from Api
   const { data, error, isLoading } = useGetUser();
   const { user, cart } = data || {};
 

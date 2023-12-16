@@ -22,7 +22,7 @@ function AuthPage() {
   } = useMutation({
     mutationFn: getOtp,
   });
-  const { mutateAsync: mutateCheckOtp, isLoading: laodingCheckOtp,error } = useMutation(
+  const { mutateAsync: mutateCheckOtp, isLoading: loadingCheckOtp,error } = useMutation(
     {
       mutationFn: checkOtp,
     }
@@ -41,6 +41,7 @@ function AuthPage() {
       toast.success(data.message);
       setStep(2);
       setTime(Math.floor((data.expiresIn-Date.now())/1000));
+      //!when user click on send button and send a phone number we clean the otp state
       setOtp("");
     } catch (error) {
       toast.error(error?.response?.data?.message);
@@ -104,7 +105,7 @@ function AuthPage() {
             time={time}
             onResendOtp={sendOtpHandler}
             otpResponse={dataGetOtp}
-            laodingCheckOtp={laodingCheckOtp}
+            loadingCheckOtp={loadingCheckOtp}
           />
         );
       default:

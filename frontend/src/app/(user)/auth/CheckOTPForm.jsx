@@ -10,13 +10,15 @@ function CheckOTPForm({
   onBack,
   time,
   onResendOtp,
-  laodingCheckOtp,
+  loadingCheckOtp,
 }) {
   return (
     <div className="w-full">
       <button onClick={onBack} className="mb-4">
         <HiArrowNarrowLeft className="clickable--icon" />
       </button>
+      {/*!-- we rely the show a under block of code to existance of otpResponse */}
+      {/* and optResponse in data in useMutation for getOtp mutayion when the code successfully sent to mobile */}
       {otpResponse && (
        <div>
          <p className="mb-4">{otpResponse?.message}</p>
@@ -52,7 +54,7 @@ function CheckOTPForm({
           renderInput={(props) => <input type="number" {...props} />}
         />
         <div>
-          {laodingCheckOtp ? (
+          {loadingCheckOtp ? (
             <button disabled className="btn btn--primary w-full mt-8">
             <Loading width="40" heigh="25" color="rgb(var(--color-primary-100))" />
             </button>
