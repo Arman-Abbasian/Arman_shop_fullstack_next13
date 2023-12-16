@@ -5,17 +5,17 @@
 /*!-- in this layer we add the root variables (like primary and secondary colors of project) */
 @layer base {
   :root {
-    --background-app-rgb: 244, 245, 247;
-    --color-primary-900: 74, 109, 255;
-    --color-primary-800: 92, 124, 255;
-    --color-primary-700: 110, 138, 255;
-    --color-primary-600: 128, 153, 255;
-    --color-primary-500: 146, 167, 255;
-    --color-primary-400: 164, 182, 255;
-    --color-primary-300: 183, 197, 255;
-    --color-primary-200: 201, 211, 255;
-    --color-primary-100: 219, 226, 255;
-    --color-primary-50: 228, 233, 255;
+    --background-app-rgb: 248, 250, 252;
+    --color-primary-900: 49, 46, 129;
+    --color-primary-800: 55, 48, 163;
+    --color-primary-700: 67, 56, 202;
+    --color-primary-600: 79, 70, 229;
+    --color-primary-500: 99, 102, 241;
+    --color-primary-400: 129, 140, 248;
+    --color-primary-300: 165, 180, 252;
+    --color-primary-200: 199, 210, 254;
+    --color-primary-100: 224, 231, 255;
+    --color-primary-50: 238, 242 ,255;
     --color-secondary-900: 42, 45, 83;
     --color-secondary-800: 63, 66, 100;
     --color-secondary-700: 85, 87, 117;
@@ -80,5 +80,5 @@ body {
   margin: 0;
   min-height: 100vh;
   user-select: none;
-  background-color: var(--background-app-rgb);
+  background-color: rgb(var(--background-app-rgb));
 }

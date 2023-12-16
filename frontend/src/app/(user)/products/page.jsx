@@ -39,7 +39,7 @@ async function Products({ searchParams }) {
             {products.map((product) => {
               return (
                 <div
-                  className="w-72 rounded-xl shadow-lg p-4 shadow-primary-600"
+                  className="w-72 rounded-xl shadow-lg p-4 shadow-primary-400"
                   key={product._id}
                 >
                   <div class="aspect-w-16 aspect-h-9">
