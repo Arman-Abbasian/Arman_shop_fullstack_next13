@@ -3,12 +3,9 @@ import { useEffect, useState } from "react";
 import SendOTPFrom from "./SendOTPFrom";
 import { toast } from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
-import { checkOtp, getOtp } from "@/services/authServices";
+import { checkOtp,getOtp } from "@/services/authServices";
 import CheckOTPForm from "./CheckOTPForm";
 import { useRouter } from "next/navigation";
-import axios from "axios";
-import http from "@/services/httpService";
-import { RiPhoneCameraFill } from "react-icons/ri";
 const RESEND_TIME = 90;
 
 function AuthPage() {

@@ -13,11 +13,13 @@ function SendOTPFrom({ phoneNumber, onChange, onSubmit, isLoading }) {
         />
         <div>
           {isLoading ? (
-            <Loading />
-          ) : (
-            <button type="submit" className="btn btn--primary w-full mt-8">
-               send code 
+            <button disabled className="btn btn--primary w-full mt-8">
+            <Loading width="40" heigh="25" color="rgb(var(--color-primary-100))" />
             </button>
+          ) : (
+             <button type="submit" className="btn btn--primary w-full mt-8">
+                send code 
+             </button>
           )}
         </div>
       </form>
