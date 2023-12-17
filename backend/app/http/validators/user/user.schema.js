@@ -31,7 +31,7 @@ const completeProfileSchema = Joi.object({
 
 const updateProfileSchema = Joi.object({
   name: Joi.string()
-    .min(5)
+    .min(2)
     .max(50)
     .required()
     .error(createHttpError.BadRequest("full name format is not true")),
@@ -40,7 +40,7 @@ const updateProfileSchema = Joi.object({
     .email()
     .error(createHttpError.BadRequest("email is not true")),
   biography: Joi.string()
-    .max(30)
+    .max(50)
     .allow("")
     .error(createHttpError.BadRequest("biography is not true")),
 });

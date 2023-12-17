@@ -226,16 +226,17 @@ class userAuthController extends Controller {
   async updateProfile(req, res) {
     const { _id: userId } = req.user;
     await updateProfileSchema.validateAsync(req.body);
-    const { name, email, biography, phoneNumber } = req.body;
+    const { name, email, biography } = req.body;
 
     const updateResult = await UserModel.updateOne(
       { _id: userId },
       {
-        $set: { name, email, biography, phoneNumber },
+        $set: { name, email, biography },
       }
     );
-    if (!updateResult.modifiedCount === 0)
+    if (updateResult.modifiedCount === 0){
       throw createError.BadRequest("server error");
+    }
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       data: {

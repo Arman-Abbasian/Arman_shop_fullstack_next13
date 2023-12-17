@@ -26,6 +26,27 @@ function MePage() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
+      //! form validation fron frontend
+      if(formData.name.length===0){
+        toast.error("please enter your name")
+        return false
+      }else if(formData.name.length<2){
+        toast.error ("name is too short")
+        return false
+      }else if(formData.name.length>50){
+        toast.error ("name is too long")
+        return false
+      }
+      if(!formData.email.match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )){
+        toast.error("email address is not true")
+        return false;
+      }
+      if(formData.biography.length>50){
+        toast.error("biography is too large")
+        return false
+        }
       const { message } = await updateUserInformationQuery(formData);
       //! make the "get-user" Query invalid to refetch this query and update the new data
       queryClient.invalidateQueries({ queryKey: ["get-user"] });
