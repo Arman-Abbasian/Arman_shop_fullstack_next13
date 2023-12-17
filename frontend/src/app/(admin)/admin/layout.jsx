@@ -6,8 +6,8 @@ import AdminSideBar from "./AdminSideBar";
 import roboto from '@/constants/googleFonts';
 
 export const metadata = {
-  title: "پروفایل ادمین",
-  description: "پروفایل ادمین",
+  title: "admin profile",
+  description: "admin profile",
 };
 
 export default function RootLayout({ children }) {

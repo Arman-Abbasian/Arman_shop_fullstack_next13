@@ -39,10 +39,6 @@ const updateProfileSchema = Joi.object({
     .required()
     .email()
     .error(createHttpError.BadRequest("email is not true")),
-  phoneNumber: Joi.string()
-    .length(11)
-    .pattern(/^09[0-9]{9}$/)
-    .error(createHttpError.BadRequest("mobile number is not true")),
   biography: Joi.string()
     .max(30)
     .allow("")

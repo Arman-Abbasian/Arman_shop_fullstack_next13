@@ -18,15 +18,16 @@ function MePage() {
   
   const [formData, setFormData] = useState({});
   const { user } = userData || {};
-  const includeskey = ["name", "email", "phoneNumber", "biography"];
+  const includeskey = ["name", "email", "biography"];
   useEffect(() => {
     if (user) setFormData(includeObj(user, includeskey));
   }, [user]);
 
-  const sumbitHandler = async (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     try {
       const { message } = await updateUserInformationQuery(formData);
+      //! make the "get-user" Query invalid to refetch this query and update the new data
       queryClient.invalidateQueries({ queryKey: ["get-user"] });
       toast.success(message);
     } catch (error) {
@@ -37,7 +38,7 @@ function MePage() {
   return (
     <div className="container mx-auto max-w-sm">
       <h1 className="text-xl font-bold mb-4">user information</h1>
-      <form onSubmit={sumbitHandler} className="space-y-5">
+      <form onSubmit={submitHandler} className="space-y-5">
         {Object.keys(includeObj(user, includeskey)).map((key) => {
           return (
             <TextField

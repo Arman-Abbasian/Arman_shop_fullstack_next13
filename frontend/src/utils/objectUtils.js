@@ -3,6 +3,5 @@ export function includeObj(obj, includesKey) {
   Object.keys(obj)
     .filter((key) => includesKey.includes(key))
     .forEach((key) => (newObj[key] = obj[key]));
-    console.log(newObj)
   return newObj;
 }
