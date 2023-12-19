@@ -24,7 +24,7 @@ export default function Home() {
     return (
       <div>
         <Slider {...settings}>
-          <div className="bg-primary-600 h-[calc(100vh-10rem)] rounded-md">
+          <div className="bg-primary-900 h-[calc(100vh-10rem)] rounded-md">
             <div className="h-[calc(100%-3rem)]">
             <img src="/images/saxiphone.png" className="w-full h-full object-contain" />
             </div>
@@ -33,7 +33,7 @@ export default function Home() {
               <p>120$</p>
             </div>
           </div>
-          <div className="bg-primary-600 h-[calc(100vh-10rem)] rounded-md">
+          <div className="bg-primary-900 h-[calc(100vh-10rem)] rounded-md">
             <div className="h-[calc(100%-3rem)]">
             <img src="/images/Drums.png" className="w-full h-full object-contain" />
             </div>
@@ -42,7 +42,7 @@ export default function Home() {
               <p>120$</p>
             </div>
           </div>
-          <div className="bg-primary-600 h-[calc(100vh-10rem)] rounded-md">
+          <div className="bg-primary-900 h-[calc(100vh-10rem)] rounded-md">
             <div className="h-[calc(100%-3rem)]">
             <img src="/images/Notes.png" className="w-full h-full object-contain" />
             </div>
@@ -51,7 +51,7 @@ export default function Home() {
               <p>120$</p>
             </div>
           </div>
-          <div className="bg-primary-600 h-[calc(100vh-10rem)] rounded-md">
+          <div className="bg-primary-900 h-[calc(100vh-10rem)] rounded-md">
             <div className="h-[calc(100%-3rem)]">
             <img src="/images/guitar.png" className="w-full h-full object-contain" />
             </div>

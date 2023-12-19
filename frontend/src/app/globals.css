@@ -31,6 +31,8 @@
     --color-error: 255, 71, 87;
     --color-red-500: 239, 68, 68;
     --color-red-300: 252, 165, 165;
+    --color-text-white:255, 255, 255;
+    --color-text-dark:0, 0, 0;
   }
 }
 

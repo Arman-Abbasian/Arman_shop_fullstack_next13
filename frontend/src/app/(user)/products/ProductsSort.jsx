@@ -63,6 +63,7 @@ console.log(sort)
             value={item.value}
             checked={sort == item.value}
             onChange={sortHandler}
+            labelTextcolor='text-text-white'
           />
         );
       })}

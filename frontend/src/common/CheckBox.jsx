@@ -1,4 +1,4 @@
-function CheckBox({ id, name, value, onChange, checked, label }) {
+function CheckBox({ id, name, value, onChange, checked, label,labelTextcolor }) {
   return (
     <div className="flex items-center gap-x-2 text-secondary-600">
       <input
@@ -8,9 +8,9 @@ function CheckBox({ id, name, value, onChange, checked, label }) {
         checked={checked}
         value={value}
         onChange={onChange}
-        className="cursor-pointer  rounded-[5px] border-none bg-secondary-100/80 w-4 h-4 checked:text-primary-900"
+        className="cursor-pointer rounded-[5px] border-none bg-secondary-100/80 w-4 h-4 checked:text-primary-900"
       />
-      <label htmlFor={id} className="cursor-pointer">
+      <label htmlFor={id} className={`cursor-pointer ${labelTextcolor}`}>
         {label}
       </label>
     </div>

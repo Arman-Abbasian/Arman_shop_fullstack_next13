@@ -41,9 +41,13 @@ module.exports = {
           200: withOpacity("--color-secondary-200"),
           100: withOpacity("--color-secondary-100"),
         },
+        text:{
+          white: withOpacity("--color-text-white"),
+          dark: withOpacity("--color-text-dark")
+        },
         success: withOpacity("--color-success"),
         warning: withOpacity("--color-warning"),
-        error: withOpacity("--color-error"),
+        error: withOpacity("--color-error")
       },
       fontFamily: {
         sans:["var(--roboto)",...fontFamily.sans]

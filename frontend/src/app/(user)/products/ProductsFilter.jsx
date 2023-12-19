@@ -49,6 +49,7 @@ function ProductsFilter({ categories }) {
               label={category.title}
               onChange={categoryHandler}
               checked={selectedCategories.includes(category.title)}
+              labelTextcolor='text-text-white'
             />
           );
         })}
