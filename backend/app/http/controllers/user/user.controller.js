@@ -292,9 +292,11 @@ class userAuthController extends Controller {
 
     return res.status(HttpStatus.OK).json({
       StatusCode: HttpStatus.OK,
-      data:{
+      data:
+      {
       roles: null,
-      auth: false,}
+      auth: false,
+    }
     });
   }
 }
