@@ -15,8 +15,9 @@ const ProductSchema = new mongoose.Schema(
     category: { type: ObjectId, ref: "Category", required: true },
     imageLink: { type: String, required: true },
     price: { type: Number, required: true },
-    offPrice: { type: Number, required: true },
     discount: { type: Number, default: 0 },
+    offPrice: { type: Number, required: true,default : function(){ 
+      return (this.price * (1-(this.discount / 100)))} },
     brand: { type: String, required: true },
     tags: [{ type: String }],
     rating: { type: Number, required: true, default: 0 },
