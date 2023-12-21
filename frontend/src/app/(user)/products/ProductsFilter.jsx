@@ -13,19 +13,27 @@ function ProductsFilter({ categories }) {
   // console.log(searchParams.getAll("category")[0].split(","));
   const createQueryString = useCallback(
     (name, value) => {
+      console.log(searchParams)
       const params = new URLSearchParams(searchParams);
+      console.log(params)
       params.set(name, value);
+      //!(params.toString()=> example=  category=German%2CIran
       return params.toString();
     },
     [searchParams]
   );
-
+//! this function is onChange handler of checkBox
+//! every time that a checkBox selected or unselected=>this function implement
   const categoryHandler = (e) => {
     const value = e.target.value;
+    //! if the checkBox thant checked is previous in selectedCategories state list
+    //!=>remove it and update the state
     if (selectedCategories.includes(value)) {
       const categories = selectedCategories.filter((c) => c !== value);
       setSelectedCategories(categories);
       router.push(pathname + "?" + createQueryString("category", categories));
+       //! if the checkBox thant checked is previous not in selectedCategories state list
+    //!=>add it and update the state
     } else {
       setSelectedCategories([...selectedCategories, value]);
       router.push(
