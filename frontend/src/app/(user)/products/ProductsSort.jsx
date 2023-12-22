@@ -45,7 +45,6 @@ function ProductsSort() {
   };
 
   useEffect(() => {
-    console.log(searchParams.get("sort"))
     setSort(searchParams.get("sort") || "latest");
   }, [searchParams]);
   

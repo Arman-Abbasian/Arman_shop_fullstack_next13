@@ -13,9 +13,7 @@ function ProductsFilter({ categories }) {
   // console.log(searchParams.getAll("category")[0].split(","));
   const createQueryString = useCallback(
     (name, value) => {
-      console.log(searchParams)
       const params = new URLSearchParams(searchParams);
-      console.log(params)
       params.set(name, value);
       //!(params.toString()=> example=  category=German%2CIran
       return params.toString();
