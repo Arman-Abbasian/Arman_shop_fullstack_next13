@@ -5,16 +5,15 @@ import queryString from "query-string";
 import { cookies } from "next/headers";
 import { toStringCookies } from "@/utils/toStringCookies";
 import Product from "./Product";
-//under line said that this page is a SSR page
+//!under line said that this page is a SSR page
 export const dynamic = "force-dynamic"; // eq to {cache :"no-store"} or SSR in pages Dir. :)
 
 async function Products({ searchParams }) {
   // const { products } = await getProducts(queryString.stringify(searchParams));
   // const { categories } = await getCategories();
-  //get cookies in SSR components
+  //!get cookies in SSR components
   const cookieStore = cookies();
- 
-  //change cookies to string for use in http methods
+  //!change cookies to string for use in http methods
   const strCookies = toStringCookies(cookieStore);
   // get all products request with two factor : 1-query strings, 2-cookies
   const productsPromise = getProducts(

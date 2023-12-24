@@ -6,7 +6,7 @@ import { useCallback, useState } from "react";
 function CategoriesFilter({ categories }) {
   //! for add query string in url we need to use 3 next client-hook and one function
 
-  
+
   //! we use from router.push to change change the url(here add query string to url)
   const router = useRouter();
   //! get the current url address
@@ -63,7 +63,7 @@ function CategoriesFilter({ categories }) {
               key={category._id}
               id={category._id}
               value={category.title}
-              name="country"
+              name={category.title}
               label={category.title}
               onChange={categoryHandler}
               checked={selectedCategories.includes(category.title)}
