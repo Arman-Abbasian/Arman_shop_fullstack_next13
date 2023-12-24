@@ -3,16 +3,28 @@ import CheckBox from "@/common/CheckBox";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 
-function ProductsFilter({ categories }) {
+function CategoriesFilter({ categories }) {
+  //! for add query string in url we need to use 3 next client-hook and one function
+
+  
+  //! we use from router.push to change change the url(here add query string to url)
   const router = useRouter();
+  //! get the current url address
   const pathname = usePathname();
+  //! with this object, you access to some methods like get, getAll, ...
   const searchParams = useSearchParams();
+  //! when you refresh the product page and from before you have choosed some checkbox
+  //! this section=>( searchParams.get("category")?.split(",")) 
+  //!get the category querystring section and add it to selectedCategories state
+  //! cosequently check the previous checked items(before refresh) again in new page after refresh
   const [selectedCategories, setSelectedCategories] = useState(
     searchParams.get("category")?.split(",") || []
   );
   // console.log(searchParams.getAll("category")[0].split(","));
   const createQueryString = useCallback(
     (name, value) => {
+      //! in searchParams object we do not access set method so => we have to use URLSearchPrams class
+      //! to use form set method 
       const params = new URLSearchParams(searchParams);
       params.set(name, value);
       //!(params.toString()=> example=  category=German%2CIran
@@ -24,7 +36,7 @@ function ProductsFilter({ categories }) {
 //! every time that a checkBox selected or unselected=>this function implement
   const categoryHandler = (e) => {
     const value = e.target.value;
-    //! if the checkBox thant checked is previous in selectedCategories state list
+    //! if the checkBox that checked, is previous in selectedCategories state list
     //!=>remove it and update the state
     if (selectedCategories.includes(value)) {
       const categories = selectedCategories.filter((c) => c !== value);
@@ -63,4 +75,4 @@ function ProductsFilter({ categories }) {
     </div>
   );
 }
-export default ProductsFilter;
+export default CategoriesFilter;

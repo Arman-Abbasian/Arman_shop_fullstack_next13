@@ -22,7 +22,7 @@ const sortOptions = [
   },
 ];
 
-function ProductsSort() {
+function SortFilter() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -48,7 +48,6 @@ function ProductsSort() {
     setSort(searchParams.get("sort") || "latest");
   }, [searchParams]);
   
-console.log(sort)
   return (
     <div>
       <p className="font-bold mb-4">sort</p>
@@ -69,4 +68,4 @@ console.log(sort)
     </div>
   );
 }
-export default ProductsSort;
+export default SortFilter;

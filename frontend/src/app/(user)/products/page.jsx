@@ -13,6 +13,7 @@ async function Products({ searchParams }) {
   // const { categories } = await getCategories();
   //get cookies in SSR components
   const cookieStore = cookies();
+ 
   //change cookies to string for use in http methods
   const strCookies = toStringCookies(cookieStore);
   // get all products request with two factor : 1-query strings, 2-cookies

@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
-import ProductsFilter from "./ProductsFilter";
-import ProductsSort from "./ProductsSort";
+import CategoriesFilter from "./CategoriesFilter";
+import SortFilter from "./SortFilter";
 import {FiChevronUp} from "react-icons/fi";
 
 function CategorySidebar({ categories }) {
@@ -14,8 +14,8 @@ function CategorySidebar({ categories }) {
       </div>
     <div className={`bg-primary-900 md:h-[calc(100vh-10rem)] ${show?'block':'hidden'} md:block rounded-md shadow-md text-white`}>
     <div className="p-4">
-      <ProductsFilter categories={categories} />
-      <ProductsSort />
+      <CategoriesFilter categories={categories} />
+      <SortFilter />
     </div>
     </div>
     </>
