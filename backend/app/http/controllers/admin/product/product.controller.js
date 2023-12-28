@@ -79,7 +79,7 @@ class ProductController extends Controller {
     }
 
     const sortQuery = {};
-    if (!sort) sortQuery["createdAt"] = 1;
+    if (!sort) sortQuery["createdAt"] = -1;
     if (sort) {
       if (sort === "latest") sortQuery["createdAt"] = -1 ;
       if (sort === "earliest") sortQuery["createdAt"] = 1;
@@ -90,20 +90,18 @@ class ProductController extends Controller {
     })
       .populate([{ path: "category", select: { title: 1 } }])
       .sort(sortQuery);
-// now we have a filtered and sorted product
-//make a copy of product and do the continue of codes on the copy products
+      
+//! now we have a filtered and sorted product
+//!make a copy of product and do the continue of codes on the copy products
     const transformedProducts = copyObject(products);
     const newProducts = transformedProducts.map((product) => {
-      product.likesCount = product.likes.length;
+      //!we add this property to each product(isLiked) to make the like icon filled or empty
+      //!based on that user liked product before or not
       product.isLiked = false;
-      if (!user) {
-        product.isLiked = false;
-        delete product.likes;
-        return product;
-      }
-      if (product.likes.includes(user._id.toString())) {
-        product.isLiked = true;
-      }
+      //!if user is unknown make the all isLiked to false
+      if (!user) product.isLiked = false;
+      //! if use is authenticate, check if the userId is in product.likes array or not
+      if (product.likes.includes(user._id.toString())) product.isLiked = true;
       delete product.likes;
       return product;
     });

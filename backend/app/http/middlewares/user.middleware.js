@@ -1,4 +1,3 @@
-const { getOtpSchema } =require ("../validators/user/user.schema");
 const cookieParser = require("cookie-parser");
 const createHttpError = require("http-errors");
 const JWT = require("jsonwebtoken");
@@ -44,11 +43,12 @@ async function verifyAccessToken(req, res, next) {
 }
 
 function decideAuthMiddleware(req, res, next) {
+  //!get the access token cookie that user sent with request
   const accessToken = req.signedCookies["accessToken"];
   if (accessToken) {
     return verifyAccessToken(req, res, next);
   }
-  // skip this middleware
+  //! skip this middleware
   next();
 }
 
