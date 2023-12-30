@@ -11,8 +11,7 @@ const { CouponModel } = require("../../../models/coupon");
 
 class CartController extends Controller {
   async addToCart(req, res) {
-    console.log(req.user)
-    const userId = req.user;
+    const userId = req?.user?._id;;
     if(!userId) throw createHttpError.Unauthorized("please login first")
     const { productId } = req.body;
     //!check if the product._id exist in products DB or not
@@ -74,6 +73,8 @@ class CartController extends Controller {
         `${removedProduct.title} is not exist in your cart`
       );
     let message;
+    //! if product quantity is bigger than one so reduce one form 
+    //! product number
     if (product.quantity > 1) {
       const decreaseCart = await UserModel.updateOne(
         {
@@ -90,6 +91,7 @@ class CartController extends Controller {
         throw createHttpError.InternalServerError("server error");
 
       message = "reduce one item";
+      //! if product quantity is  one so delete the product 
     } else {
       const newCart = await UserModel.findOneAndUpdate(
         {
@@ -109,7 +111,8 @@ class CartController extends Controller {
         );
 
       message = "remove product from basket";
-
+          //! if after the deleting the product there is not other
+          //! product in basket exist so => delete the coupon
       if (newCart.cart.products.length === 0)
         await UserModel.updateOne(
           { _id: userId },
@@ -196,6 +199,7 @@ class CartController extends Controller {
     return product;
   }
   async findProductInCart(userId, productId) {
+    const findRe = await UserModel.findOne({_id: userId});
     const findResult = await UserModel.findOne(
       { _id: userId, "cart.products.productId": productId },
       { "cart.products.$": 1 }
