@@ -17,7 +17,7 @@ function AddToCart({ product }) {
 
   const addToCartHandler = async () => {
     if (!user) {
-      toast.error("please login");
+      toast.error("please login first");
       router.push("/auth");
       return;
     }

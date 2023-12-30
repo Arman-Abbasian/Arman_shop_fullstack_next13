@@ -8,7 +8,7 @@ import {
 //page is a SSG page
 export const dynamic = "force-static"; // SSG or {cache : "force-cache"}
 //fallback:false
-export const dynamicParams = false;
+export const dynamicParams = false; //callback:false
 
 async function page({ params }) {
   const { slug } = params;
@@ -16,7 +16,7 @@ async function page({ params }) {
   return (
     <div className="flex flex-col gap-6 lg:flex-row">
        {/* product pictures */}
-      <div class="aspect-w-16 aspect-h-9 lg:aspect-h-4 flex-1 flex justify-start items-start">
+      <div class="aspect-w-16 aspect-h-9 lg:aspect-h-4 flex-1 flex justify-start items-start bg-primary-900">
         <img src="/images/santoor.png" alt={product.title} class="w-full h-full object-center object-contain" />
       </div>
       {/* product information */}
@@ -45,6 +45,8 @@ async function page({ params }) {
   );
 }
 export default page;
+
+//! this section means how many page must built
 
 export async function generateStaticParams() {
   const { products } = await getProducts();

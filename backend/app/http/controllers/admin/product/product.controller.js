@@ -60,6 +60,7 @@ class ProductController extends Controller {
   async getListOfProducts(req, res) {
     let dbQuery = {};
     const user = req.user;
+    console.log({user})
     //these are the keys of query strings
     const { search, category, sort, type } = req.query;
     // if search key was in query string's key;
@@ -97,14 +98,15 @@ class ProductController extends Controller {
     const newProducts = transformedProducts.map((product) => {
       //!we add this property to each product(isLiked) to make the like icon filled or empty
       //!based on that user liked product before or not
-      product.isLiked = false;
       //!if user is unknown make the all isLiked to false
       if (!user) product.isLiked = false;
       //! if use is authenticate, check if the userId is in product.likes array or not
-      if (product.likes.includes(user._id.toString())) product.isLiked = true;
+      else if (user && product.likes.includes(user._id.toString())) product.isLiked = true
+      else product.isLiked=false;
       delete product.likes;
       return product;
     });
+    console.log({newProducts})
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       data: {

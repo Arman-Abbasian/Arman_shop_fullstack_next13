@@ -11,12 +11,15 @@ const { CouponModel } = require("../../../models/coupon");
 
 class CartController extends Controller {
   async addToCart(req, res) {
+    console.log(req.user)
     const userId = req.user;
+    if(!userId) throw createHttpError.Unauthorized("please login first")
     const { productId } = req.body;
+    //!check if the product._id exist in products DB or not
     const addedProduct = await this.checkExistProduct(productId);
-    //find if the product was before in cart items of user
+    //!find if the product was before in cart items of user
     const product = await this.findProductInCart(userId, productId);
-    //if the product was before in cart items of user add 1 to the product quantity
+    //!if the product was before in cart items of user add 1 to the product quantity
     if (product) {
       const addToCartResult = await UserModel.updateOne(
         {
@@ -33,7 +36,7 @@ class CartController extends Controller {
       throw createHttpError.InternalServerError(
           "server error"
         );
-    //if the product was not before in cart items of user add object to ehe cart.products array=> {productId:---,quantity:1}   
+    //!if the product was not before in cart items of user add object to ehe cart.products array=> {productId:---,quantity:1}   
     } else {
       const addToCartResult = await UserModel.updateOne(
         {
@@ -189,7 +192,7 @@ class CartController extends Controller {
   async checkExistProduct(id) {
     const product = await ProductModel.findById(id);
     if (!product)
-      throw createHttpError.NotFound(" محصولی با این مشخصات یافت نشد");
+      throw createHttpError.NotFound("product not found");
     return product;
   }
   async findProductInCart(userId, productId) {

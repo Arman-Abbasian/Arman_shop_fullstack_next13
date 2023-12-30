@@ -22,7 +22,7 @@ app.interceptors.response.use(
   //!if the responses was rejected
   async (err) => {
     const originalConfig = err.config;
-    console.log(originalConfig._retry)
+    console.log({f:!originalConfig._retry,status:err.response})
     if (err.response.status === 401 && !originalConfig._retry) {
       originalConfig._retry = true;
       try {
