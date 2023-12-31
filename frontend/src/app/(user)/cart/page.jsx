@@ -11,7 +11,7 @@ function CartPage() {
   const { user, cart } = data || {};
 
   if (isLoading) return <Loading />;
-
+//! if the user not authenticated
   if (!user || !data)
     return (
       <div className="container lg:max-w-screen-lg">

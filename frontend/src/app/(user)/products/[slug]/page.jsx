@@ -1,7 +1,6 @@
 import { getOneProdcutBySlug, getProducts } from "@/services/productService";
 import AddToCart from "./AddToCart";
 import {
-  toPersianNumbers,
   toNumbersWithComma,
 } from "@/utils/toPersianNumbers";
 
@@ -16,7 +15,7 @@ async function page({ params }) {
   return (
     <div className="flex flex-col gap-6 lg:flex-row">
        {/* product pictures */}
-      <div class="aspect-w-16 aspect-h-9 lg:aspect-h-4 flex-1 flex justify-start items-start bg-primary-900">
+      <div class="aspect-w-16 aspect-h-9 lg:aspect-h-4 flex-1 flex justify-start items-start bg-primary-900 rounded-md">
         <img src="/images/santoor.png" alt={product.title} class="w-full h-full object-center object-contain" />
       </div>
       {/* product information */}
