@@ -128,6 +128,8 @@ class ProductController extends Controller {
         },
       },
     ]);
+    if (!product)
+      throw createHttpError.NotFound("product not found");
 
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
@@ -149,9 +151,8 @@ class ProductController extends Controller {
         },
       },
     ]);
-
     if (!product)
-      throw createHttpError.NotFound("دوره ای با این مشخصات یافت نشد");
+      throw createHttpError.NotFound("product not found");
 
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,

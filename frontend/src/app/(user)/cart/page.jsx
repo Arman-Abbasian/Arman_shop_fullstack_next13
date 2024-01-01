@@ -31,7 +31,7 @@ function CartPage() {
         </Link>
       </div>
     );
-
+console.log(cart)
   return (
     <div className="grid grid-cols-4 gap-6">
       <div className="lg:col-span-3 col-span-4 space-y-5">

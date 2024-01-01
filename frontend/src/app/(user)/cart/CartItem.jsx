@@ -1,10 +1,7 @@
 "use client";
+
 import { useAddToCart, useDecrementFromCart } from "@/hooks/useCart";
-import {
-  toNumbersWithComma,
-  toPersianNumbers,
-  toPersianNumbersWithComma,
-} from "@/utils/toPersianNumbers";
+import {toNumbersWithComma,} from "@/utils/toPersianNumbers";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { HiOutlineTrash, HiPlus, HiMinus } from "react-icons/hi";
@@ -39,13 +36,10 @@ function CartItem({ cartItem }) {
   };
 
   return (
-    <div className="border rounded-xl p-4 flex justify-between flex-nowrap overflow-x-scroll gap-4 w-[600]">
-      <div className="font-bold flex flex-nowrap justify-center items-center">
-      <p>{cartItem.title}</p>
-      </div>
-        <div className="justify-center items-center">
-          <div className="flex flex-nowrap">
-            cost :{" "}
+    <div className="border rounded-xl p-4 flex justify-between items-center flex-nowrap overflow-x-auto gap-4 w-full sm:w-[600px]">
+      <p className="min-w-fit">{cartItem.title}</p>
+          <div className="flex items-center flex-nowrap min-w-fit gap-0.5">
+            <span className="flex flex-nowrap">cost:</span>
             <span
               className={`${
                 cartItem.discount ? "line-through text-gray-500" : "font-bold"
@@ -55,23 +49,22 @@ function CartItem({ cartItem }) {
             </span>
           </div>
           {!!cartItem.discount && (
-            <div className="flex items-center gap-x-2 mt-2 flex-nowrap">
+            <div className="flex items-center gap-x-2 mt-2 flex-nowrap min-w-fit">
               <p className="font-bold">
                 {" "}
                 {toNumbersWithComma(cartItem.offPrice)}
               </p>
               <div className="bg-rose-500 px-2 py-0.5 rounded-xl text-white text-sm">
-                {toPersianNumbers(cartItem.discount)}%
+                {cartItem.discount}%
               </div>
             </div>
           )}
-        </div>
 
-        <div className="border-r-2 pr-2 flex justify-center items-center flex-nowrap gap-1">
+        <div className="border-r-2 pr-2 flex justify-center items-center flex-nowrap gap-1 min-w-fit">
           <span>number:</span>
           <span>{cartItem.quantity}</span>
         </div>
-        <div className="flex flex-nowrap justify-center items-center gap-x-3 ">
+        <div className="flex flex-nowrap justify-center items-center gap-x-3 min-w-fit">
           <button
             onClick={addToCartHandler}
             className="bg-primary-900 text-white rounded p-1 w-8 h-8 flex justify-center items-center"
