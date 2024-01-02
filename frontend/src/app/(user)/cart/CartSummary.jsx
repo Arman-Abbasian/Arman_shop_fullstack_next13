@@ -7,7 +7,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
 function CartSummary({ payDetail }) {
-  console.log(payDetail)
   const { totalOffAmount, totalPrice, totalGrossPrice } = payDetail;
   const { isLoading, mutateAsync } = useMutation({ mutationFn: createPayment });
   const queryClient = useQueryClient();

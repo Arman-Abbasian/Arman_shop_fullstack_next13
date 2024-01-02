@@ -11,7 +11,7 @@ import { toast } from "react-hot-toast";
 function AddToCart({ product }) {
   const queryClient = useQueryClient();
   const router = useRouter();
-  const { data } = useGetUser();
+  const { data,isLoading:loadingUseGetUser } = useGetUser();
   const { isLoading, mutateAsync } = useAddToCart();
   const { user } = data || {};
 
@@ -32,25 +32,29 @@ function AddToCart({ product }) {
       }
     }
   };
-
+  //! this function check if the product existed in user cart section or not
   const isInCart = (user, product) => {
     if (!user) return false;
-    //check if the product existed in user cart section or not
     return user.cart?.products.some((p) => p.productId === product._id);
   };
-
+  if (loadingUseGetUser) return <button disabled className="btn btn--primary w-full py-2">
+  <Loading width="40" heigh="25" color="rgb(var(--color-primary-100))" />
+    </button>
   return (
-    <div>
+    <div> 
       {isInCart(user, product) ? (
         <Link href="/cart" className="text-primary-900 font-bold w-full">
-          countiue the order
+          continue the order
         </Link>
-      ) : isLoading ? (
-        <Loading />
       ) : (
-        <button onClick={addToCartHandler} className="btn btn--primary py-2 w-full">
+        isLoading ? 
+        <button disabled className="btn btn--primary py-2 w-full">
+        <Loading width="40" heigh="25" color="rgb(var(--color-primary-100))" />
+          </button> :
+          <button onClick={addToCartHandler} className="btn btn--primary py-2 w-full">
           Add
         </button>
+        
       )}
     </div>
   );
