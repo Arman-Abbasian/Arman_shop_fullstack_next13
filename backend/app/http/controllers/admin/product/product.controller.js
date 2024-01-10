@@ -218,18 +218,19 @@ class ProductController extends Controller {
     });
   }
   async likeProduct(req, res) {
+    //!user send the productId to the server
     const { id: productId } = req.params;
-    //get req.user from verifyAccessToken middleware
+    //!get req.user from verifyAccessToken middleware
     const user = req.user;
-    //find product from product collection
+    //!find product from product collection
     const product = await this.findProductById(productId);
     if(!product) throw createHttpError.BadRequest("product not found");
-    //likedProduct is ture if id of user be in likes array of product doecument and visaverse
+    //!likedProduct is true if id of user be in likes array of product document and visaverse
     const likedProduct = await ProductModel.findOne({
       _id: productId,
       likes: user._id,
     });
-    // if id of user was or was not exist in like field of product document
+    // !if id of user was or was not exist in like field of product document
     const updateProductQuery = likedProduct
       ? { $pull: { likes: user._id } }
       : { $push: { likes: user._id } };
