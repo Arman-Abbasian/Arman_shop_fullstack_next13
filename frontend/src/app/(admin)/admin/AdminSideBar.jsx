@@ -13,34 +13,35 @@ function AdminSideBar() {
   };
 
   return (
-    <div>
-      <div onClick={()=>setShowMenu(!showMenu)} className="p-2 ring ring-primary-800 rounded-sm inline-block lg:hidden cursor-pointer">
+    <div className="p-3 lg:p-0">
+      <div onClick={()=>setShowMenu(!showMenu)} className="p-2 ring ring-primary-800 rounded-sm inline-block mb-2  lg:hidden cursor-pointer">
           <HiMenu className="w-6 h-6 text-primary-900" />
         </div>
-      <ul className="flex flex-col space-y-8">
-        <li>
-          <Link href="/">صفحه اصلی</Link>
-        </li>
-        <li>
-          <Link href="/admin">داشبورد</Link>
-        </li>
-        <li>
-          <Link href="/admin/users">کاربران</Link>
-        </li>
-        <li>
-          <Link href="/admin/products">محصولات</Link>
-        </li>
-        <li>
-          <Link href="/admin/categories">دسته بندی</Link>
-        </li>
-        <li>
-          <Link href="/admin/payments">سفارشات </Link>
-        </li>
-        <li>
-          <Link href="/admin/coupons">کد تخفیف</Link>
-        </li>
-        <li>
-          <button onClick={logoutHandler}>خروج از حساب کاربری</button>
+      <ul className={`${showMenu?'flex':'hidden'}  lg:flex flex-col p-2 gap-5 bg-secondary-300 lg:h-screen rounded-md lg:rounded-none`}>
+        
+          <Link onClick={()=>setShowMenu(false)} href="/" className="hover:bg-primary-500 w-44 p-2 rounded-md lg:w-full">
+          <li>Home</li>
+          </Link>
+          <Link onClick={()=>setShowMenu(false)} href="/admin" className="hover:bg-primary-500 w-44 p-2 rounded-md lg:w-full">
+          <li >dashboard</li>
+          </Link>
+          <Link onClick={()=>setShowMenu(false)} href="/admin/users" className="hover:bg-primary-500 w-44 p-2 rounded-md lg:w-full">
+          <li >users</li>
+          </Link>
+          <Link onClick={()=>setShowMenu(false)} href="/admin/products" className="hover:bg-primary-500 w-44 p-2 rounded-md lg:w-full">
+          <li >products</li>
+          </Link>
+          <Link onClick={()=>setShowMenu(false)} href="/admin/categories" className="hover:bg-primary-500 w-44 p-2 rounded-md lg:w-full">
+          <li >categories</li>
+          </Link>
+          <Link onClick={()=>setShowMenu(false)} href="/admin/payments" className="hover:bg-primary-500 w-44 p-2 rounded-md lg:w-full">
+          <li >orders</li>
+          </Link>
+          <Link onClick={()=>setShowMenu(false)} href="/admin/coupons" className="hover:bg-primary-500 w-44 p-2 rounded-md lg:w-full">
+          <li >discount code</li>
+          </Link>
+        <li className="hover:bg-primary-500 w-44 p-2 rounded-md lg:w-full">
+          <button onClick={logoutHandler}>log out</button>
         </li>
       </ul>
     </div>
