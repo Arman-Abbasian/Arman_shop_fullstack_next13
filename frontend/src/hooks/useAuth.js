@@ -1,5 +1,5 @@
-import { getAllUsers, getOtp, getUserProfile } from "@/services/authServices";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { getAllUsers, getUserProfile } from "@/services/authServices";
+import { useQuery } from "@tanstack/react-query";
 
 export const useGetUser = () =>
   useQuery({

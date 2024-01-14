@@ -97,6 +97,7 @@ class userAuthController extends Controller {
 
     user.isVerifiedPhoneNumber = true;
     await user.save();
+    console.log({user})
 
     // await setAuthCookie(res, user); // set httpOnly cookie
     //! with two under code we make the tokens and attach them to the cookie
@@ -260,7 +261,6 @@ class userAuthController extends Controller {
   }
   async getUserProfile(req, res) {
     const { _id: userId } = req.user;
-    console.log(req.headers.cookie.accessToken)
     const user = await UserModel.findById(userId, { otp: 0 });
     const cart = (await getUserCartDetail(userId))?.[0];
     const payments = await PaymentModel.find({ user: userId });

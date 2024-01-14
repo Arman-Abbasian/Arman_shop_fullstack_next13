@@ -2,14 +2,19 @@
 import { HiOutlineHome,HiOutlineShoppingCart,HiOutlineUser,HiMenu,HiOutlineLogin } from "react-icons/hi";
 import { useGetUser } from "@/hooks/useAuth";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import http from "@/services/httpService";
 
 function Header() {
   const [showMenu,setShawMenu]=useState(false);
   //! this Query get the user data from Api
   const { data, error, isLoading } = useGetUser();
   const { user, cart } = data || {};
-
+  console.log(data)
+useEffect(()=>{
+  http.get("/user/profile").then(({ data }) => console.log(data))
+})
   return (
     <header
       className={`shadow-md mb-10 sticky top-0 transition-all duration-200 bg-white ${
