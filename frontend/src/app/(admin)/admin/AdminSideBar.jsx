@@ -2,8 +2,11 @@
 
 import { logout } from "@/services/authServices";
 import Link from "next/link";
+import { useState } from "react";
+import { HiMenu } from "react-icons/hi";
 
 function AdminSideBar() {
+  const [showMenu,setShowMenu]=useState(false);
   const logoutHandler = async () => {
     await logout();
     document.location.href = "/";
@@ -11,6 +14,9 @@ function AdminSideBar() {
 
   return (
     <div>
+      <div onClick={()=>setShowMenu(!showMenu)} className="p-2 ring ring-primary-800 rounded-sm inline-block lg:hidden cursor-pointer">
+          <HiMenu className="w-6 h-6 text-primary-900" />
+        </div>
       <ul className="flex flex-col space-y-8">
         <li>
           <Link href="/">صفحه اصلی</Link>
