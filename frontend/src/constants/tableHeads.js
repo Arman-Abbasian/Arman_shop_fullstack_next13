@@ -36,27 +36,27 @@ export const userListTableHeads = [
   },
   {
     id: 2,
-    label: "نام",
+    label: "name",
   },
   {
     id: 3,
-    label: "ایمیل",
+    label: "email",
   },
   {
     id: 4,
-    label: "شماره موبایل",
+    label: "mobile",
   },
   {
     id: 5,
-    label: "محصولات",
+    label: "products",
   },
   {
     id: 6,
-    label: "تاریخ پیوستن",
+    label: "join at",
   },
   {
     id: 7,
-    label: "مشاهده",
+    label: "detail",
   },
 ];
 

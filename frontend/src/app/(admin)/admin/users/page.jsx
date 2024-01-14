@@ -11,7 +11,7 @@ function UsersPage() {
   if (isLoading) return <Loading />;
   return (
     <div>
-      <h1 className="text-xl font-bold mb-5">اطلاعات کاربران</h1>
+      <h1 className="text-xl font-bold mb-5">user informations</h1>
       <UsersTable users={users} />
     </div>
   );
