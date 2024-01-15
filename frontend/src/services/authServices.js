@@ -1,3 +1,4 @@
+import { useId } from "react";
 import http from "./httpService";
 
 export function getOtp(data) {
@@ -30,4 +31,14 @@ export function logout() {
 
 export function getAllUsers() {
   return http.get("/admin/user/list").then(({ data }) => data.data);
+}
+export async function getUserByParam(userId) {
+  try {
+   const res= await http.get(`/admin/user/${userId}`);
+   const data=res.data.data.data;
+   return data
+  } catch (error) {
+    return error
+  }
+  return 
 }

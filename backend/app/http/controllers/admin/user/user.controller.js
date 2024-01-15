@@ -42,6 +42,8 @@ class UserController extends Controller {
   }
   async userProfile(req, res) {
     const { userId } = req.params;
+    console.log({params:req.params})
+    console.log({userId})
     const user = await UserModel.findById(userId, { otp: 0 });
     const cart = (await getUserCartDetail(userId))?.[0];
     const payments = await PaymentModel.find({ user: userId });

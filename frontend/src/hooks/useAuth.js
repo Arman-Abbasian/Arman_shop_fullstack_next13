@@ -1,5 +1,6 @@
-import { getAllUsers, getUserProfile } from "@/services/authServices";
+import { getAllUsers, getUserByParam, getUserProfile } from "@/services/authServices";
 import { useQuery } from "@tanstack/react-query";
+import { useId } from "react";
 
 export const useGetUser = () =>
   useQuery({
@@ -13,6 +14,14 @@ export const useGetUsers = () =>
   useQuery({
     queryKey: ["get-users"],
     queryFn: getAllUsers,
+    retry: false,
+    refetchOnWindowFocus: true,
+  });
+
+  export const useGetUserByParam = ({userId}) =>
+  useQuery({
+    queryKey: ["get-users-by-param",userId],
+    queryFn: async()=>await getUserByParam(userId),
     retry: false,
     refetchOnWindowFocus: true,
   });

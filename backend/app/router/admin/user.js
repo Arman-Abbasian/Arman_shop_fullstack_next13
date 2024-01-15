@@ -6,7 +6,7 @@ const {
 const router = require("express").Router();
 
 router.get("/list", expressAsyncHandler(UserController.getAllUsers));
-router.get("/profile/:userId", expressAsyncHandler(UserController.userProfile));
+router.get("/:userId", expressAsyncHandler(UserController.userProfile));
 
 module.exports = {
   userAdminRoutes: router,
