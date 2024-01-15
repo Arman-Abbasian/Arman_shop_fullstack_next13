@@ -35,7 +35,8 @@ export function getAllUsers() {
 export async function getUserByParam(userId) {
   try {
    const res= await http.get(`/admin/user/${userId}`);
-   const data=res.data.data.data;
+   const data=res.data.data;
+   console.log(data)
    return data
   } catch (error) {
     return error

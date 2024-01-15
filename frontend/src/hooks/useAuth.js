@@ -21,7 +21,7 @@ export const useGetUsers = () =>
   export const useGetUserByParam = ({userId}) =>
   useQuery({
     queryKey: ["get-users-by-param",userId],
-    queryFn: async()=>await getUserByParam(userId),
+    queryFn: ()=> getUserByParam(userId),
     retry: false,
     refetchOnWindowFocus: true,
   });
