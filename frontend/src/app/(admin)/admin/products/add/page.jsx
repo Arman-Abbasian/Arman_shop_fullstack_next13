@@ -48,7 +48,7 @@ function addProductPage() {
 
   return (
     <div className="mb-10">
-      <h1 className="mb-4 font-bold text-xl">اضافه کردن محصول</h1>
+      <h1 className="mb-4 font-bold text-xl">add new product</h1>
       <ProductForm
         onSubmit={handleSubmit}
         categories={categories}

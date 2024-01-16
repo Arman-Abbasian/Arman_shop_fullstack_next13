@@ -10,7 +10,6 @@ function page() {
   const [category, setCategory] = useState({
     title: "",
     description: "",
-    englishTitle: "",
   });
   const router = useRouter();
   const [selectedType, setSelectedType] = useState("");
