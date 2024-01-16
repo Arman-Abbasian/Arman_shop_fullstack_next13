@@ -34,7 +34,7 @@ function page() {
   };
   return (
     <div>
-      <h1 className="mb-6 font-bold text-xl">افزودن دسته بندی جدید</h1>
+      <h1 className="mb-6 font-bold text-xl">add new category</h1>
       <CategoryForm
         category={category}
         handleChange={handleChange}

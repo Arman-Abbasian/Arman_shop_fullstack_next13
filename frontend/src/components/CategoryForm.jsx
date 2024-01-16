@@ -5,22 +5,22 @@ import Loading from "@/common/Loading";
 export const categoryTypes = [
   {
     id: 1,
-    label: "محصول",
+    label: "product",
     value: "product",
   },
   {
     id: 2,
-    label: "پست",
+    label: "post",
     value: "post",
   },
   {
     id: 3,
-    label: "تیکت",
+    label: "ticket",
     value: "ticket",
   },
   {
     id: 4,
-    label: "نظرات",
+    label: "comment",
     value: "comment",
   },
 ];
@@ -38,25 +38,19 @@ function CategoryForm({
       <form className="space-y-4" onSubmit={onSubmit}>
         <TextField
           name="title"
-          label="عنوان"
+          label="title"
           value={category.title || ""}
           onChange={handleChange}
         />
         <TextField
-          name="englishTitle"
-          label="عنوان انگلیسی"
-          value={category.englishTitle || ""}
-          onChange={handleChange}
-        />
-        <TextField
           name="description"
-          label="توضیحات"
+          label="description"
           value={category.description || ""}
           onChange={handleChange}
         />
         <div>
           <label htmlFor="type" className="mb-2 block">
-            نوع
+            type
           </label>
           <Select
             instanceId="type"
@@ -69,7 +63,7 @@ function CategoryForm({
           {isLoading ? (
             <Loading />
           ) : (
-            <button className="btn btn--primary w-full">تایید</button>
+            <button className="btn btn--primary w-full">Add</button>
           )}
         </div>
       </form>
