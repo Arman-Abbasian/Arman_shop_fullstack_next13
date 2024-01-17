@@ -67,31 +67,39 @@ export const productListTableTHeads = [
   },
   {
     id: 2,
-    label: "عنوان",
+    label: "title",
   },
   {
     id: 3,
-    label: "دسته بندی",
+    label:"category",
   },
   {
     id: 4,
-    label: "قیمت",
+    label: "price",
   },
   {
     id: 5,
-    label: "تخفیف",
+    label: "discount",
   },
   {
     id: 6,
-    label: "قیمت با تخفیف",
+    label: "reduced price",
   },
   {
     id: 7,
-    label: "موجودی",
+    label: "inventory",
   },
   {
     id: 8,
-    label: "عملیات",
+    label: "detail",
+  },
+  {
+    id: 9,
+    label: "edit",
+  },
+  {
+    id: 10,
+    label: "delete",
   },
 ];
 
