@@ -48,17 +48,19 @@ function ProductListTable({ products }) {
                 <td className="table__td">{product.offPrice}</td>
                 <td className="table__td">{product.countInStock}</td>
                 <td className="table__td font-bold text-lg">
-                  <div className="flex items-center gap-x-4">
                     <Link href={`/admin/products/${product._id}`}>
                       <HiEye className="text-primary-900 w-6 h-6" />
                     </Link>
+                    </td>
+                    <td>
                     <button onClick={() => removeProductHandler(product._id)}>
                       <HiTrash className="text-rose-600 w-6 h-6" />
                     </button>
+                    </td>
+                    <td>
                     <Link href={`/admin/products/edit/${product._id}`}>
                       <RiEdit2Line className="w-6 h-6 text-secondary-600" />
                     </Link>
-                  </div>
                 </td>
               </tr>
             );
