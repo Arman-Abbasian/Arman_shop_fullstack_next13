@@ -1,16 +1,11 @@
 "use client";
 
 import Loading from "@/common/Loading";
+import { dateFormatOptions } from "@/constants/dateFormatOption";
 import { useGetUserByParam } from "@/hooks/useAuth";
 import { useParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { IoIosCheckmarkCircleOutline,IoMdCloseCircleOutline ,IoMdPerson  } from "react-icons/io";
-
-const options={
-  year: "numeric",
-  month: "short",
-  day: "numeric",
-}
 
 function page() {
   const { id } = useParams();
@@ -30,7 +25,7 @@ function page() {
     <p><span className="font-bold">biography: </span>{data.user.biography}</p>
     <p className="flex items-center gap-0.5"><span className="font-bold">verified phone number: 
     </span>{data.user.isVerifiedPhoneNumber ?<IoIosCheckmarkCircleOutline className="w-6 h-6 text-green-900"/>:<IoMdCloseCircleOutline className="w-6 h-6 text-red-900"/>}</p>
-    <p><span className="font-bold">join at: </span>{new Date(data.user.createdAt).toLocaleDateString("en-US",options)}</p>
+    <p><span className="font-bold">join at: </span>{new Date(data.user.createdAt).toLocaleDateString("en-US",dateFormatOptions)}</p>
     <div>
     <p className="font-bold">products:</p>
       {data.user.Products.map(Product=>{
