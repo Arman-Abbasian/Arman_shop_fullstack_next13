@@ -28,7 +28,7 @@ function ProductListTable({ products }) {
             {productListTableTHeads.map((item) => {
               return (
                 <th className="whitespace-nowrap table__th" key={item.id}>
-                  {item.label}
+                 <p className="flex justify-center items-center">{item.label}</p>
                 </th>
               );
             })}
@@ -38,27 +38,27 @@ function ProductListTable({ products }) {
           {products.map((product, index) => {
             return (
               <tr key={product._id}>
-                <td className="table__td">{index + 1}</td>
+                <td className="table__td"><p className="flex justify-center items-center">{index + 1}</p></td>
                 <td className="table__td  whitespace-nowrap font-bold">
                   {product.title}
                 </td>
-                <td className="table__td">{product.category.title}</td>
-                <td className="table__td">{product.price}</td>
-                <td className="table__td">{product.discount}</td>
-                <td className="table__td">{product.offPrice}</td>
-                <td className="table__td">{product.countInStock}</td>
+                <td className="table__td"><p className="flex justify-center items-center whitespace-nowrap">{product.category.title}</p></td>
+                <td className="table__td"><p className="flex justify-center items-center whitespace-nowrap">{product.price}</p></td>
+                <td className="table__td"><p className="flex justify-center items-center whitespace-nowrap">{product.discount}</p></td>
+                <td className="table__td"><p className="flex justify-center items-center whitespace-nowrap">{product.offPrice}</p></td>
+                <td className="table__td"><p className="flex justify-center items-center whitespace-nowrap">{product.countInStock}</p></td>
                 <td className="table__td font-bold text-lg">
-                    <Link href={`/admin/products/${product._id}`}>
+                    <Link href={`/admin/products/${product._id}`} className="flex justify-center items-center whitespace-nowrap">
                       <HiEye className="text-primary-900 w-6 h-6" />
                     </Link>
                     </td>
                     <td>
-                    <button onClick={() => removeProductHandler(product._id)}>
+                    <button onClick={() => removeProductHandler(product._id)} className="w-full flex justify-center items-center whitespace-nowrap">
                       <HiTrash className="text-rose-600 w-6 h-6" />
                     </button>
                     </td>
                     <td>
-                    <Link href={`/admin/products/edit/${product._id}`}>
+                    <Link href={`/admin/products/edit/${product._id}`} className="flex justify-center items-center whitespace-nowrap">
                       <RiEdit2Line className="w-6 h-6 text-secondary-600" />
                     </Link>
                 </td>
