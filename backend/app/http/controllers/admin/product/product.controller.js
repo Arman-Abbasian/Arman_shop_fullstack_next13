@@ -174,22 +174,22 @@ class ProductController extends Controller {
       return res.status(HttpStatus.OK).json({
         statusCode: HttpStatus.OK,
         data: {
-          message: "وضعیت تخفیف محصول فعال شد",
+          message: "discount is active now",
         },
       });
     }
-    throw createHttpError.BadRequest("تغییر انجام نشد مجددا تلاش کنید");
+    throw createHttpError.BadRequest("some error!!! try again");
   }
   async removeProduct(req, res) {
     const { id } = req.params;
     await this.findProductById(id);
     const deleteResult = await ProductModel.deleteOne({ _id: id });
     if (deleteResult.deletedCount == 0)
-      throw createError.InternalServerError("حدف محصول انجام نشد");
+      throw createError.InternalServerError("some error occured");
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       data: {
-        message: "حذف محصول با موفقیت انجام شد",
+        message: "product removes successfullly",
       },
     });
   }
@@ -207,13 +207,13 @@ class ProductController extends Controller {
     );
     if (!updateProductResult.modifiedCount)
       throw new createHttpError.InternalServerError(
-        "به روزرسانی محصول انجام نشد"
+        "some error..."
       );
 
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       data: {
-        message: "به روزرسانی محصول با موفقیت انجام شد",
+        message: "product updated successfully",
       },
     });
   }
