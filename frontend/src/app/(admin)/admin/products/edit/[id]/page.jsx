@@ -23,14 +23,14 @@ const includesProductKey = [
 function page() {
   const { id } = useParams();
   const { data, isLoading: isLoadingProduct } = useGetProductById(id);
-  const { product } = data || {};
   const { data: categoryData } = useGetCategories();
+  const { isLoading, mutateAsync } = useUpdateProduct();
+  const { product } = data || {};
   const { categories } = categoryData || {};
   const [formData, setFormData] = useState({});
-  const router = useRouter();
-  const [tags, setTags] = useState(product?.tags || []);
+  const [tags, setTags] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const { isLoading, mutateAsync } = useUpdateProduct();
+  const router = useRouter();
 
   const handChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -56,12 +56,13 @@ function page() {
 
   useEffect(() => {
     if (product) {
-      setTags(product.tags);
+      console.log(product.tags)
       setSelectedCategory(product.category);
       setFormData(includeObj(product, includesProductKey));
+      setTags(product.tags);
     }
-  }, [data]);
-
+  }, [product]);
+  console.log({formData,tags,selectedCategory})
   if (isLoadingProduct) return <Loading />;
   return (
     <div>

@@ -99,7 +99,7 @@ function ProductForm({
           {isLoading ? (
             <Loading />
           ) : (
-            <button className="btn btn--primary w-full">Add</button>
+            <button className="btn btn--primary w-full">update</button>
           )}
         </div>
       </form>

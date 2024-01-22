@@ -74,6 +74,9 @@
   .icon {
     @apply w-6 h-6;
   }
+  .tdItem--table{
+   @apply flex justify-center items-center whitespace-nowrap
+  }
 }
 
 html,
