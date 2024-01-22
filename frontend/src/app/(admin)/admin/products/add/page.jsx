@@ -9,8 +9,9 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 
 function addProductPage() {
-  const { isLoading, mutateAsync } = useAddProduct();
   const { data } = useGetCategories();
+  // we write 'data || {}' because at the first time data is empty because
+  //usetGetCategories is a async action and with this code we provent the error
   const { categories } = data || {};
   const [formData, setFormData] = useState({
     title: "",
@@ -23,11 +24,13 @@ function addProductPage() {
     countInStock: "",
     imageLink: "",
   });
-  const router = useRouter();
   const [tags, setTags] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
+console.log({formData,tags,selectedCategory})
+  const { isLoading:addProductLaoding, mutateAsync } = useAddProduct();
+  const router = useRouter();
 
-  const handChange = (e) => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -55,9 +58,9 @@ function addProductPage() {
         setSelectedCategory={setSelectedCategory}
         tags={tags}
         setTags={setTags}
-        isLoading={isLoading}
+        isLoading={addProductLaoding}
         productData={formData}
-        productDataOnChange={handChange}
+        productDataOnChange={handleChange}
       />
     </div>
   );

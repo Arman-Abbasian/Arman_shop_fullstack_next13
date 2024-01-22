@@ -11,7 +11,7 @@ function Product({product}) {
                   key={product._id}
                 >
                   <div class="aspect-w-16 aspect-h-9">
-                    <img src="images/santoor.png" alt="santoor" class="w-full h-full object-center object-contain" />
+                    <img src={product.imageLink} alt={product.title}class="w-full h-full object-center object-contain" />
                   </div>
                   <h2 className="font-bold text-xl mb-4">{product.title}</h2>
                   <div className="mb-4 flex gap-2 items-center">
