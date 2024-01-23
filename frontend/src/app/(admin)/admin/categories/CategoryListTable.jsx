@@ -28,7 +28,7 @@ function CategoryListTable({ categories }) {
             {categoryListTableTHeads.map((item) => {
               return (
                 <th className="whitespace-nowrap table__th" key={item.id}>
-                  {item.label}
+                  <p className="flex justify-center items-center bg-red-400">{item.label}</p>
                 </th>
               );
             })}
@@ -38,30 +38,31 @@ function CategoryListTable({ categories }) {
           {categories.map((category, index) => {
             return (
               <tr key={category._id}>
-                <td className="table__td">{index + 1}</td>
-                <td className="table__td  whitespace-nowrap font-bold">
-                  {category.title}
+                <td className="table__td"><p className="tdItem--table">{index + 1}</p></td>
+                <td className="table__td  font-bold">
+                 <p className="tdItem--table">{category.title}</p> 
                 </td>
-                <td className="table__td">{category.description}</td>
-                <td className="table__td">{category.englishTitle}</td>
+                <td className="table__td"><p className="tdItem--table">{category.description}</p></td>
                 <td className="table__td">
-                  <span className="badge badge--secondary">
+                  <span className="badge badge--secondary tdItem--table">
                     {category.type}
                   </span>
                 </td>
                 <td className="table__td font-bold text-lg">
-                  <div className="flex items-center gap-x-4">
-                    <Link href={`/admin/categories/${category._id}`}>
+                    <Link href={`/admin/categories/${category._id}`} className="tdItem--table">
                       <HiEye className="text-primary-900 w-6 h-6" />
                     </Link>
-                    <button onClick={() => removeCategoryHandler(category._id)}>
-                      <HiTrash className="text-rose-600 w-6 h-6" />
-                    </button>
-                    <Link href={`/admin/categories/edit/${category._id}`}>
+                   </td>
+                   <td> 
+                    <Link href={`/admin/categories/edit/${category._id}`} className="tdItem--table">
                       <RiEdit2Line className="w-6 h-6 text-secondary-600" />
                     </Link>
-                  </div>
-                </td>
+                    </td>
+                    <td>
+                    <button onClick={() => removeCategoryHandler(category._id)} className="tdItem--table w-full">
+                      <HiTrash className="text-rose-600 w-6 h-6" />
+                    </button>
+                    </td>             
               </tr>
             );
           })}

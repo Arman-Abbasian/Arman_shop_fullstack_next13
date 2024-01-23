@@ -110,23 +110,27 @@ export const categoryListTableTHeads = [
   },
   {
     id: 2,
-    label: "عنوان",
+    label: "title",
   },
   {
     id: 3,
-    label: "توضیحات",
+    label: "description",
   },
   {
     id: 4,
-    label: "عنوان انگلیسی",
+    label: "type",
   },
   {
     id: 5,
-    label: "نوع",
+    label: "detail",
   },
   {
     id: 6,
-    label: "عملیات",
+    label: "edit",
+  },
+  {
+    id: 7,
+    label: "delete",
   },
 ];
 
