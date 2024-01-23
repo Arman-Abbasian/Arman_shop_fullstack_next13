@@ -41,6 +41,7 @@ function page() {
         onSubmit={handleSubmit}
         selectedType={selectedType}
         setSelectedType={setSelectedType}
+        submitButtonTitle="Add"
       />
     </div>
   );

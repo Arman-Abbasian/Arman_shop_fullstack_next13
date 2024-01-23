@@ -22,7 +22,6 @@ function page() {
   <p><span className="font-bold">brand: </span>{product.brand}</p>
   <p><span className="font-bold">num of likes: </span>{product.numOfLikes}</p>
   <p><span className="font-bold">latest version: </span>{new Date(product.updatedAt).toLocaleDateString("en-US",dateFormatOptions)}</p>
-  
 </div>;
 }
 export default page;

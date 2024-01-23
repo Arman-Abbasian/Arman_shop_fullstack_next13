@@ -28,7 +28,7 @@ function CategoryListTable({ categories }) {
             {categoryListTableTHeads.map((item) => {
               return (
                 <th className="whitespace-nowrap table__th" key={item.id}>
-                  <p className="flex justify-center items-center bg-red-400">{item.label}</p>
+                  <p className="flex justify-center items-center">{item.label}</p>
                 </th>
               );
             })}

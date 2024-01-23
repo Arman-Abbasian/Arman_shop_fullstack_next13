@@ -32,6 +32,7 @@ function CategoryForm({
   selectedType = "",
   setSelectedType,
   isLoading,
+  submitButtonTitle,
 }) {
   return (
     <div className="max-w-sm mb-10">
@@ -63,7 +64,7 @@ function CategoryForm({
           {isLoading ? (
             <Loading />
           ) : (
-            <button className="btn btn--primary w-full">Add</button>
+            <button className="btn btn--primary w-full">{submitButtonTitle}</button>
           )}
         </div>
       </form>

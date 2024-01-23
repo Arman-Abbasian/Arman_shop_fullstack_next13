@@ -1,5 +1,5 @@
 import http from "./httpService";
-
+//! Queries----------------------------------------------------------
 export function getCategories() {
   return http.get("/category/list").then(({ data }) => data.data);
 }
@@ -7,7 +7,7 @@ export function getCategories() {
 export function getCategoryById(id) {
   return http.get(`/category/${id}`).then(({ data }) => data.data);
 }
-
+//! Mutations----------------------------------------------------------
 export function addNewCategory(data) {
   return http.post("/admin/category/add", data).then(({ data }) => data.data);
 }

@@ -49,7 +49,7 @@ function page() {
   if (isLoadingCategory) return <Loading />;
   return (
     <div>
-      <h1 className="mb-6 font-bold text-xl">ویرایش دسته بندی جدید</h1>
+      <h1 className="mb-6 font-bold text-xl">edit category</h1>
       <CategoryForm
         category={formData}
         handleChange={handleChange}
@@ -57,6 +57,7 @@ function page() {
         onSubmit={handleSubmit}
         selectedType={categoryTypes.find((c) => c.value === category.type)}
         setSelectedType={setSelectedType}
+        submitButtonTitle="update"
       />
     </div>
   );
