@@ -12,7 +12,7 @@ class CategoryController extends Controller {
     const query = req.query;
     const categories = await CategoryModel.find(query);
     if (!categories)
-      throw createHttpError.ServiceUnavailable("دسته بندی ها یافت نشد");
+      throw createHttpError.ServiceUnavailable("category not found");
 
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
@@ -64,11 +64,11 @@ class CategoryController extends Controller {
       }
     );
     if (updateResult.modifiedCount == 0)
-      throw createError.InternalServerError("به روزرسانی انجام نشد");
+      throw createError.InternalServerError("some error");
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       data: {
-        message: "به روز رسانی با موفقیت انجام شد",
+        message: "category updated successfully",
       },
     });
   }
@@ -83,7 +83,7 @@ class CategoryController extends Controller {
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       data: {
-        message: "حذف دسته بندی با موفقیت انجام شد",
+        message: "category removed successfully",
       },
     });
   }
