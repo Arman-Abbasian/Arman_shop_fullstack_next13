@@ -1,6 +1,6 @@
 import { adminPaymentListTableTHeads } from "@/constants/tableHeads";
 import { toLocalDateStringShort } from "@/utils/toLocalDate";
-import { toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
+import { toNumbersWithComma } from "@/utils/toPersianNumbers";
 import Link from "next/link";
 import { HiEye } from "react-icons/hi";
 
@@ -54,16 +54,16 @@ function PaymentListTable({ payments }) {
                   </div>
                 </td>
                 <td className="table__td font-bold text-lg">
-                  {toPersianNumbersWithComma(payment.amount)}
+                  {toNumbersWithComma(payment.amount)}
                 </td>
                 <td className="table__td">
                   {toLocalDateStringShort(payment.createdAt)}
                 </td>
                 <td className="table__td">
                   {payment.status === "COMPLETED" ? (
-                    <span className="badge badge--success">موفق</span>
+                    <span className="badge badge--success">successful</span>
                   ) : (
-                    <span className="badge badge--error">ناموفق</span>
+                    <span className="badge badge--error">unsuccessful</span>
                   )}
                 </td>
                 <td>

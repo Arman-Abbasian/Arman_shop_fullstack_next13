@@ -141,35 +141,35 @@ export const adminPaymentListTableTHeads = [
   },
   {
     id: 2,
-    label: "شماره فاکتور",
+    label: "Invoice number",
   },
   {
     id: 3,
-    label: "توضیحات",
+    label: "description",
   },
   {
     id: 4,
-    label: "کاربر",
+    label: "user",
   },
   {
     id: 5,
-    label: "محصولات",
+    label: "products",
   },
   {
     id: 6,
-    label: "مبلغ",
+    label: "price",
   },
   {
     id: 7,
-    label: "تاریخ",
+    label: "date",
   },
   {
     id: 8,
-    label: "وضعیت",
+    label: "condition",
   },
   {
     id: 9,
-    label: "مشاهده",
+    label: "detail",
   },
 ];
 
