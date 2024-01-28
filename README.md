@@ -21,9 +21,11 @@
 <p width="960" style="padding-right:40px;" align="left" >react-hot-toast</p>
 
 # summary of project
-This project is a fullstack project (MERN stack), that use from mongodb, expressjs, nextjs 13 and nodejs to handle a complete ecommerce web appkication. 
+This project is a fullstack project (MERN stack), that use from mongodb, expressjs, nextjs 13 and nodejs to handle a complete ecommerce web application. 
 validation in front-end has done with react-hook-form on form elements.
-user authentication handeld by JWT.
+user authentication handeld by OTP.
+and used from RBAC to authorized the user in different pages.
+this app have admin panel.
 
 
 
