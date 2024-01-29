@@ -98,7 +98,7 @@ class PaymentController extends Controller {
       },
     ]);
     if (!payment)
-      throw createHttpError.NotFound("سفارشی با این مشخصات پیدا نشد");
+      throw createHttpError.NotFound("payment not found");
 
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,

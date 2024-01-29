@@ -7,3 +7,6 @@ export function createPayment() {
 export function getAllPayments() {
   return http.get("/admin/payment/list").then(({ data }) => data.data);
 }
+export function getOnePayment(id) {
+  return http.get(`/admin/payment/${id}`).then(({ data }) => data.data);
+}
