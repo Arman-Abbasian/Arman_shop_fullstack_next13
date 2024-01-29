@@ -35,7 +35,7 @@ function AdminSideBar() {
           <li >categories</li>
           </Link>
           <Link onClick={()=>setShowMenu(false)} href="/admin/payments" className="hover:bg-primary-500 w-44 p-2 rounded-md lg:w-full">
-          <li >orders</li>
+          <li >payments</li>
           </Link>
           <Link onClick={()=>setShowMenu(false)} href="/admin/coupons" className="hover:bg-primary-500 w-44 p-2 rounded-md lg:w-full">
           <li >discount code</li>
