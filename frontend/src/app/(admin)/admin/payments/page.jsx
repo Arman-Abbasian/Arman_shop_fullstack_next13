@@ -12,7 +12,7 @@ function page() {
   return (
     <div>
       <div className="mb-5 flex items-center justify-between">
-        <h1 className="text-xl font-bold mb-5">سفارشات</h1>
+        <h1 className="text-xl font-bold mb-5">payments</h1>
       </div>
       <PaymentListTable payments={payments} />
     </div>

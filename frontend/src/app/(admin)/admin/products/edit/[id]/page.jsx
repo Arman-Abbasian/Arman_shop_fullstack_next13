@@ -77,6 +77,7 @@ function page() {
         isLoading={isLoading}
         productData={formData}
         productDataOnChange={handChange}
+        buttonText="update"
       />
     </div>
   );

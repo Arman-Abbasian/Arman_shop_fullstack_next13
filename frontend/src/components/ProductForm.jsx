@@ -61,6 +61,7 @@ function ProductForm({
   setSelectedCategory,
   isLoading,
   selectedCategory = "",
+  buttonText
 }) {
   return (
     <div className="max-w-sm">
@@ -99,7 +100,7 @@ function ProductForm({
           {isLoading ? (
             <Loading />
           ) : (
-            <button className="btn btn--primary w-full">update</button>
+            <button className="btn btn--primary w-full">{buttonText}</button>
           )}
         </div>
       </form>

@@ -61,6 +61,7 @@ console.log({formData,tags,selectedCategory})
         isLoading={addProductLaoding}
         productData={formData}
         productDataOnChange={handleChange}
+        buttonText="Add"
       />
     </div>
   );
