@@ -60,7 +60,6 @@ class ProductController extends Controller {
   async getListOfProducts(req, res) {
     let dbQuery = {};
     const user = req.user;
-    console.log({user})
     //these are the keys of query strings
     const { search, category, sort, type } = req.query;
     // if search key was in query string's key;
@@ -100,13 +99,16 @@ class ProductController extends Controller {
       //!based on that user liked product before or not
       //!if user is unknown make the all isLiked to false
       if (!user) product.isLiked = false;
+      if (!user) product.isPurchased = false;
       //! if use is authenticate, check if the userId is in product.likes array or not
       else if (user && product.likes.includes(user._id.toString())) product.isLiked = true
       else product.isLiked=false;
+      const isInCart=user.cart.products.findIndex(item=>(item.productId).toString()===product._id)
+      if (user && isInCart>=0) product.isPurchased = true
+      else product.isPurchased=false;
       delete product.likes;
       return product;
     });
-    console.log({newProducts})
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       data: {

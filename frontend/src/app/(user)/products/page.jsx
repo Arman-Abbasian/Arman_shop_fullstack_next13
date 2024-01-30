@@ -26,6 +26,7 @@ async function Products({ searchParams }) {
     productsPromise,
     categoryPromise,
   ]);
+  console.log(products)
   
   return (
     <div>

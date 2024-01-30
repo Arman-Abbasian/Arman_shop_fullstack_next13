@@ -5,15 +5,17 @@ import { useGetUser } from "@/hooks/useAuth";
 import { useAddToCart } from "@/hooks/useCart";
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 function AddToCart({ product }) {
   const queryClient = useQueryClient();
-  const router = useRouter();
-  const { data,isLoading:loadingUseGetUser } = useGetUser();
   const { isLoading, mutateAsync } = useAddToCart();
-  const { user } = data || {};
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { data } = useGetUser();
+const {user}=data||{};
 
   const addToCartHandler = async () => {
     if (!user) {
@@ -21,11 +23,12 @@ function AddToCart({ product }) {
       router.push("/auth");
       return;
     }
-
     try {
       const { message } = await mutateAsync(product._id);
       toast.success(message);
-      queryClient.invalidateQueries({ queryKey: ["get-user"] });
+      router.refresh(pathname + "?" + searchParams.toString());
+      queryClient.invalidateQueries({ queryKey: ["get-user"]});
+      
     } catch (error) {
       if (error?.response?.data) {
         toast.error(error.response.data.message);
@@ -33,30 +36,21 @@ function AddToCart({ product }) {
     }
   };
   //! this function check if the product existed in user cart section or not
-  const isInCart = (user, product) => {
-    if (!user) return false;
-    return user.cart?.products.some((p) => p.productId === product._id);
-  };
-  if (loadingUseGetUser) return <button disabled className="btn btn--primary w-full py-2">
-  <Loading width="40" heigh="25" color="rgb(var(--color-primary-100))" />
-    </button>
+  if (product.isPurchased)
   return (
-    <div> 
-      {isInCart(user, product) ? (
         <Link href="/cart" className="text-primary-900 font-bold w-full">
           continue the order
         </Link>
-      ) : (
-        isLoading ? 
-        <button disabled className="btn btn--primary py-2 w-full">
-        <Loading width="40" heigh="25" color="rgb(var(--color-primary-100))" />
-          </button> :
-          <button onClick={addToCartHandler} className="btn btn--primary py-2 w-full">
-          Add
-        </button>
-        
-      )}
-    </div>
-  );
+        )
+        if(isLoading)  return(
+           <button className="btn btn--primary py-2 w-full">
+            <Loading width="40" heigh="25" color="rgb(var(--color-primary-100))" />
+            </button>
+        )
+       return(
+            <button onClick={addToCartHandler} className="btn btn--primary py-2 w-full">
+            Add
+          </button>
+          )
 }
 export default AddToCart;
