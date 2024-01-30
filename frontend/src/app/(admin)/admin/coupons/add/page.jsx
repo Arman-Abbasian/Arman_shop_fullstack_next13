@@ -53,6 +53,7 @@ export default function page() {
         onFormChange={handleFormChange}
         onSubmit={handleSubmit}
         options={products}
+        buttonText="Add"
       />
     </div>
   );

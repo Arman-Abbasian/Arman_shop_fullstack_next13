@@ -68,16 +68,16 @@ function CouponListTable({ coupons }) {
                       <HiEye className="text-primary-900 w-6 h-6" />
                     </Link>
                 </td>
-                <td className="table__td">
-                <button onClick={() => removeCouponHandler(coupon._id)} className="tdItem--table w-full">
-                      <HiTrash className="text-rose-600 w-6 h-6" />
-                    </button>
-                </td>
                   <td className="table__td">
                   <Link href={`/admin/coupons/edit/${coupon._id}`} className="tdItem--table">
                       <RiEdit2Line className="w-6 h-6 text-secondary-600" />
                     </Link>
                   </td>
+                  <td className="table__td">
+                <button onClick={() => removeCouponHandler(coupon._id)} className="tdItem--table w-full">
+                      <HiTrash className="text-rose-600 w-6 h-6" />
+                    </button>
+                </td>
               </tr>
             );
           })}
