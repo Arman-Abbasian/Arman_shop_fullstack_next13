@@ -2,8 +2,6 @@ import RadioInput from "@/common/RadioInput";
 import TextField from "@/common/TextField";
 import Select from "react-select";
 import DatePicker from "react-multi-date-picker";
-import persian from "react-date-object/calendars/persian";
-import persian_fa from "react-date-object/locales/persian_fa";
 import Loading from "@/common/Loading";
 
 function CouponForm({
@@ -23,31 +21,31 @@ function CouponForm({
     <div className="max-w-sm">
       <form className="space-y-4" onSubmit={onSubmit}>
         <TextField
-          label="کد"
+          label="code"
           name="code"
           value={formData.code || ""}
           onChange={onFormChange}
         />
         <TextField
-          label="مقدار"
+          label="discount amount"
           name="amount"
           value={formData.amount || ""}
           onChange={onFormChange}
         />
         <TextField
-          label="ظرفیت"
+          label="capacity"
           name="usageLimit"
           value={formData.usageLimit || ""}
           onChange={onFormChange}
         />
         <div>
-          <span className="mb-2 block">نوع کد تخفیف</span>
+          <span className="mb-2 block">type</span>
           <div className="flex items-center justify-between">
             <RadioInput
               checked={type === "percent"}
               id="percent-type"
               name="type"
-              label="درصد"
+              label="percent"
               value="percent"
               onChange={(e) => setType(e.target.value)}
             />
@@ -55,7 +53,7 @@ function CouponForm({
               checked={type === "fixedProduct"}
               id="fixedProduct-type"
               name="type"
-              label="قیمت ثابت"
+              label="fixed price"
               value="fixedProduct"
               onChange={(e) => setType(e.target.value)}
             />
@@ -63,7 +61,7 @@ function CouponForm({
         </div>
         <div>
           <label htmlFor="products" className="mb-2 block">
-            شامل محصولات
+             applied products
           </label>
           <Select
             instanceId="products"
@@ -76,22 +74,21 @@ function CouponForm({
           />
         </div>
         <div>
-          <span className="mb-2 block">تاریخ انقضا</span>
+          <span className="mb-2 block">expire date</span>
           <DatePicker
-            inputClass="textField__input w-[330px]"
+            inputClass="textField__input w-full"
             value={expireDate}
             format="YYYY/MM/DD"
-            calendar={persian}
-            locale={persian_fa}
             calendarPosition="bottom-left"
             onChange={(date) => setExpireDate(date)}
+            containerStyle={{width:"100%"}}
           />
         </div>
         <div>
           {isLoading ? (
             <Loading />
           ) : (
-            <button className="btn btn--primary w-full"> تایید</button>
+            <button className="btn btn--primary w-full">Add</button>
           )}
         </div>
       </form>

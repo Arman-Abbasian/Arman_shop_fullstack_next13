@@ -180,34 +180,42 @@ export const couponListTableTHeads = [
   },
   {
     id: 2,
-    label: "کد",
+    label: "code",
   },
   {
     id: 3,
-    label: "نوع",
+    label: "type",
   },
   {
     id: 4,
-    label: "مقدار",
+    label: "amount",
   },
   {
     id: 6,
-    label: "شامل محصولات",
+    label: "applicable products",
   },
   {
     id: 7,
-    label: "مقدار مصرفی",
+    label: "amount",
   },
   {
     id: 8,
-    label: "ظرفیت",
+    label: "capacity",
   },
   {
     id: 9,
-    label: "تاریخ انقضا",
+    label: "expire date",
   },
   {
     id: 10,
-    label: "عملیات",
+    label: "detail",
+  },
+  {
+    id: 11,
+    label: "edit",
+  },
+  {
+    id: 12,
+    label: "delete",
   },
 ];

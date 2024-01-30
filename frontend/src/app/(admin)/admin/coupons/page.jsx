@@ -13,12 +13,12 @@ function page() {
   return (
     <div>
       <div className="mb-5 flex items-center justify-between">
-        <h1 className="text-xl font-bold mb-5">کد های تخفیف</h1>
+        <h1 className="text-xl font-bold mb-5">discount codes</h1>
         <Link
           href="/admin/coupons/add"
           className="font-bold text-primary-900 flex items-center gap-x-2"
         >
-          <HiPlusCircle className="w-6 h-6" /> <span>اضافه کردن کد تحفیف</span>
+          <HiPlusCircle className="w-6 h-6" /> <span>add discount code</span>
         </Link>
       </div>
       <CouponListTable coupons={coupons} />

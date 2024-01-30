@@ -41,7 +41,7 @@ export default function page() {
 
   return (
     <div>
-      <h1 className="mb-4 font-bold text-xl">اضافه کردن کد تخفیف</h1>
+      <h1 className="mb-4 font-bold text-xl">add discount code</h1>
       <CouponForm
         expireDate={expireDate}
         setExpireDate={setExpireDate}
