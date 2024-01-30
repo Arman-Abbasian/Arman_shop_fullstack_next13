@@ -16,6 +16,7 @@ function CouponForm({
   setExpireDate,
   isLoading,
   defaultValue = "",
+  buttonText
 }) {
   return (
     <div className="max-w-sm">
@@ -88,7 +89,7 @@ function CouponForm({
           {isLoading ? (
             <Loading />
           ) : (
-            <button className="btn btn--primary w-full">Add</button>
+            <button className="btn btn--primary w-full">{buttonText}</button>
           )}
         </div>
       </form>

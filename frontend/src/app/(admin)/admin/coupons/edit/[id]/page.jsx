@@ -62,7 +62,7 @@ function page() {
 
   return (
     <div>
-      <h1 className="mb-4 font-bold text-xl">اضافه کردن کد تخفیف</h1>
+      <h1 className="mb-4 font-bold text-xl">edit discount code</h1>
       <CouponForm
         expireDate={expireDate}
         setExpireDate={setExpireDate}
@@ -75,6 +75,7 @@ function page() {
         onSubmit={handleSubmit}
         options={products}
         defaultValue={coupon.productIds}
+        buttonText="update"
       />
     </div>
   );

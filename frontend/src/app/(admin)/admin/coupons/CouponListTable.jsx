@@ -29,7 +29,7 @@ function CouponListTable({ coupons }) {
             {couponListTableTHeads.map((item) => {
               return (
                 <th className="whitespace-nowrap table__th" key={item.id}>
-                  {item.label}
+                  <p className="tdItem--table">{item.label}</p>
                 </th>
               );
             })}
@@ -39,43 +39,45 @@ function CouponListTable({ coupons }) {
           {coupons.map((coupon, index) => {
             return (
               <tr key={coupon._id}>
-                <td className="table__td">{index + 1}</td>
+                <td className="table__td"> <p className="tdItem--table">{index + 1}</p></td>
                 <td className="table__td  whitespace-nowrap font-bold">
-                  {coupon.code}
+                <p className="tdItem--table">{coupon.code}</p>
+                </td>
+                <td className="table__td"> <p className="tdItem--table">{coupon.amount}</p></td>
+                <td className="table__td">
+                  <span className="badge badge--primary tdItem--table">{coupon.type}</span>
                 </td>
                 <td className="table__td">
-                  <span className="badge badge--primary">{coupon.type}</span>
-                </td>
-                <td className="table__td">{coupon.amount}</td>
-                <td className="table__td">
-                  <div className="space-y-2 flex flex-col items-start">
+                  <div className="space-y-2 flex flex-col items-center">
                     {coupon.productIds.map((p) => {
                       return (
-                        <span className="badge badge--secondary">
+                        <span className="badge badge--secondary tdItem--table">
                           {p.title}
                         </span>
                       );
                     })}
                   </div>
                 </td>
-                <td className="table__td">{coupon.usageCount}</td>
-                <td className="table__td">{coupon.usageLimit}</td>
+                <td className="table__td"> <p className="tdItem--table">{coupon.usageCount}</p></td>
+                <td className="table__td"> <p className="tdItem--table">{coupon.usageLimit}</p></td>
                 <td className="table__td">
-                  {toLocalDateStringShort(coupon.expireDate)}
+                <p className="tdItem--table"> {toLocalDateStringShort(coupon.expireDate)}</p>
                 </td>
-                <td className="table__td font-bold text-lg">
-                  <div className="flex items-center gap-x-4">
-                    <Link href={`/admin/coupons/${coupon._id}`}>
+                <td className="table__td">
+                <Link href={`/admin/coupons/${coupon._id}`} className="tdItem--table">
                       <HiEye className="text-primary-900 w-6 h-6" />
                     </Link>
-                    <button onClick={() => removeCouponHandler(coupon._id)}>
+                </td>
+                <td className="table__td">
+                <button onClick={() => removeCouponHandler(coupon._id)} className="tdItem--table w-full">
                       <HiTrash className="text-rose-600 w-6 h-6" />
                     </button>
-                    <Link href={`/admin/coupons/edit/${coupon._id}`}>
+                </td>
+                  <td className="table__td">
+                  <Link href={`/admin/coupons/edit/${coupon._id}`} className="tdItem--table">
                       <RiEdit2Line className="w-6 h-6 text-secondary-600" />
                     </Link>
-                  </div>
-                </td>
+                  </td>
               </tr>
             );
           })}

@@ -184,11 +184,11 @@ export const couponListTableTHeads = [
   },
   {
     id: 3,
-    label: "type",
+    label: "amount",
   },
   {
     id: 4,
-    label: "amount",
+    label: "type",
   },
   {
     id: 6,
@@ -196,7 +196,7 @@ export const couponListTableTHeads = [
   },
   {
     id: 7,
-    label: "amount",
+    label: "used",
   },
   {
     id: 8,
