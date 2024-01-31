@@ -19,7 +19,7 @@ function LikeProduct({ product }) {
   };
 
   return (
-    <div className="mb-2">
+    <div className="flex justify-center items-center">
       <button onClick={likeHandler}>
         {product.isLiked ? (
           <AiTwotoneHeart className="fill-red-500 w-6 h-6" />

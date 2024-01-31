@@ -27,9 +27,9 @@ function Product({product}) {
                   >
                  product details
                   </Link>
-                  <div className='flex justify-between items-center'>
+                  <div className='flex items-center gap-1 mb-2 '>
                   <LikeProduct product={product} />
-                  <p>{product.numOfLikes}</p>
+                  <p className='text-secondary-500 text-xs'>{product.numOfLikes}</p>
                   </div>
                   <AddToCart product={product} />
                 </div>
