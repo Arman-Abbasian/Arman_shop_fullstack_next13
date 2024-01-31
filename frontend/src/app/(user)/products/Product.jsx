@@ -5,6 +5,7 @@ import LikeProduct from './LikeProduct'
 import AddToCart from './[slug]/AddToCart'
 
 function Product({product}) {
+  console.log(product)
   return (
     <div
                   className="w-72 rounded-xl shadow-lg p-4 shadow-primary-400"
@@ -26,7 +27,10 @@ function Product({product}) {
                   >
                  product details
                   </Link>
+                  <div className='flex justify-between items-center'>
                   <LikeProduct product={product} />
+                  <p>{product.numOfLikes}</p>
+                  </div>
                   <AddToCart product={product} />
                 </div>
   )

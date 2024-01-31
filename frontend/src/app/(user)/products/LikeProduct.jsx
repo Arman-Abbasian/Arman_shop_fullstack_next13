@@ -11,7 +11,7 @@ function LikeProduct({ product }) {
   const likeHandler = async () => {
     try {
       const { message } = await likeProduct(product._id);
-      toast.success(message);
+      //toast.success(message);
       router.refresh(pathname + "?" + searchParams.toString());
     } catch (error) {
       toast.error(error?.response?.data?.message);
