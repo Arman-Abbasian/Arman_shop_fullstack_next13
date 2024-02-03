@@ -106,7 +106,7 @@ class ProductController extends Controller {
       const isInCart=user.cart.products.findIndex(item=>(item.productId).toString()===product._id)
       if (user && isInCart>=0) product.isPurchased = true
       else product.isPurchased=false;
-      delete product.likes;
+      //delete product.likes;
       return product;
     });
     return res.status(HttpStatus.OK).json({

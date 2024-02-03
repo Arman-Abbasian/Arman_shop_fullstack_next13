@@ -3,6 +3,7 @@ import AddToCart from "./AddToCart";
 import {
   toNumbersWithComma,
 } from "@/utils/toPersianNumbers";
+import { cookies } from "next/headers";
 
 //page is a SSG page
 export const dynamic = "force-static"; // SSG or {cache : "force-cache"}
@@ -49,7 +50,7 @@ export default page;
 
 export async function generateStaticParams() {
   const { products } = await getProducts();
-
+console.log({products})
   return products.map((product) => ({
     slug: product.slug,
   }));

@@ -5,7 +5,7 @@ import LikeProduct from './LikeProduct'
 import AddToCart from './[slug]/AddToCart'
 
 function Product({product}) {
-  console.log(product)
+  const numOfLikes=(product.likes.length)
   return (
     <div
                   className="w-72 rounded-xl shadow-lg p-4 shadow-primary-400"
@@ -29,7 +29,7 @@ function Product({product}) {
                   </Link>
                   <div className='flex items-center gap-1 mb-2 '>
                   <LikeProduct product={product} />
-                  <p className='text-secondary-500 text-xs'>{product.numOfLikes}</p>
+                  <p className='text-secondary-500 text-xs'>{numOfLikes}</p>
                   </div>
                   <AddToCart product={product} />
                 </div>

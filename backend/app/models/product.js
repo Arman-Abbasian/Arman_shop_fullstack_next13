@@ -25,7 +25,8 @@ const ProductSchema = new mongoose.Schema(
     countInStock: { type: Number, required: true, default: 0 },
     likes: { type: [ObjectId], ref: "User", default: [] },
     numOfLikes: { type: Number, required: true,default : function(){ 
-      return (this.likes.length )} },
+      return (this.likes.length )} 
+    },
   },
   {
     timestamps: true,

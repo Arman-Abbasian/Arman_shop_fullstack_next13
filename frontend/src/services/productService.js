@@ -1,6 +1,6 @@
 import http from "./httpService";
 
-export function getProducts(qs, cookies) {
+export function getProducts(qs="", cookies="") {
   return http
     .get(`/product/list?${qs}`, {
       headers: {
@@ -14,6 +14,7 @@ export function getProducts(qs, cookies) {
   //   .then((res) => res.json())
   //   .then(({ data }) => data);
 }
+
 
 export function getOneProdcutBySlug(slug) {
   return http.get(`/product/slug/${slug}`).then(({ data }) => data.data);
