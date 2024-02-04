@@ -39,7 +39,7 @@ function ProductListTable({ products }) {
               <tr key={product._id}>
                 <td className="table__td"><p className="tdItem--table">{index + 1}</p></td>
                 <td className="table__td  font-bold">
-                  {product.title}
+                  <p className="tdItem--table">{product.title}</p>
                 </td>
                 <td className="table__td"><p className="tdItem--table">{product.category.title}</p></td>
                 <td className="table__td"><p className="tdItem--table">{product.price}</p></td>
@@ -51,12 +51,12 @@ function ProductListTable({ products }) {
                       <HiEye className="text-primary-900 w-6 h-6" />
                     </Link>
                     </td>
-                    <td>
+                    <td className="table__td">
                 <Link href={`/admin/products/edit/${product._id}`} className="tdItem--table">
                 <RiEdit2Line className="w-6 h-6 text-secondary-600" />
                     </Link>
                     </td>
-                    <td>
+                    <td className="table__td">
                     <button onClick={() => removeProductHandler(product._id)} className="w-full tdItem--table">
                     <HiTrash className="text-rose-600 w-6 h-6" />
                     </button>
