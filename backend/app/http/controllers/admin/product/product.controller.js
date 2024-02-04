@@ -103,7 +103,7 @@ class ProductController extends Controller {
       //! if use is authenticate, check if the userId is in product.likes array or not
       else if (user && product.likes.includes(user._id.toString())) product.isLiked = true
       else product.isLiked=false;
-      const isInCart=user.cart.products.findIndex(item=>(item.productId).toString()===product._id)
+      const isInCart=user?.cart.products.findIndex(item=>(item.productId).toString()===product._id)
       if (user && isInCart>=0) product.isPurchased = true
       else product.isPurchased=false;
       //delete product.likes;

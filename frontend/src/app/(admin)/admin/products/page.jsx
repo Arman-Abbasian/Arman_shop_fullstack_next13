@@ -7,7 +7,7 @@ import Link from "next/link";
 import { HiPlusCircle } from "react-icons/hi";
 
 function page() {
-  const { data, isLoading } = useGetProducts();
+  const { data, isLoading } = useGetProducts(null,null);
   const { products } = data || {};
 
   if (isLoading) return <Loading />;
