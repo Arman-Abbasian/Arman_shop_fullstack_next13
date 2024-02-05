@@ -54,6 +54,7 @@ class userAuthController extends Controller {
         message: `submit code is sent to ${this.phoneNumber} mobile number`,
         expiresIn: this.expiresIn,
         phoneNumber,
+        otpCode:this.code
       },
     });
   }

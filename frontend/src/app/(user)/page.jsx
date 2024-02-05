@@ -4,11 +4,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useGetProducts } from "@/hooks/useProducts";
+import Loading from "@/common/Loading";
 
 
 export default function Home() {
   const {data,isLoading}=useGetProducts();
-  console.log(data)
+  const {products}=data||{}
     const settings = {
       dots: true,
       infinite: true,
@@ -24,45 +25,22 @@ export default function Home() {
       pauseOnFocus:true,
 
     }
+    if(isLoading) return <Loading />
     return (
       <div>
         <Slider {...settings}>
-          <div className="bg-primary-900 h-[calc(100vh-10rem)] rounded-md">
+          {products.slice(0,10).map(product=>{
+            return <div className="bg-primary-900 h-[calc(100vh-10rem)] rounded-md">
             <div className="h-[calc(100%-3rem)]">
-            <img src="/images/saxiphone.png" className="w-full h-full object-contain" />
+            <img src={product.imageLink} className="w-full h-full object-contain" />
             </div>
-            <div className="flex items-center gap-16 h-[3rem] mx-16 text-xl">
-              <p>santoor gholami 3 mohr</p>
-              <p>120$</p>
+            <div className="flex items-center gap-5 h-[3rem] mx-16 text-xl">
+              <p>{product.title}</p>
+              <p>{product.brand}</p>
             </div>
           </div>
-          <div className="bg-primary-900 h-[calc(100vh-10rem)] rounded-md">
-            <div className="h-[calc(100%-3rem)]">
-            <img src="/images/Drums.png" className="w-full h-full object-contain" />
-            </div>
-            <div className="flex items-center gap-16 h-[3rem] mx-16 text-xl">
-              <p>santoor gholami 3 mohr</p>
-              <p>120$</p>
-            </div>
-          </div>
-          <div className="bg-primary-900 h-[calc(100vh-10rem)] rounded-md">
-            <div className="h-[calc(100%-3rem)]">
-            <img src="/images/Notes.png" className="w-full h-full object-contain" />
-            </div>
-            <div className="flex items-center gap-16 h-[3rem] mx-16 text-xl">
-              <p>santoor gholami 3 mohr</p>
-              <p>120$</p>
-            </div>
-          </div>
-          <div className="bg-primary-900 h-[calc(100vh-10rem)] rounded-md">
-            <div className="h-[calc(100%-3rem)]">
-            <img src="/images/guitar.png" className="w-full h-full object-contain" />
-            </div>
-            <div className="flex items-center gap-16 h-[3rem] mx-16 text-xl">
-              <p>santoor gholami 3 mohr</p>
-              <p>120$</p>
-            </div>
-          </div>
+          })}
+         
         </Slider>
       </div>
     );

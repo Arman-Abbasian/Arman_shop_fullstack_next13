@@ -22,6 +22,7 @@ function AuthPage() {
   } = useMutation({
     mutationFn: getOtp,
   });
+  console.log(dataGetOtp)
   const { mutateAsync: mutateCheckOtp, isLoading: loadingCheckOtp,error } = useMutation(
     {
       mutationFn: checkOtp,

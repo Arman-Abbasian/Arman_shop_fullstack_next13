@@ -2,6 +2,8 @@ import OTPInput from "react-otp-input";
 import { HiArrowNarrowLeft,HiOutlineRefresh,HiOutlineDeviceMobile } from "react-icons/hi";
 import { CiEdit } from "react-icons/ci";
 import Loading from "@/common/Loading";
+import { BsExclamationTriangle } from "react-icons/bs";
+
 function CheckOTPForm({
   otpResponse,
   onSubmit,
@@ -30,7 +32,14 @@ function CheckOTPForm({
       )}
       <div className="text-secondary-500 mb-4">
         {time > 0 ? (
+          <div>
+            <p>the OTP is <span className="text-primary-700">{otpResponse.otpCode}</span></p>
+          <div className="flex items-center gap-0.5">
+          <BsExclamationTriangle  className="text-warning w-5 h-5"/>
+          <p>The OTP code in real websites sent by SMS</p>
+          </div>
           <p>{time} second to send new code</p>
+            </div>
         ) : (
           <button onClick={onResendOtp}><HiOutlineRefresh className="clickable--icon" /></button>
         )}
