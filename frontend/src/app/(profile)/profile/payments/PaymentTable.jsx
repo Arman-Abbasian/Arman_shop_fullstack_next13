@@ -11,7 +11,7 @@ function PaymentTable({ payments }) {
             {userPaymentTHeads.map((item) => {
               return (
                 <th className="whitespace-nowrap table__th" key={item.id}>
-                  {item.label}
+                  <p className="tdItem--table">{item.label}</p>
                 </th>
               );
             })}
@@ -21,19 +21,19 @@ function PaymentTable({ payments }) {
           {payments.map((payment, index) => {
             return (
               <tr key={payment._id}>
-                <td className="table__td">{index}</td>
+                <td className="table__td"><p className="tdItem--table">{index}</p></td>
                 <td className="table__td  whitespace-nowrap truncate">
-                  {payment.invoiceNumber}
+                <p className="tdItem--table">{payment.invoiceNumber}</p>
                 </td>
                 <td className="table__td  max-w-[280px] whitespace-nowrap truncate">
-                  {payment.description}
+                <p className="tdItem--table">{payment.description}</p>
                 </td>
                 <td className="table__td">
-                  <div className="flex flex-col gap-y-2 items-start">
+                  <div className="flex flex-col items-center gap-y-2">
                     {payment.cart.productDetail.map((product) => {
                       return (
                         <span
-                          className="badge badge--secondary"
+                          className="badge badge--secondary tdItem--table"
                           key={product._id}
                         >
                           {product.title}
@@ -43,16 +43,16 @@ function PaymentTable({ payments }) {
                   </div>
                 </td>
                 <td className="table__td font-bold text-lg">
-                  {toNumbersWithComma(payment.amount)}
+                <p className="tdItem--table">{toNumbersWithComma(payment.amount)}</p>
                 </td>
                 <td className="table__td">
-                  {payment.createdAt}
+                <p className="tdItem--table">{payment.createdAt}</p>
                 </td>
                 <td className="table__td">
                   {payment.status === "COMPLETED" ? (
-                    <span className="badge badge--success">success</span>
+                    <span className="badge badge--success tdItem--table">success</span>
                   ) : (
-                    <span className="badge badge--error">unsuccess</span>
+                    <span className="badge badge--error tdItem--table">unsuccess</span>
                   )}
                 </td>
               </tr>
