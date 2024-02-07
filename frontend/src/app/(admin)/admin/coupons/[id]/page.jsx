@@ -1,4 +1,4 @@
-function page() {
+function Page() {
   return <div>اطلاعات کد تخفیف</div>;
 }
-export default page;
+export default Page;

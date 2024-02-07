@@ -20,7 +20,7 @@ const includesProductKey = [
   "imageLink",
 ];
 
-function page() {
+function Page() {
   const { id } = useParams();
   const { data, isLoading: isLoadingProduct } = useGetProductById(id);
   const { data: categoryData } = useGetCategories();
@@ -56,13 +56,13 @@ function page() {
 
   useEffect(() => {
     if (product) {
-      console.log(product.tags)
+      console.log(product.tags);
       setSelectedCategory(product.category);
       setFormData(includeObj(product, includesProductKey));
       setTags(product.tags);
     }
   }, [product]);
-  console.log({formData,tags,selectedCategory})
+  console.log({ formData, tags, selectedCategory });
   if (isLoadingProduct) return <Loading />;
   return (
     <div>
@@ -82,4 +82,4 @@ function page() {
     </div>
   );
 }
-export default page;
+export default Page;

@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import CategoryForm from "@/components/CategoryForm";
 
-function page() {
+function Page() {
   const [category, setCategory] = useState({
     title: "",
     description: "",
@@ -46,4 +46,4 @@ function page() {
     </div>
   );
 }
-export default page;
+export default Page;

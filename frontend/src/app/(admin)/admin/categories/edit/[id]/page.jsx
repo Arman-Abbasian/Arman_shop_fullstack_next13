@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 const includesCategoryKey = ["title", "englishTitle", "description"];
 
-function page() {
+function Page() {
   const { id } = useParams();
   const { data, isLoading: isLoadingCategory } = useGetCategoryById(id);
   const { category } = data || {};
@@ -62,4 +62,4 @@ function page() {
     </div>
   );
 }
-export default page;
+export default Page;

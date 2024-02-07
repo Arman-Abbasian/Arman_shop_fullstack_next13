@@ -4,7 +4,7 @@ import Loading from "@/common/Loading";
 import { useGetPayments } from "@/hooks/usePayments";
 import PaymentListTable from "./PaymentListTable";
 
-function page() {
+function Page() {
   const { isLoading, data } = useGetPayments();
   const { payments } = data || {};
 
@@ -18,4 +18,4 @@ function page() {
     </div>
   );
 }
-export default page;
+export default Page;

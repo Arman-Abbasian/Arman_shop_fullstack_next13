@@ -5,7 +5,7 @@ import Link from "next/link";
 import CategoryListTable from "./CategoryListTable";
 import { HiPlusCircle } from "react-icons/hi";
 
-function page() {
+function Page() {
   const { data, isLoading } = useGetCategories();
   const { categories } = data || {};
 
@@ -26,4 +26,4 @@ function page() {
     </div>
   );
 }
-export default page;
+export default Page;

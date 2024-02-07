@@ -22,7 +22,7 @@ class Application {
     this.errorHandling();
   }
   createServer() {
-    this.#app.listen(this.#PORT, () =>
+    this.#app.listen(5000, () =>
       console.log(`listening on port ${this.#PORT}`)
     );
   }
@@ -33,7 +33,10 @@ class Application {
         useUnifiedTopology: true,
       })
       .then((res) => console.log("MongoDB connected!!"))
-      .catch((err) => console.log("Failed to connect to MongoDB", err));
+      .catch((err) => {
+        console.log(this.#DB_URI);
+        console.log("Failed to connect to MongoDB", err);
+      });
   }
   configServer() {
     this.#app.use(

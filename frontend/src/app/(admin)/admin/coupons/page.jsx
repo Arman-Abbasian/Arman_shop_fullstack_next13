@@ -6,7 +6,7 @@ import { HiPlusCircle } from "react-icons/hi";
 import CouponListTable from "./CouponListTable";
 import Loading from "@/common/Loading";
 
-function page() {
+function Page() {
   const { isLoading, data } = useGetCoupons();
   const { coupons } = data || {};
   if (isLoading) return <Loading />;
@@ -25,4 +25,4 @@ function page() {
     </div>
   );
 }
-export default page;
+export default Page;

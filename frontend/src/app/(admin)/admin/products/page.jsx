@@ -6,8 +6,8 @@ import ProductListTable from "./ProductListTable";
 import Link from "next/link";
 import { HiPlusCircle } from "react-icons/hi";
 
-function page() {
-  const { data, isLoading } = useGetProducts(null,null);
+function Page() {
+  const { data, isLoading } = useGetProducts(null, null);
   const { products } = data || {};
 
   if (isLoading) return <Loading />;
@@ -27,7 +27,7 @@ function page() {
     </div>
   );
 }
-export default page;
+export default Page;
 
 // add
 // edit (update)

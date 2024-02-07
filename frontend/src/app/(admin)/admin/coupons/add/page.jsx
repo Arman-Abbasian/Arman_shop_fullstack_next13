@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import CouponForm from "@/components/CouponForm";
 
-export default function page() {
+export default function Page() {
   const { data } = useGetProducts();
   const { products } = data || {};
   const [formData, setFormData] = useState({

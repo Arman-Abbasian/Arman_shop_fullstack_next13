@@ -1,6 +1,5 @@
 "use client";
 
-
 import ProductForm from "@/components/ProductForm";
 import { useGetCategories } from "@/hooks/useCategories";
 import { useAddProduct } from "@/hooks/useProducts";
@@ -8,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 
-function addProductPage() {
+function AddProductPage() {
   const { data } = useGetCategories();
   // we write 'data || {}' because at the first time data is empty because
   //usetGetCategories is a async action and with this code we provent the error
@@ -26,8 +25,8 @@ function addProductPage() {
   });
   const [tags, setTags] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-console.log({formData,tags,selectedCategory})
-  const { isLoading:addProductLaoding, mutateAsync } = useAddProduct();
+  console.log({ formData, tags, selectedCategory });
+  const { isLoading: addProductLaoding, mutateAsync } = useAddProduct();
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -66,4 +65,4 @@ console.log({formData,tags,selectedCategory})
     </div>
   );
 }
-export default addProductPage;
+export default AddProductPage;
