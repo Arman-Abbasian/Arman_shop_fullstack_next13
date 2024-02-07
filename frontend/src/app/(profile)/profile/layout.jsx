@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <Toaster />
           <div className="grid lg:grid-cols-5 bg-white lg:h-screen">
-          <nav className="py-2 px-4 lg:p-2 shadow-md mb-10 lg:mb-0 sticky top-0 transition-all duration-200 bg-white lg:bg-primary-100 overflow-y-auto">
+          <nav className="py-2 px-4 lg:p-2 shadow-md mb-10 lg:mb-0 sticky top-0 transition-all duration-200 lg:bg-white bg-primary-100 overflow-y-auto">
           <div onClick={()=>setShowMenu(!showMenu)} className="p-2 ring ring-primary-800 rounded-sm inline-block lg:hidden cursor-pointe">
           <HiMenu className="clickable--icon text-primary-900" />
         </div>

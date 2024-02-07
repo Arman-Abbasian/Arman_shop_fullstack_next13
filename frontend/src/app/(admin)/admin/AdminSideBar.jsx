@@ -13,10 +13,10 @@ function AdminSideBar() {
   };
 
   return (
-    <div className="p-3 lg:p-0">
+    <nav className="p-3 lg:p-0">
       <div onClick={()=>setShowMenu(!showMenu)} className="p-2 ring ring-primary-800 rounded-sm inline-block mb-2  lg:hidden cursor-pointer">
           <HiMenu className="w-6 h-6 text-primary-900" />
-        </div>
+      </div>
       <ul className={`${showMenu?'flex':'hidden'}  lg:flex flex-col p-2 gap-5 bg-secondary-300 lg:h-screen rounded-md lg:rounded-none`}>
         
           <Link onClick={()=>setShowMenu(false)} href="/" className="hover:bg-primary-500 w-44 p-2 rounded-md lg:w-full">
@@ -44,7 +44,7 @@ function AdminSideBar() {
           <button onClick={logoutHandler}>log out</button>
         </li>
       </ul>
-    </div>
+    </nav>
   );
 }
 export default AdminSideBar;
