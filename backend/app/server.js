@@ -40,7 +40,9 @@ class Application {
   }
   //{ credentials: true, origin: process.env.ALLOW_CORS_ORIGIN }
   configServer() {
-    this.#app.use(cors({ credentials: true }));
+    this.#app.use(
+      cors({ credentials: true, origin: process.env.ALLOW_CORS_ORIGIN })
+    );
     this.#app.use(express.json());
     this.#app.use(express.urlencoded({ extended: true }));
     this.#app.use(express.static(path.join(__dirname, "..")));
