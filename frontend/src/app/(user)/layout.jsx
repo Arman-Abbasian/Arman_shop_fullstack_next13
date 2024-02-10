@@ -20,9 +20,11 @@ export default function RootLayout({ children }) {
         <Providers>
           {/* add react-hot-toast to all pages of this layout */}
           <Toaster />
-          <Header />
-          <div className="container mx-auto max-w-screen-xl p-4">
-            {children}
+          <div className="h-screen flex flex-col">
+            <Header />
+            <div className="container mx-auto max-w-screen-xl p-4 flex-grow pt-16 lg:pt-0">
+              {children}
+            </div>
           </div>
         </Providers>
       </body>

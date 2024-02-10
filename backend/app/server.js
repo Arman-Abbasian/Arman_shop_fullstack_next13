@@ -12,6 +12,7 @@ class Application {
   #app = express();
   #PORT = process.env.PORT || 5000;
   #DB_URI = process.env.APP_DB;
+  #allowedOrigins = ["http://localhost:3000", process.env.ALLOW_CORS_ORIGIN];
 
   constructor() {
     this.createServer();
@@ -22,7 +23,7 @@ class Application {
     this.errorHandling();
   }
   createServer() {
-    this.#app.listen(5000, () =>
+    this.#app.listen(this.#PORT || 5000, () =>
       console.log(`listening on port ${this.#PORT}`)
     );
   }
@@ -39,10 +40,9 @@ class Application {
       });
   }
   //{ credentials: true, origin: process.env.ALLOW_CORS_ORIGIN }
+  const;
   configServer() {
-    this.#app.use(
-      cors({ credentials: true, origin: process.env.ALLOW_CORS_ORIGIN })
-    );
+    this.#app.use(cors({ credentials: true, origin: this.#allowedOrigins }));
     this.#app.use(express.json());
     this.#app.use(express.urlencoded({ extended: true }));
     this.#app.use(express.static(path.join(__dirname, "..")));
