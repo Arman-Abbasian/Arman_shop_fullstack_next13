@@ -31,7 +31,7 @@ export default function Home() {
         {Array.isArray(products) &&
           products.slice(0, 10).map((product) => {
             return (
-              <div className="bg-primary-900 h-[calc(100vh-10rem)] rounded-md">
+              <div className="bg-primary-900 h-[calc(100vh-12rem)] rounded-md">
                 <div className="h-[calc(100%-3rem)]">
                   <img
                     src={product.imageLink}

@@ -18,11 +18,11 @@ function Header() {
 
   return (
     <header
-      className={`shadow-md mb-10 sticky z-20 top-0 transition-all duration-200 bg-white flex-none ${
+      className={`shadow-md mb-10 absolute z-20 top-0 left-0 transition-all duration-200 w-full bg-white flex-none ${
         isLoading ? "blur-sm opacity-70" : "opacity-100 blur-0"
       }`}
     >
-      <nav className="py-2 px-4 lg:p-2 bg-primary-200 lg:bg-white absolute w-full top-0 z-20">
+      <nav className="py-2 px-4 lg:p-2 bg-primary-200 lg:bg-white w-full ">
         <div
           onClick={() => setShowMenu(!showMenu)}
           className="p-2 ring ring-primary-800 rounded-sm inline-block lg:hidden mb-3 cursor-pointer"

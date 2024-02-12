@@ -27,20 +27,20 @@ class userAuthController extends Controller {
     super();
     this.code = 0;
     this.phoneNumber = null;
-    this.expiresIn=0
+    this.expiresIn = 0;
   }
   async getOtp(req, res) {
     //get mobile number
-    let {phoneNumber}=req.body;
-    if(!phoneNumber) throw createError.BadRequest("mobile number is not sent");
+    let { phoneNumber } = req.body;
+    if (!phoneNumber) throw createError.BadRequest("mobile number is not sent");
     //validate the phoneNumber
-    await getOtpSchema.validateAsync(req.body)
+    await getOtpSchema.validateAsync(req.body);
     phoneNumber = phoneNumber.trim();
     //if the user did not sent a mobile number
-    //put the phoneNumber an code in constructor section to enabled to use by other methods here 
+    //put the phoneNumber an code in constructor section to enabled to use by other methods here
     this.phoneNumber = phoneNumber;
     this.code = generateRandomNumber(6);
-    //!--saveUser method check if the user registered before just update otp field and if user is new make a 
+    //!--saveUser method check if the user registered before just update otp field and if user is new make a
     //!--new user
     const result = await this.saveUser(phoneNumber);
     if (!result) throw createError.Unauthorized("some problem occured");
@@ -54,7 +54,7 @@ class userAuthController extends Controller {
         message: `submit code is sent to ${this.phoneNumber} mobile number`,
         expiresIn: this.expiresIn,
         phoneNumber,
-        otpCode:this.code
+        otpCode: this.code,
       },
     });
   }
@@ -86,19 +86,18 @@ class userAuthController extends Controller {
     //     ],
     //   },
     // ]);
-//if you can not find user based on the mobile number
+    //if you can not find user based on the mobile number
     if (!user) throw createError.NotFound("user not found");
-//if you can find the user but otp code in DB is not compatible with the sent otp code by user
-    if (user.otp.code != code)
-      throw createError.BadRequest("code is not true");
-//if you can find the user and otp code in DB is  compatible with the sent otp code by user
-//but the code is expired
+    //if you can find the user but otp code in DB is not compatible with the sent otp code by user
+    if (user.otp.code != code) throw createError.BadRequest("code is not true");
+    //if you can find the user and otp code in DB is  compatible with the sent otp code by user
+    //but the code is expired
     if (new Date(`${user.otp.expiresIn}`).getTime() < Date.now())
       throw createError.BadRequest("code is expired");
 
     user.isVerifiedPhoneNumber = true;
     await user.save();
-    console.log({user})
+    console.log({ user });
 
     // await setAuthCookie(res, user); // set httpOnly cookie
     //! with two under code we make the tokens and attach them to the cookie
@@ -106,7 +105,7 @@ class userAuthController extends Controller {
     await setRefreshToken(res, user);
     let WELLCOME_MESSAGE = `wellcome to Arman-shop`;
     if (!user.isActive)
-      WELLCOME_MESSAGE =`wellcome to Arman-shop please complete your data`;
+      WELLCOME_MESSAGE = `wellcome to Arman-shop please complete your data`;
 
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
@@ -121,25 +120,26 @@ class userAuthController extends Controller {
       code: this.code,
       expiresIn: Date.now() + CODE_EXPIRES,
     };
-    this.expiresIn=otp.expiresIn;
+    this.expiresIn = otp.expiresIn;
     //check if the user with this phoneNumber registered before or not
     const user = await this.checkUserExist(phoneNumber);
     //if user registered before update the user otp field in collection
-    if (user){
+    if (user) {
       //two under line get the user otp in DB to milliseconds
-      const d = new Date(user.otp.expiresIn)
+      const d = new Date(user.otp.expiresIn);
       let previousOTP = d.getTime();
       //the under condition prevent from request for excessive request for OTP to server
-      if (previousOTP>Date.now()) throw createError.BadRequest("previous OTP is still valid")
+      if (previousOTP > Date.now())
+        throw createError.BadRequest("previous OTP is still valid");
       return await this.updateUser(phoneNumber, { otp });
-    }else{
-       // if the user not exist make a new user in user collection
-    return await UserModel.create({
-      phoneNumber,
-      otp,
-      role: ROLES.USER,
-    });
-    } 
+    } else {
+      // if the user not exist make a new user in user collection
+      return await UserModel.create({
+        phoneNumber,
+        otp,
+        role: ROLES.USER,
+      });
+    }
   }
   async checkUserExist(phoneNumber) {
     const user = await UserModel.findOne({ phoneNumber });
@@ -183,7 +183,7 @@ class userAuthController extends Controller {
               phoneNumber,
             },
           });
-          // if not response is an Error
+        // if not response is an Error
         return res.status(status).json({
           statusCode: status,
           message: "OTP has not sent",
@@ -203,16 +203,14 @@ class userAuthController extends Controller {
     const duplicateUser = await UserModel.findOne({ email });
 
     if (duplicateUser)
-      throw createError.BadRequest(
-        "this email is already registered"
-      );
+      throw createError.BadRequest("this email is already registered");
 
     const updatedUser = await UserModel.findOneAndUpdate(
       { _id: user._id },
       { $set: { name, email, isActive: true } },
       { new: true }
     );
-    if(!updatedUser) throw createError.InternalServerError("server error")
+    if (!updatedUser) throw createError.InternalServerError("server error");
     // await setAuthCookie(res, updatedUser);
     await setAccessToken(res, updatedUser);
     await setRefreshToken(res, updatedUser);
@@ -220,7 +218,7 @@ class userAuthController extends Controller {
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       data: {
-        message:  "information completed successfully",
+        message: "information completed successfully",
         user: updatedUser,
       },
     });
@@ -236,7 +234,7 @@ class userAuthController extends Controller {
         $set: { name, email, biography },
       }
     );
-    if (updateResult.modifiedCount === 0){
+    if (updateResult.modifiedCount === 0) {
       throw createError.BadRequest("server error");
     }
     return res.status(HttpStatus.OK).json({
@@ -247,18 +245,18 @@ class userAuthController extends Controller {
     });
   }
   async refreshToken(req, res) {
-     //retrun the "verifyRefreshToken" method is one id
-     const userId = await verifyRefreshToken(req);
-     const user = await UserModel.findById(userId);
-     //! set new accessToken and refreshToken
-     await setAccessToken(res, user);
-     await setRefreshToken(res, user);
-     return res.status(HttpStatus.OK).json({
-       StatusCode: HttpStatus.OK,
-       data: {
-         user,
-       },
-     });
+    //retrun the "verifyRefreshToken" method is one id
+    const userId = await verifyRefreshToken(req);
+    const user = await UserModel.findById(userId);
+    //! set new accessToken and refreshToken
+    await setAccessToken(res, user);
+    await setRefreshToken(res, user);
+    return res.status(HttpStatus.OK).json({
+      StatusCode: HttpStatus.OK,
+      data: {
+        user,
+      },
+    });
   }
   async getUserProfile(req, res) {
     const { _id: userId } = req.user;
@@ -281,11 +279,11 @@ class userAuthController extends Controller {
       expires: Date.now(),
       httpOnly: true,
       signed: true,
-      sameSite: "Lax",
+      sameSite: "none",
       secure: true,
       path: "/",
-      domain:
-        process.env.NODE_ENV === "development" ? "localhost" : ".fronthooks.ir",
+      // domain:
+      //   process.env.NODE_ENV === "development" ? "localhost" : ".fronthooks.ir",
     };
     //set two cookie in response with null value(accessToken, refreshToken)
     res.cookie("accessToken", null, cookieOptions);
@@ -293,11 +291,10 @@ class userAuthController extends Controller {
 
     return res.status(HttpStatus.OK).json({
       StatusCode: HttpStatus.OK,
-      data:
-      {
-      roles: null,
-      auth: false,
-    }
+      data: {
+        roles: null,
+        auth: false,
+      },
     });
   }
 }

@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
           <Toaster />
           <div className="h-screen flex flex-col">
             <Header />
-            <div className="container mx-auto max-w-screen-xl p-4 flex-grow pt-16 lg:pt-0">
+            <div className="container mx-auto max-w-screen-xl p-4 flex-grow pt-24 ">
               {children}
             </div>
           </div>

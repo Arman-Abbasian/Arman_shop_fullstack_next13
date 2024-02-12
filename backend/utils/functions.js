@@ -29,10 +29,10 @@ async function setAccessToken(res, user) {
     maxAge: 1000 * 60 * 60 * 24 * 1, // would expire after 1 days
     httpOnly: true, // The cookie only accessible by the web server
     signed: true, // Indicates if the cookie should be signed
-    sameSite: "Lax",
+    sameSite: "none",
     secure: process.env.NODE_ENV === "development" ? false : true,
-    domain:
-      process.env.NODE_ENV === "development" ? "localhost" : ".fronthooks.ir",
+    // domain:
+    //   process.env.NODE_ENV === "development" ? "localhost" : ".fronthooks.ir",
   };
   //!attach the access token to the cookie
   res.cookie(
@@ -47,10 +47,10 @@ async function setRefreshToken(res, user) {
     maxAge: 1000 * 60 * 60 * 24 * 365, // would expire after 1 year
     httpOnly: true, // The cookie only accessible by the web server
     signed: true, // Indicates if the cookie should be signed
-    sameSite: "Lax",
+    sameSite: "none",
     secure: process.env.NODE_ENV === "development" ? false : true,
-    domain:
-      process.env.NODE_ENV === "development" ? "localhost" : ".fronthooks.ir",
+    // domain:
+    //   process.env.NODE_ENV === "development" ? "localhost" : ".fronthooks.ir",
   };
   res.cookie(
     "refreshToken",
@@ -103,7 +103,8 @@ function verifyRefreshToken(req) {
             otp: 0,
             resetLink: 0,
           });
-          if (!user) reject(createError.Unauthorized("please enter in your account"));
+          if (!user)
+            reject(createError.Unauthorized("please enter in your account"));
           return resolve(_id);
         } catch (error) {
           reject(createError.Unauthorized("please enter in your account"));
