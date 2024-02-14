@@ -14,6 +14,7 @@ export async function middleware(req) {
   if (pathname.startsWith("/cart")) {
     // "middlewareAuth" method return the user information
     const user = await middlewareAuth(req);
+    console.log({ middlewareUser: user });
     if (!user) return NextResponse.redirect(new URL("/auth", url));
   }
   if (pathname.startsWith("/admin")) {
@@ -31,11 +32,17 @@ export async function middleware(req) {
   if (pathname.startsWith("/complete-profile")) {
     // "middlewareAuth" method return the user information
     const user = await middlewareAuth(req);
-    console.log({user})
+    console.log({ user });
     if (user?.isActive) return NextResponse.redirect(new URL("/", url));
   }
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/profile/:path*","/auth","/complete-profile","/cart"],
+  matcher: [
+    "/admin/:path*",
+    "/profile/:path*",
+    "/auth",
+    "/complete-profile",
+    "/cart",
+  ],
 };
