@@ -21,6 +21,7 @@ const {
   getOtpSchema,
 } = require("../../validators/user/user.schema");
 const { PaymentModel } = require("../../../models/payment");
+const jwt = require("jsonwebtoken");
 
 class userAuthController extends Controller {
   constructor() {
@@ -64,7 +65,7 @@ class userAuthController extends Controller {
 
     const user = await UserModel.findOne(
       { phoneNumber },
-      { password: 0, refreshToken: 0, accessToken: 0 }
+      { password: 0, accessToken: 0, refreshToken: 0 }
     );
     // .populate([
     //   {
@@ -103,6 +104,7 @@ class userAuthController extends Controller {
     //! with two under code we make the tokens and attach them to the cookie
     await setAccessToken(res, user);
     await setRefreshToken(res, user);
+
     let WELLCOME_MESSAGE = `wellcome to Arman-shop`;
     if (!user.isActive)
       WELLCOME_MESSAGE = `wellcome to Arman-shop please complete your data`;

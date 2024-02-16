@@ -26,8 +26,7 @@ async function Products({ searchParams }) {
     productsPromise,
     categoryPromise,
   ]);
-  console.log(products)
-  
+
   return (
     <div>
       <div className="flex flex-col md:flex-row gap-4">
@@ -35,9 +34,7 @@ async function Products({ searchParams }) {
         <div className="flex-1">
           <div className="flex justify-center lg:justify-start items-center flex-wrap  gap-4">
             {products.map((product) => {
-              return (
-                <Product product={product}/>
-              );
+              return <Product product={product} />;
             })}
           </div>
         </div>
