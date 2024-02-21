@@ -2,15 +2,15 @@ import { toStringCookies } from "./toStringCookies";
 
 export default async function middlewareAuth(req) {
   //! this is how we attach http cookies in fetch method instead of axios method
-  console.log({ toStrCookie: toStringCookies(req.cookies) });
-  console.log({ cookie: req.cookies });
+  console.log({ cookieeeeeeeesssssssss: req.cookies.getAll() });
+  console.log({ toStrCookieeeeeeeee: toStringCookies(req.cookies) });
   const { data } = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/user/profile`,
     {
       method: "GET",
       credentials: "include",
       headers: {
-        Cookie: toStringCookies(req.cookies),
+        cookie: toStringCookies(req.cookies),
       },
     }
   ).then((res) => res.json());

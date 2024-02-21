@@ -60,10 +60,11 @@ class ProductController extends Controller {
   async getListOfProducts(req, res) {
     let dbQuery = {};
     const user = req.user;
+    console.log({ userrrrrrrrrrrrrr: user });
     //these are the keys of query strings
     const { search, category, sort, type } = req.query;
     // if search key was in query string's key;
-    if (search) dbQuery['$text'] = { $search: search };
+    if (search) dbQuery["$text"] = { $search: search };
     // if category key was in query string's key;
     if (category) {
       const categories = category.split(",");
@@ -81,7 +82,7 @@ class ProductController extends Controller {
     const sortQuery = {};
     if (!sort) sortQuery["createdAt"] = -1;
     if (sort) {
-      if (sort === "latest") sortQuery["createdAt"] = -1 ;
+      if (sort === "latest") sortQuery["createdAt"] = -1;
       if (sort === "earliest") sortQuery["createdAt"] = 1;
       if (sort === "popular") sortQuery["likes"] = -1;
     }
@@ -90,9 +91,9 @@ class ProductController extends Controller {
     })
       .populate([{ path: "category", select: { title: 1 } }])
       .sort(sortQuery);
-      
-//! now we have a filtered and sorted product
-//!make a copy of product and do the continue of codes on the copy products
+
+    //! now we have a filtered and sorted product
+    //!make a copy of product and do the continue of codes on the copy products
     const transformedProducts = copyObject(products);
     const newProducts = transformedProducts.map((product) => {
       //!we add this property to each product(isLiked) to make the like icon filled or empty
@@ -101,14 +102,18 @@ class ProductController extends Controller {
       if (!user) product.isLiked = false;
       if (!user) product.isPurchased = false;
       //! if use is authenticate, check if the userId is in product.likes array or not
-      else if (user && product.likes.includes(user._id.toString())) product.isLiked = true
-      else product.isLiked=false;
-      const isInCart=user?.cart.products.findIndex(item=>(item.productId).toString()===product._id)
-      if (user && isInCart>=0) product.isPurchased = true
-      else product.isPurchased=false;
+      else if (user && product.likes.includes(user._id.toString()))
+        product.isLiked = true;
+      else product.isLiked = false;
+      const isInCart = user?.cart.products.findIndex(
+        (item) => item.productId.toString() === product._id
+      );
+      if (user && isInCart >= 0) product.isPurchased = true;
+      else product.isPurchased = false;
       //delete product.likes;
       return product;
     });
+    console.log({ productssssssss: newProducts });
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
       data: {
@@ -130,8 +135,7 @@ class ProductController extends Controller {
         },
       },
     ]);
-    if (!product)
-      throw createHttpError.NotFound("product not found");
+    if (!product) throw createHttpError.NotFound("product not found");
 
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
@@ -153,8 +157,7 @@ class ProductController extends Controller {
         },
       },
     ]);
-    if (!product)
-      throw createHttpError.NotFound("product not found");
+    if (!product) throw createHttpError.NotFound("product not found");
 
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
@@ -208,9 +211,7 @@ class ProductController extends Controller {
       }
     );
     if (!updateProductResult.modifiedCount)
-      throw new createHttpError.InternalServerError(
-        "some error..."
-      );
+      throw new createHttpError.InternalServerError("some error...");
 
     return res.status(HttpStatus.OK).json({
       statusCode: HttpStatus.OK,
@@ -226,7 +227,7 @@ class ProductController extends Controller {
     const user = req.user;
     //!find product from product collection
     const product = await this.findProductById(productId);
-    if(!product) throw createHttpError.BadRequest("product not found");
+    if (!product) throw createHttpError.BadRequest("product not found");
     //!likedProduct is true if id of user be in likes array of product document and visaverse
     const likedProduct = await ProductModel.findOne({
       _id: productId,
@@ -236,7 +237,7 @@ class ProductController extends Controller {
     const updateProductQuery = likedProduct
       ? { $pull: { likes: user._id } }
       : { $push: { likes: user._id } };
-// if id of product was or was not exist in likedProducts field of user document
+    // if id of product was or was not exist in likedProducts field of user document
     const updateUserQuery = likedProduct
       ? { $pull: { likedProducts: product._id } }
       : { $push: { likedProducts: product._id } };

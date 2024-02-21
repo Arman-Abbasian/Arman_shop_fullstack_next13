@@ -29,7 +29,7 @@ const UserSchema = new mongoose.Schema(
     isActive: { type: Boolean, default: false },
     Products: [{ type: ObjectId, ref: "Product" }],
     role: { type: String, default: "USER" },
-    cart: { type: CartSchema },
+    cart: { type: CartSchema, default: {} },
     likedProducts: [{ type: ObjectId, ref: "Product" }],
   },
   {

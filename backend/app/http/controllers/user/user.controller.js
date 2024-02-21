@@ -281,11 +281,11 @@ class userAuthController extends Controller {
       expires: Date.now(),
       httpOnly: true,
       signed: true,
-      sameSite: "none",
+      sameSite: "strict",
       secure: true,
       path: "/",
-      // domain:
-      //   process.env.NODE_ENV === "development" ? "localhost" : ".fronthooks.ir",
+      domain:
+        process.env.NODE_ENV === "development" ? "localhost" : ".liara.run",
     };
     //set two cookie in response with null value(accessToken, refreshToken)
     res.cookie("accessToken", null, cookieOptions);

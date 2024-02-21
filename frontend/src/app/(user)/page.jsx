@@ -9,7 +9,8 @@ import Loading from "@/common/Loading";
 export default function Home() {
   const { data, isLoading } = useGetProducts();
   const { products } = data || {};
-  console.log(products);
+  console.log({ data });
+  console.log({ products });
   const settings = {
     dots: true,
     infinite: true,
